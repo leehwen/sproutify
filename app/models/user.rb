@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :plants
+  has_many :collections
+
   has_one_attached :image
   has_many :plants, dependent: :destroy
   # Include default devise modules. Others available are:
@@ -8,4 +11,5 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true
   validates :first_name, :last_name, :address, :username, :email, :password, presence: true
+  validates :username, :email, uniqueness: true
 end
