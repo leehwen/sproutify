@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_055747) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_065920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,59 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_055747) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "illnesses", force: :cascade do |t|
+    t.string "name"
+    t.string "cause"
+    t.text "description"
+    t.text "treatment"
+    t.string "common_names"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_url"
+  end
+
+  create_table "plant_illnesses", force: :cascade do |t|
+    t.bigint "illness_id", null: false
+    t.bigint "plant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["illness_id"], name: "index_plant_illnesses_on_illness_id"
+    t.index ["plant_id"], name: "index_plant_illnesses_on_plant_id"
+  end
+
+  create_table "plant_infos", force: :cascade do |t|
+    t.string "name"
+    t.string "common_names"
+    t.text "description"
+    t.integer "watering"
+    t.string "propagation"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.string "nickname"
+    t.boolean "listing"
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "collection_id"
+    t.bigint "plant_info_id", null: false
+    t.index ["collection_id"], name: "index_plants_on_collection_id"
+    t.index ["plant_info_id"], name: "index_plants_on_plant_info_id"
+    t.index ["user_id"], name: "index_plants_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,4 +109,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_055747) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "collections", "users"
+  add_foreign_key "plant_illnesses", "illnesses"
+  add_foreign_key "plant_illnesses", "plants"
+  add_foreign_key "plants", "collections"
+  add_foreign_key "plants", "plant_infos"
+  add_foreign_key "plants", "users"
 end
