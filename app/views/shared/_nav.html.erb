@@ -1,6 +1,18 @@
 <div class="footer w-100 d-flex justify-content-around" >
-  <%= link_to "Plant Identifier 🆔 ", new_user_session_path, class:"navlink"%>
-  <%= link_to "Plant Doctor 👨‍⚕️", new_user_session_path, class:"navlink" %>
-  <%= link_to "Marketplace 🌵", new_user_session_path, class:"navlink" %>
-  <%= link_to "My Garden 🏡", new_user_session_path, class:"navlink" %>
+  <%= link_to new_user_session_path, class: "navlink" do %>
+    <span class="navicon">🆔</span>
+    <span class="text">Plant Identifier</span>
+  <% end %>
+  <%= link_to new_user_session_path, class: "navlink" do %>
+    <span class="navicon">👨‍⚕️</span>
+    <span class="text">Plant Doctor</span>
+  <% end %>
+  <%= link_to new_user_session_path, class: "navlink" do %>
+    <span class="navicon">🌵</span>
+    <span class="text">Market Place</span>
+  <% end %>
+  <%= link_to new_user_session_path, class: "navlink" do %>
+    <span class="navicon">🏡</span>
+    <span class="text">My Garden</span>
+  <% end %>
 </div>
