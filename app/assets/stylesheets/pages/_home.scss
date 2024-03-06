@@ -1,1 +1,15 @@
 // Specific CSS for your home-page
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 2rem;
+  background-color: rgb(190, 246, 190);
+
+  .navlink{
+    text-decoration: none;
+    color:black;
+    font-size: 1rem;
+  }
+}
