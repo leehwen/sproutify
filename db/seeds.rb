@@ -38,29 +38,29 @@ user2 = User.create!(
 plant_infos1 = PlantInfo.create!(
   name:"Leucojum vernum",
   common_names: "Spring Snowflake",
-  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae. 
-    It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe, 
+  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae.
+    It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe,
     including Great Britain and parts of Scandinavia, and in the US states of Georgia and Florida. This spring flowering bulbous
     herbaceous perennial is cultivated as an ornamental for a sunny position. The plant multiplies in favourable conditions to form clumps.
     Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
     occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
     summer.",
-  watering: 5,
-  propagation: "cutting" 
+  watering: :dry,
+  propagation: "cutting"
 )
 
 plant_infos2 = PlantInfo.create!(
   name:"Monstera",
   common_names: "Monster of a plant",
-  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae. 
-  It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe, 
+  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae.
+  It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe,
   including Great Britain and parts of Scandinavia, and in the US states of Georgia and Florida. This spring flowering bulbous
   herbaceous perennial is cultivated as an ornamental for a sunny position. The plant multiplies in favourable conditions to form clumps.
   Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
   occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
   summer.",
-  watering: 3,
-  propagation: "water" 
+  watering: :medium,
+  propagation: "water"
 )
 
 Plant.create!(
@@ -76,14 +76,14 @@ Plant.create!(
   remarks: "Super annoying... need to keep watering..",
   user: user2,
   plant_info: plant_infos2
-  
+
 )
 
 Illness.create!(
   name: "finished flowering period",
   cause: "fungi infection",
-  description: "Fungi take energy from the plants on which they live, causing damage to the plant. 
-  Fungal infections are responsible for approximately two-thirds of infectious plant diseases and 
+  description: "Fungi take energy from the plants on which they live, causing damage to the plant.
+  Fungal infections are responsible for approximately two-thirds of infectious plant diseases and
   cause wilting, molding, rusts, scabs, rotted tissue, and other problems.",
   treatment: {
     "chemical": [
