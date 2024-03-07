@@ -9,6 +9,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :plants do
+    member do
+      patch 'add-diagnosis'
+    end
+  end
+
+  get "/diagnose", to: "diagnosis#diagnose"
+  get "/diagnose/results", to: "diagnosis#results"
+  post "/diagnose/results", to: "diagnosis#results"
+  get "/diagnose/results/details", to: "diagnosis#details"
+
   resources :plants
 
   # resources :identity do
