@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="camera"
 export default class extends Controller {
-  // static targets = ["image"]
+  static targets = ["results"]
+
   static values = {
     apiKey: String
   }
@@ -28,7 +29,8 @@ export default class extends Controller {
   }
 
   #callapi(base64String) {
-    const url = "https://plant.id/api/v3/identification"
+    const url = "https://plant.id/api/v3/identification?details=common_names,description,image,propagation_methods,watering";
+
     fetch(url, {
       method: "POST",
       headers: {"Content-Type": "application/json", "Api-Key": this.apiKeyValue },
@@ -36,8 +38,31 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((data) => {
-      console.log(data)
-      // pass this data to the partial
+      const info = data.result.classification.suggestions[0];
+      console.log(info)
+      const info_t = JSON.stringify({ 
+        data: info
+      });
+      const url2 = "/identify/results"
+      
+      // fetch (url2, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type":  "application/json",
+      //     "Accept": "text/plain",
+      //     "X-CSRF-Token": this.#getMetaValue("csrf-token")
+      //   },
+      //   body: info_t })
+        // .then(response => response.json())
+        // .then((data) => {
+        //   console.log(data)
+        //   // this.resultsTarget.outerHTML = data
+        // })
     })
+  }
+
+  #getMetaValue(name) {
+    const element = document.head.querySelector(`meta[name="${name}"]`)
+    return element.getAttribute("content")
   }
 }

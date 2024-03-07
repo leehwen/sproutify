@@ -3,4 +3,7 @@
     <%= f.input :image, as: :file, input_html: { data: { action: "change->camera#identify" }} %>
     <%= f.submit "Identify Plant" %>
   <% end %>
+
+  <div data-camera-target="results">
+  </div>
 </div>
