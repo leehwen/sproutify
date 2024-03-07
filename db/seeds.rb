@@ -45,7 +45,7 @@ plant_infos1 = PlantInfo.create!(
     Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
     occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
     summer.",
-  watering: :dry,
+  watering: 1,
   propagation: "cutting"
 )
 
@@ -59,7 +59,7 @@ plant_infos2 = PlantInfo.create!(
   Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
   occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
   summer.",
-  watering: :medium,
+  watering: 2,
   propagation: "water"
 )
 

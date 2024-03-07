@@ -14,10 +14,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_075418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  # Custom types defined in this database.
-  # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "watering_levels", ["undefined", "dry", "medium", "wet"]
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,7 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_075418) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.enum "watering", default: "undefined", null: false, enum_type: "watering_levels"
+    t.integer "watering"
   end
 
   create_table "plants", force: :cascade do |t|

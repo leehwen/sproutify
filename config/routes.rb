@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   # end
   get "identify", to: "identify#search"
   get "identify/results", to: "identify#results"
+  post "identify/results", to: "identify#results"
   get "identify/details", to: "identify#details"
 
 end
