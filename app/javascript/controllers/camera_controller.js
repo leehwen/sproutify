@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="camera"
 export default class extends Controller {
-  static targets = ["results"]
+  static targets = ["results", "hide"]
 
   static values = {
     apiKey: String
@@ -45,19 +45,20 @@ export default class extends Controller {
       });
       const url2 = "/identify/results"
       
-      // fetch (url2, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type":  "application/json",
-      //     "Accept": "text/plain",
-      //     "X-CSRF-Token": this.#getMetaValue("csrf-token")
-      //   },
-      //   body: info_t })
-        // .then(response => response.json())
-        // .then((data) => {
-        //   console.log(data)
-        //   // this.resultsTarget.outerHTML = data
-        // })
+      fetch (url2, {
+        method: "POST",
+        headers: {
+          "Content-Type":  "application/json",
+          "Accept": "text/plain",
+          "X-CSRF-Token": this.#getMetaValue("csrf-token")
+        },
+        body: info_t })
+        .then(response => response.text())
+        .then((data) => {
+          console.log(data)
+          this.resultsTarget.outerHTML = data;
+          this.hideTarget.classList.add("d-none");
+        })
     })
   }
 

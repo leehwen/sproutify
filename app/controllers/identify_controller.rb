@@ -71,20 +71,22 @@ class IdentifyController < ApplicationController
     @common_names = @data[:details][:common_names].first(3).join(",")
     @description = @data[:details][:description][:value]
     @image_url = @data[:details][:image][:value]
-    @propagation = @data[:details][:propagation_methods].first(3).join(",")
+    @propagation = @data[:details][:propagation_methods]
     @watering = @data[:details][:watering][:min].to_i
     
     @plant_info = PlantInfo.find_or_create_by!(
-      name: @name
-      common_names: @common_names
-      description: @description
-      image_url: @image_url
-      propagation: @propagation
+      name: @name,
+      common_names: @common_names,
+      description: @description,
+      image_url: @image_url,
+      propagation: @propagation,
       watering: @watering
     )
     
     respond_to do |format|
-      format.text { render partial: "shared/identify", locals: {movie: @movie}, formats: [:html] }
+      format.text { render partial: "shared/identifyresults", locals: {name: @name, 
+      common_names: @common_names, description: @description, image_url: @image_url, 
+      propagation: @propagation, watering: @watering}, formats: [:html] }
     end
   end
 
