@@ -1,0 +1,11 @@
+<%= link_to "Click to identify", plants_path %>
+
+<%= form_tag '/upload_image' method: :post do %>
+  <%= file_field_tag 'image', accept: 'image/*', capture: 'camera' %>
+  <%= submit_tag "Upload Image" %>
+<% end %>
+
+<% simple_form_for @search do |f| %>
+<%= f.input :image, as: :file %>
+<% f.submit "comment" class:"" %>
+<% end %>
