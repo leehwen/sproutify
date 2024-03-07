@@ -10,4 +10,16 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :plants
+
+  # resources :identity do
+  #   collection do
+  #     get
+  #     get :results
+  #     get :details
+  #   end
+  # end
+  get "identify", to: "identify#search"
+  get "identify/results", to: "identify#results"
+  get "identify/details", to: "identify#details"
+
 end
