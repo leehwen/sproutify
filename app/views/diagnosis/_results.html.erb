@@ -64,7 +64,7 @@
   </ul>
 
 <%= simple_form_for :add_plant, method: :get, url: diagnose_add_plants_path  do |f| %>
-  <%= f.hidden_field :illness, value: @illness.id %>
+  <%= f.hidden_field :illness_id, value: @illness.id %>
   <%= f.submit 'Add Diagnosis to Plant', class: "sp-btn-green" %>
 <% end %>
 </div>
