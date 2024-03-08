@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :plant_infos, only: %i[new create show]  do
+    resources :plants, only: %i[new create show]
+  end
+
   get "/diagnose", to: "diagnosis#diagnose"
   get "/diagnose/results", to: "diagnosis#results"
   post "/diagnose/results", to: "diagnosis#results"
@@ -42,5 +46,10 @@ Rails.application.routes.draw do
   #     get :results
   #     get :details
   #   end
-  # end
+  # # end
+  # get "identify", to: "identify#search"
+  # get "identify/results", to: "identify#results"
+  # post "identify/results", to: "identify#results"
+  # get "identify/details", to: "identify#details"
+
 end

@@ -1,6 +1,6 @@
 <div data-controller="camera" data-camera-api-key-value="<%=ENV["PLANT_ID_KEY"] %>">
   <div data-camera-target="hide" class="identifyquery">
-    <%= simple_form_for :user, url: identify_results_path do |f| %>
+    <%= form_with do |f| %>
       <%= f.input :image, as: :file, input_html: { data: { action: "change->camera#identify" }} %>
     <% end %>
   </div>
