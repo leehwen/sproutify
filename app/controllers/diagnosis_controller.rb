@@ -18,7 +18,7 @@ class DiagnosisController < ApplicationController
       image_url: "https://plant-id.ams3.cdn.digitaloceanspaces.com/similar_images/3/120/85e5ad1d14b6c0bba7e14e2f707158b0dfe77.jpg"
       } : params[:results]
 
-    @illness = Illness.new(name: @results[:name], common_names: @results[:common_names], cause: @results[:cause], description: @results[:description], treatment: @results[:treatment], image_url: @results[:image_url] )
+    # @illness = Illness.new(name: @results[:name], common_names: @results[:common_names], cause: @results[:cause], description: @results[:description], treatment: @results[:treatment], image_url: @results[:image_url] )
 
     @illness = Illness.find_or_initialize_by(
       name: @results[:name]
