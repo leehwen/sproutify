@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   post "/diagnose/results", to: "diagnosis#results"
   get "/diagnose/add-plants", to: "diagnosis#addplants"
 
+  get "identify", to: "identify#search"
+  get "identify/results", to: "identify#results"
+  post "identify/results", to: "identify#results"
+  get "identify/details", to: "identify#details"
+
   # get "/diagnose/results/details", to: "diagnosis#details"
 
   # resources :identity do
@@ -28,8 +33,4 @@ Rails.application.routes.draw do
   #     get :details
   #   end
   # end
-  get "identify", to: "identify#search"
-  get "identify/results", to: "identify#results"
-  post "identify/results", to: "identify#results"
-  get "identify/details", to: "identify#details"
 end
