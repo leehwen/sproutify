@@ -1,4 +1,10 @@
 class PlantsController < ApplicationController
+  def index
+    @plants = Plant.all.where(user: current_user)
+
+    @plants = policy_scope(Plant)
+  end
+  
   def new
     @plant = Plant.new
     authorize @plant
@@ -8,7 +14,7 @@ class PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
     @plant.user = current_user
     if @plant.save
-      redirect_to new_plant_path
+      redirect_to plants_path
     else
       render :new, status: :unprocessable_entity 
     end

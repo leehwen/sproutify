@@ -1,6 +1,11 @@
-<div data-controller="camera">
+<div data-controller="camera" data-camera-api-key-value="<%=ENV["PLANT_ID_KEY"] %>" >
   <div data-camera-target="info">
   
+  </div>
+
+  <div class="d-flex justify-content-center">
+  <%= link_to "Not accurate? Identify again", new_plant_path, class:"btn btn-primary d-none m-3", data: { camera_target: "btnShowA" }  %>
+  <div class="btn btn-primary d-none m-3" data-camera-target="btnShowB" data-action="click->camera#fire">Add to Garden</div>
   </div>
 
   <%= simple_form_for (@plant) do |f| %>
@@ -8,6 +13,7 @@
     <%= f.input :remarks, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
     <%= f.input :image, as: :file, wrapper_html: { data: { action: "change->camera#identify", camera_target:"toHide" }} %>
     <%= f.association :plant_info, as: :hidden, input_html: { data: {camera_target: "plantInfo"}} %>
-    <%= f.submit "Add to Garden", class: 'd-none', data: { camera_target: "toShow" }%>
+    <%= f.submit "Add to Garden", class: 'd-none btn btn-primary', data: { camera_target: "toShow" }%>
   <% end %>
+
 </div>
