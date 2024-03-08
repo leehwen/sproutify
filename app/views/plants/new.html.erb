@@ -1,0 +1,13 @@
+<div data-controller="camera">
+  <div data-camera-target="info">
+  
+  </div>
+
+  <%= simple_form_for (@plant) do |f| %>
+    <%= f.input :nickname, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
+    <%= f.input :remarks, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
+    <%= f.input :image, as: :file, wrapper_html: { data: { action: "change->camera#identify", camera_target:"toHide" }} %>
+    <%= f.association :plant_info, as: :hidden, input_html: { data: {camera_target: "plantInfo"}} %>
+    <%= f.submit "Add to Garden", class: 'd-none', data: { camera_target: "toShow" }%>
+  <% end %>
+</div>
