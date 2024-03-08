@@ -1,0 +1,29 @@
+<div data-controller="mygarden">
+  <div class="d-flex justify-content-center">
+    <div class="btn btn-primary disabled rounded-5 mx-2" data-mygarden-target="collectionHeader" data-action="click->mygarden#togglePlant">Plants</div> 
+    <div class="btn btn-primary rounded-5 mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#toggleCollection">Collections</div> 
+  </div>
+
+  <div class="collection d-none" data-mygarden-target="collection">
+  </div>
+
+  <div class="plants" data-mygarden-target="plants">
+      <% @plants.each do |plant| %>
+      <% plantinfo = PlantInfo.find(plant.plant_info_id) %>
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 border p-2 m-2">
+          <% if plant.image.attached? %>
+            <%= cl_image_tag plant.image.key, height: 300, width: 400, crop: :fill %>
+          <% else %>
+          <% end %>
+          <p><strong>Nickname </strong><%= plant.nickname %></p>
+          <p><strong>Remarks </strong><%= plant.remarks  %></p>
+          <p><strong>Species </strong><%= plantinfo.name  %></p>
+          <p><strong>Watering </strong><%= plantinfo.watering  %></p>
+
+          <%= link_to "View Details", plant_path(plant) %>
+          <%= link_to "Add to a collection" %>
+      </div>
+    </div>
+  <% end %>
+</div>

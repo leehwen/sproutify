@@ -1,26 +1,26 @@
 
 <div class="identifier-main">
   <div class="identify-header">
-    <h1><strong>This is the plant you searched!</strong></h1>
+    <h1><strong>Your Plant</strong></h1>
   </div>
 
   <img src=<%= plant_info.image_url %> alt=<%= plant_info.name %> class="image-card">
 
   <h2> Plant Species </h2>
-  <p> <%= plant_info.name %> </p>
+  <p> <%= plant_info.name.titleize %> </p>
 
   <h2> Description </h2>
   <p> <%= plant_info.description %> </p>
 
   <h2> Other common names </h2>
-  <p> <%= plant_info.common_names %> </p>
+  <p> <%= plant_info.common_names.titleize.gsub(',', ', ') %> </p>
 
-  <h2> Propagation </h2>
+  <h2> Propagation Methods </h2>
   <% JSON.parse(plant_info.propagation).each do |f| %>
-    <p> <%= f %> </p>
+    <p> <%= f.titleize %> </p>
   <% end %>
 
   <h2> Watering methods </h2>
-  <p> <%= plant_info.watering %> </p>
+  <p> <%= plant_info.watering.titleize %> </p>
 </div>
 

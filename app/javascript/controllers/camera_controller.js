@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="camera"
 export default class extends Controller {
-  static targets = ["info", "toShow", "plantInfo", "toHide"]
+  static targets = ["info", "toShow", "plantInfo", "toHide", "btnShowA", "btnShowB"]
 
   static values = {
     apiKey: String
@@ -10,6 +10,14 @@ export default class extends Controller {
 
   connect() {
     console.log("connected")
+  }
+
+  fire(e) {
+    e.preventDefault;
+    this.toShowTargets.forEach ((target) => {
+    target.classList.remove('d-none');
+    });
+    this.btnShowBTarget.classList.add("d-none");
   }
 
   identify(e) {
@@ -63,12 +71,15 @@ export default class extends Controller {
           // 1. update the info
           this.infoTarget.outerHTML = data.info
           // 2. unhide all the toShowTargets
-          this.toShowTargets.forEach ((target) => {
-            target.classList.remove('d-none');
-          });
+          // this.toShowTargets.forEach ((target) => {
+          //   target.classList.remove('d-none');
+          // });
           this.toHideTarget.classList.add('d-none')
           // 3. update the association with plant_info_id
           this.plantInfoTarget.value = data.plant_info_id
+
+          this.btnShowATarget.classList.remove('d-none');
+          this.btnShowBTarget.classList.remove('d-none');
         })
     // })
   }
