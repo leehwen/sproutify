@@ -1,4 +1,4 @@
-<div data-controller="diagnosis" data-diagnosis-api-key-value="<%= ENV['PLANT_ID'] %>">
+<div data-controller="diagnosis" data-diagnosis-api-key-value="<%= ENV['PLANT_ID_KEY'] %>">
   <div data-diagnosis-target="results">
   </div>
   <%= simple_form_for :diagnose, method: :get, url: "diagnose_path" do |f| %>
