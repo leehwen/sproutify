@@ -6,7 +6,7 @@ export default class extends Controller {
     apiKey: String
   }
 
-  static targets = ["results"]
+  static targets = ["results", "diagnose"]
 
   connect() {
     console.log('hello')
@@ -89,7 +89,7 @@ export default class extends Controller {
           "biological":["Remove weeds as well as all dead plant tissue. They may be a source of infection.","Apply ecological products for plant protection (e.g. copper-based spray)."],
           "prevention":["Use resistant species and cultivars as well as healthy, certified seeds and seedlings.","Avoid prolonged wetting of the leaves, which can be caused e.g. by overhead irrigation.","Improve the air circulation around the plant (e.g. by pruning excess foliage or increasing the spacing between plants).","Rotate crops. Avoid planting sensitive crops in infested soil.","Disinfect tools, infected flower pots, and hands to avoid disease transmission."]
         },
-        image_url: "illness.similar_images[0].url"
+        image_url: "https://plant-id.ams3.cdn.digitaloceanspaces.com/similar_images/3/120/85e5ad1d14b6c0bba7e14e2f707158b0dfe77.jpg"
       }
     })
 
@@ -106,6 +106,7 @@ export default class extends Controller {
     .then((HTMLstring) => {
       console.log(HTMLstring);
       this.resultsTarget.innerHTML = HTMLstring
+      this.diagnoseTarget.classList.toggle("d-none")
     })
   }
 

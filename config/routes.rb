@@ -11,8 +11,18 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :plants do
+    collection do
+      get 'listings'
+    end
     member do
-      patch 'add-diagnosis'
+      patch 'add-listing'
+    end
+    get 'illness/:illness_id', to: "plants#add_diagnosis", as: :add_diagnosis
+  end
+
+  resources :offers, only: %i[new create] do
+    member do
+      patch 'accepted'
     end
   end
 
@@ -23,7 +33,12 @@ Rails.application.routes.draw do
   get "/diagnose", to: "diagnosis#diagnose"
   get "/diagnose/results", to: "diagnosis#results"
   post "/diagnose/results", to: "diagnosis#results"
-  get "/diagnose/results/details", to: "diagnosis#details"
+  get "/diagnose/add-plants", to: "diagnosis#addplants"
+
+  get "identify", to: "identify#search"
+  get "identify/results", to: "identify#results"
+  post "identify/results", to: "identify#results"
+  get "identify/details", to: "identify#details"
 
   # resources :identity do
   #   collection do

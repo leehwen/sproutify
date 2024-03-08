@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <%# <%= render 'shared/plant_cards', plants: @plants %>
+  <% @plants.each do |plant| %>
+    <%= link_to plant_add_diagnosis_path(plant, @illness), class: "text-decoration-none text-dark" do %>
+      <div class="grid-item position-relative">
+        <% if plant.listing %>
+          <%= cl_image_tag plant.images[0].key, class: "plant-image" %>
+        <% else %>
+          <%= image_tag("plant_sample_10.jpg", class: "listing-image") %>
+        <% end %>
+        <p><%= plant.nickname %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
