@@ -15,13 +15,7 @@ class PlantsController < ApplicationController
 
     authorize @plant
   end
-
-  private
-
-  def plant_params
-    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image)
-  end
-
+  
   def show
     @plant = Plant.find(params[:id])
     authorize @plant
@@ -44,4 +38,11 @@ class PlantsController < ApplicationController
     @plant.listing = true
     authorize @plant
   end
+  
+  private
+
+  def plant_params
+    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image)
+  end
+
 end

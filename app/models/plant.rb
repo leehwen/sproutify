@@ -5,5 +5,5 @@ class Plant < ApplicationRecord
   has_one_attached :image
 
   has_many :plant_illnesses
-  has_many :illnesses, through: :plant_illnesse
+  has_many :illnesses, through: :plant_illnesses
 end
