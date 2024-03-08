@@ -1,5 +1,6 @@
 class DiagnosisController < ApplicationController
   before_action :skip_authorization
+
   def diagnose
 
   end

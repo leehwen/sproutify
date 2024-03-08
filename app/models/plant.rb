@@ -4,5 +4,5 @@ class Plant < ApplicationRecord
   belongs_to :plant_info
 
   has_many :plant_illnesses
-  has_many :illnesses, through: :plant_illnesses
+  has_many :illnesses, through: :plant_illnesse
 end

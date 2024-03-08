@@ -13,4 +13,13 @@ class PlantsController < ApplicationController
     redirect_to plant_path(@plant)
   end
 
+  def listings
+    @listings = Plant.where(listing: true)
+  end
+
+  def add_listing
+    @plant = Plant.find(params[:id])
+    @plant.listing = true
+    authorize @plant
+  end
 end
