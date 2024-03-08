@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   post "/diagnose/results", to: "diagnosis#results"
   get "/diagnose/results/details", to: "diagnosis#details"
 
-  resources :plants
-
   # resources :identity do
   #   collection do
   #     get
