@@ -6,7 +6,7 @@ export default class extends Controller {
     apiKey: String
   }
 
-  static targets = ["results"]
+  static targets = ["results", "diagnose"]
 
   connect() {
     console.log('hello')
@@ -106,6 +106,7 @@ export default class extends Controller {
     .then((HTMLstring) => {
       console.log(HTMLstring);
       this.resultsTarget.innerHTML = HTMLstring
+      this.diagnoseTarget.classList.toggle("d-none")
     })
   }
 
