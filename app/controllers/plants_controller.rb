@@ -1,11 +1,16 @@
 class PlantsController < ApplicationController
 
+  def show
+    @plant = Plant.find(params[:id])
+    authorize @plant
+  end
+
   def add_diagnosis
     @plant = Plant.find(params[:plant_id])
     @illness = Illness.find(params[:illness_id])
-    @plant_illness = PlantIllness.new
     @plant.illnesses << @illness
-    redirect_to plant_path(params[:plant_id])
+    authorize @plant
+    redirect_to plant_path(@plant)
   end
 
 end

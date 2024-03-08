@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :plants do
-    member do
-      post 'add-diagnosis'
-    end
+    get 'illness/:illness_id', to: "plants#add_diagnosis", as: :add_diagnosis
   end
 
   get "/diagnose", to: "diagnosis#diagnose"
