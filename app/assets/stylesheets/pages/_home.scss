@@ -1,32 +1,14 @@
-// Specific CSS for your home-page
-
-.footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 1rem;
-  background-color: rgb(190, 246, 190);
-
-  .navlink{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-size: 0.7rem;
-    font-weight: bold;
-
-
-    .navicon{
-      font-size: 1.5rem;
-    }
-  }
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
-.mainbody{
-  margin-bottom: 85px;
-  padding-top: 20px;
-  padding-bottom:20px;
+h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}

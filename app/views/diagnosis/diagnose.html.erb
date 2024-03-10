@@ -1,11 +1,25 @@
 <div data-controller="diagnosis" data-diagnosis-api-key-value="<%= ENV['PLANT_ID_KEY'] %>">
-  <div data-diagnosis-target="results">
-  </div>
   <div data-diagnosis-target="diagnose">
-    <%= simple_form_for :diagnose, method: :get, url: "diagnose_path" do |f| %>
-      <div>
-      <%= f.input :image, as: :file, input_html: { data: {action: "change->diagnosis#convert"} } %>
-      </div>
-    <% end %>
+    <div>
+      <%= image_tag "Yellow flower in a green ceramic pot.jpg", alt: "Yellow flower in a green ceramic pot", class: "banner" %>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <%= simple_form_for :diagnose, method: :get, url: "diagnose_path" do |f| %>
+        <div>
+        <%= f.label :image, class: "sp-btn-green" do %>
+          Diagnose
+          <i class="fa-solid fa-camera"></i>
+        <% end %>
+
+        <%= f.input :image, as: :file, label: false, input_html: { data: {action: "change->diagnosis#convert"}, class: "d-none"} %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div data-diagnosis-target="results">
+
   </div>
 </div>

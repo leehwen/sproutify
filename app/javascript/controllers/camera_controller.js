@@ -49,14 +49,14 @@ export default class extends Controller {
     // .then((data) => {
     //   const info = data.result.classification.suggestions[0];
     //   console.log(info)
-    //   const info_t = JSON.stringify({ 
+    //   const info_t = JSON.stringify({
     //     data: info
     //   });
       const url2 = "/plant_infos"
 
       console.log('hi')
       let info_t;
-      
+
       fetch (url2, {
         method: "POST",
         headers: {

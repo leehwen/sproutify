@@ -1,0 +1,85 @@
+<div>
+  <img src=<%= results[:image_url]%> alt=<%= "Image of #{results[:name]}" %> class="image-card">
+</div>
+
+<div class="diagnosis-results-container">
+
+  <div class="mb-3">
+    <h1>
+      <%= results[:name].titleize %>
+    <h1>
+  </div>
+
+  <div class="mb-4">
+    <% if results[:common_names].nil? %>
+    <% else %>
+      <h2>
+        Common Names:
+      </h2>
+      <p>
+        <%= results[:common_names] %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <% if results[:cause].nil? %>
+    <% else %>
+      <h2>
+        Cause:
+      </h2>
+      <p>
+        <%= results[:common_names] %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Description
+    </h2>
+    <p>
+      <%= results[:description] %>
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Treatment
+    </h2>
+
+    <h3>
+      Chemical:
+    </h3>
+    <ul>
+      <% results[:treatment][:chemical].each do |result| %>
+        <li> <%= result %> </li>
+      <% end %>
+    </ul>
+
+    <h3>
+      Biological:
+    </h3>
+    <ul>
+      <% results[:treatment][:biological].each do |result| %>
+        <li> <%= result %> </li>
+      <% end %>
+    </ul>
+
+    <h3>
+      Prevention:
+    </h3>
+    <ul>
+      <% results[:treatment][:prevention].each do |result| %>
+        <li> <%= result %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <%= simple_form_for :add_plant, method: :get, url: diagnose_add_plants_path  do |f| %>
+      <%= f.hidden_field :illness_id, value: @illness.id %>
+      <%= f.submit 'Add Diagnosis to Plant', class: "sp-btn-green" %>
+    <% end %>
+  </div>
+</div>

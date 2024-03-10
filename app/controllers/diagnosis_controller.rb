@@ -34,7 +34,7 @@ class DiagnosisController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render partial: "results", locals: {results: @results}, formats: [:html] }
+      format.text { render partial: "diagnosis_results", locals: {results: @results}, formats: [:html] }
     end
   end
 
