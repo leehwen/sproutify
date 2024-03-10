@@ -13,7 +13,7 @@
     <%= simple_form_for (@plant) do |f| %>
       <%= f.input :nickname, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
       <%= f.input :remarks, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
-      <%= f.label :image, class: "sp-btn-green", data: { camera_target: "toHide" } do %>
+      <%= f.label :image, class: "sp-btn-green clickable", data: { camera_target: "toHide" } do %>
         Identify 
         <i class="fa-solid fa-camera"></i>
       <% end %>
@@ -25,10 +25,10 @@
   
   <div class="identifylinks">
     <div class="d-flex justify-content-center">
-      <p class="sp-btn-green d-none" data-camera-target="btnShowA" data-action="click->camera#fire">Add to Garden</p>
+      <p class="sp-btn-green d-none clickable" data-camera-target="btnShowA" data-action="click->camera#fire">Add to Garden</p>
     </div>
     <div>
-      <%= link_to "Not accurate? Identify again", new_plant_path, class:"d-none", data: { camera_target: "btnShowB" }  %>
+      <p class="d-none" data-camera-target="btnShowB">Not accurate? <%= link_to "Identify again", new_plant_path %></p>
     </div>
   <div>
 </div>
