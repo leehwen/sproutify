@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-center mt-5">
       <%= simple_form_for :diagnose, method: :get, url: "diagnose_path" do |f| %>
         <div>
-        <%= f.label :image, class: "sp-btn-green" do %>
+        <%= f.label :image, class: "sp-btn-green clickable" do %>
           Diagnose
           <i class="fa-solid fa-camera"></i>
         <% end %>
