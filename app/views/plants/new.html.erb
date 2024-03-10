@@ -1,27 +1,34 @@
 <div data-controller="camera" data-camera-api-key-value="<%=ENV["PLANT_ID_KEY"] %>" >
-  <div>
+
+  <div data-camera-target="info">
+
+  </div>
+
+  <div data-camera-target="toHide">
     <%= image_tag "Magnifying glass over a flower.jpg", alt: "Magnifying glass over a flower", class: "banner" %>
   </div>
 
-  <div class="d-flex justify-content-center">
-    <%= link_to "Not accurate? Identify again", new_plant_path, class:"btn btn-primary d-none m-3", data: { camera_target: "btnShowA" }  %>
-  <div class="btn btn-primary d-none m-3" data-camera-target="btnShowB" data-action="click->camera#fire">Add to Garden</div>
 
   <div class="d-flex justify-content-center mt-5">
     <%= simple_form_for (@plant) do |f| %>
       <%= f.input :nickname, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
       <%= f.input :remarks, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
-      <%= f.label :image, class: "sp-btn-green" do %>
-        Identify
+      <%= f.label :image, class: "sp-btn-green", data: { camera_target: "toHide" } do %>
+        Identify 
         <i class="fa-solid fa-camera"></i>
       <% end %>
       <%= f.input :image, as: :file, label: false, wrapper_html: { data: { action: "change->camera#identify", camera_target:"toHide"}, class: "d-none"} %>
       <%= f.association :plant_info, as: :hidden, input_html: { data: {camera_target: "plantInfo"}} %>
-      <%= f.submit "Add to Garden", class: 'd-none btn btn-primary', data: { camera_target: "toShow" }%>
+      <%= f.submit "Add to Garden", class: 'd-none sp-btn-green', data: { camera_target: "toShow" }%>
     <% end %>
   </div>
-
-  <div data-camera-target="info">
-
-  </div>
+  
+  <div class="identifylinks">
+    <div class="d-flex justify-content-center">
+      <p class="sp-btn-green d-none" data-camera-target="btnShowA" data-action="click->camera#fire">Add to Garden</p>
+    </div>
+    <div>
+      <%= link_to "Not accurate? Identify again", new_plant_path, class:"d-none", data: { camera_target: "btnShowB" }  %>
+    </div>
+  <div>
 </div>

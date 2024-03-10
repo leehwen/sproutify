@@ -18,6 +18,7 @@ export default class extends Controller {
     target.classList.remove('d-none');
     });
     this.btnShowBTarget.classList.add("d-none");
+    this.btnShowATarget.classList.add("d-none");
   }
 
   identify(e) {
@@ -74,7 +75,9 @@ export default class extends Controller {
           // this.toShowTargets.forEach ((target) => {
           //   target.classList.remove('d-none');
           // });
-          this.toHideTarget.classList.add('d-none')
+          this.toHideTargets.forEach((t) =>{
+            t.classList.add('d-none')
+          })
           // 3. update the association with plant_info_id
           this.plantInfoTarget.value = data.plant_info_id
 
