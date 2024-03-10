@@ -1,7 +1,6 @@
 class PlantsController < ApplicationController
   def index
     @plants = Plant.all.where(user: current_user)
-
     @plants = policy_scope(Plant)
   end
   
@@ -24,6 +23,10 @@ class PlantsController < ApplicationController
   
   def show
     @plant = Plant.find(params[:id])
+    @plantinfo = PlantInfo.find(@plant.plant_info_id)
+    @plant_illnesses = PlantIllness.where(plant_id: @plant.id)
+    @illness_id = @plant_illnesses.map do |illness| illness.illness_id end
+    @illnesses = Illness.where( id: @illness_id )
     authorize @plant
   end
 
