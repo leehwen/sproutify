@@ -2,6 +2,7 @@ class PlantsController < ApplicationController
   def index
     @plants = Plant.all.where(user: current_user)
     @collections=Collection.all.where(user: current_user)
+    @collection = Collection.new
     @plants = policy_scope(Plant)
     @collections= policy_scope(Collection)
   end

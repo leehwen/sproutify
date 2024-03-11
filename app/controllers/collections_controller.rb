@@ -1,9 +1,4 @@
 class CollectionsController < ApplicationController
-  def new
-    @collection = Collection.new
-
-    authorize @collection
-  end
 
   def create
     @collection = Collection.new(collection_params)
@@ -29,6 +24,8 @@ class CollectionsController < ApplicationController
     @collection.destroy
 
     redirect_to plants_path
+
+    authorize @collection
   end
 
   private

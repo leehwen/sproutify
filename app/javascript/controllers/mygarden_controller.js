@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="mygarden"
 export default class extends Controller {
-  static targets = ["collectionHeader", "plantsHeader", "collection", "plants"]
+  static targets = ["collectionHeader", "plantsHeader", "collection", "plants", 
+                    "addCollectionHeader", "addCollectionForm", "addAnotherCollectionForm", "addAnotherCollectionHeader"]
   
   connect() {
     console.log("hello")
@@ -20,5 +21,15 @@ export default class extends Controller {
     this.plantsHeaderTarget.classList.remove("disabled");
     this.collectionTarget.classList.add("d-none")
     this.plantsTarget.classList.remove("d-none");
+  }
+
+  addCollection(){
+    this.addCollectionHeaderTarget.classList.add("d-none");
+    this.addCollectionFormTarget.classList.remove("d-none");
+  }
+
+  addAnotherCollection(){
+    this.addAnotherCollectionHeaderTarget.classList.add("d-none");
+    this.addAnotherCollectionFormTarget.classList.remove("d-none");
   }
 }
