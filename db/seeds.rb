@@ -8,11 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-puts "resetting data base..."
-
-PlantInfo.destroy_all
+puts "resetting database..."
+PlantIllness.destroy_all
 Plant.destroy_all
 Illness.destroy_all
+PlantInfo.destroy_all
+Collection.destroy_all
 User.destroy_all
 
 puts "creating entries..."

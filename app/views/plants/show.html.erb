@@ -16,6 +16,14 @@
 <span>List this plant on the marketplace</span>
 <div class="form-check form-switch">
   <%= simple_form_for (@plant) do |f| %>
-    <%= f.input :listing, as: :boolean, class: 'form-check-input' %>
+    <%= f.input :listing,
+        as: :boolean,
+        class: 'form-check-input',
+        input_html: { data: {
+                              controller: "plant-listing",
+                              action: "change->plant-listing#fire",
+                              'plant-listing-target': "checkbox"
+                            }}
+    %>
   <% end %>
 </div>
