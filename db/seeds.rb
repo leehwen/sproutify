@@ -9,11 +9,11 @@
 #   end
 
 puts "resetting data base..."
-
 PlantIllness.destroy_all
-PlantInfo.destroy_all
 Plant.destroy_all
 Illness.destroy_all
+PlantInfo.destroy_all
+Collection.destroy_all
 User.destroy_all
 
 puts "creating entries..."

@@ -75,7 +75,7 @@ class PlantsController < ApplicationController
 
   def update_listing
     @plant = Plant.find(params[:id])
-    @plant.listing = true # needs to be updated based on checkbox status
+    @plant.listing = true # needs to be updated based on checkbox status plant_listing_controller.js
     authorize @plant
   end
 
