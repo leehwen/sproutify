@@ -1,8 +1,147 @@
-<h1>Hello Plant Show</h1>
+<div>
+  <% if @plant.image.attached? %>
+    <%= cl_image_tag @plant.image.key, class: "image-card" %>
+  <% end %>
+</div>
 
-<p>@plant <%= @plant %></p>
-<p>@plantinfo<%= @plantinfo %></p>
-<p>@illnesses<%= @illnesses %></p>
+
+<div class="diagnosis-results-container">
+
+  <div class="mb-3">
+    <h1>
+      <%= @plant.nickname%> <%= "(#{@plantinfo.name.titleize})" %>
+    <h1>
+  </div>
+
+
+  <div class="mb-4">
+    <h2>
+      Description:
+    </h2>
+    <p>
+      <%= @plantinfo.description  %>
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Other Common Names:
+    </h2>
+    <p>
+      <%= @plantinfo.common_names.titleize.gsub(',', ', ')  %>
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Propagation Methods:
+    </h2>
+      <ul>
+        <% JSON.parse(@plantinfo.propagation).each do |f|  %>
+        <li><%= f.titleize %></li>
+        <% end %>
+      </ul>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Watering Method:
+    </h2>
+    <p>
+      <%= @plantinfo.watering.titleize  %>
+    </p>
+  </div>
+</div>
+
+<hr>
+
+<div class="diagnosis-results-container">
+
+ <% @illnesses.each do |illness| %>
+
+  <div class="mb-3">
+    <h2>
+    Name of illness:
+    </h2>
+    <p>
+      <%= illness.name.titleize %>
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <% if illness.common_names.nil? %>
+    <% else %>
+      <h2>
+        Common Names:
+      </h2>
+      <p>
+        <%= illness.common_names.titleize %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <% if illness.cause.nil? %>
+    <% else %>
+      <h2>
+        Cause:
+      </h2>
+      <p>
+        <%= illness.cause %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Description
+    </h2>
+    <p>
+      <%= illness.description %>
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <h2>
+      Treatment
+    </h2>
+
+    <h3>
+      Chemical:
+    </h3>
+    <ul>
+      <% illness.treatment["chemical"].each do |sentence| %>
+        <li> <%= sentence %> </li>
+      <% end %>
+    </ul>
+
+    <h3>
+      Biological:
+    </h3>
+    <ul>
+      <% illness.treatment["biological"].each do |sentence| %>
+        <li> <%= sentence %> </li>
+      <% end %>
+    </ul>
+
+    <h3>
+      Prevention:
+    </h3>
+    <ul>
+      <% illness.treatment["prevention"].each do |sentence| %>
+        <li> <%= sentence %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+</div>
+
+<hr>
+
+<h1>Watering Schedule</h1>
+<div class="diagnosis-results-container">
+<%= @plant.watering_frequency %>
+</div>
 
 <% @illnesses.each do |illness| %>
   <span><%= illness.name %></span>

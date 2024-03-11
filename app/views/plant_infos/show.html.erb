@@ -15,7 +15,7 @@
   <h2> Other common names </h2>
   <p> <%= @plant_info.common_names %> </p>
 
-  <h2> Propagation </h2>
+  <h2> Propagation methods </h2>
   <%  JSON.parse(@plant_info.propagation).each do |f| %>
     <p> <%= f %> </p>
   <% end %>
