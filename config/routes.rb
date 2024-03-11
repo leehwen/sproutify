@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
+  resources :collections, only: %i[new create index show destroy]
+
   resources :plants do
+    resources :collections, only: %i[new create edit update]
+
     collection do
       get 'listings'
     end
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
   get "/diagnose/results", to: "diagnosis#results"
   post "/diagnose/results", to: "diagnosis#results"
   get "/diagnose/add-plants", to: "diagnosis#addplants"
+  get '/plants/plant_id', to: "plants#add_collection", as: :add_collection
 
   get "identify", to: "identify#search"
   get "identify/results", to: "identify#results"
