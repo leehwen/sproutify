@@ -1,0 +1,16 @@
+<h1>Plant Listing Page</h1>
+
+<h2>Owner Related Info</h2>
+<p>Plant Nickname (Given by Owner) <%= @plant.nickname %></p>
+<p>Owner uploaded image of the plant? Dont have in schema now</p>
+
+<h2>General Plant Info</h2>
+<p>Plant Name: <%= @plant.plant_info.name %></p>
+<p>Common Names: <%= @plant.plant_info.common_names %></p>
+<p>Description: <%= @plant.plant_info.description %></p>
+<p>Watering Requirement: <%= @plant.plant_info.watering %></p>
+<p>Propagation: <%= @plant.plant_info.propagation %></p>
+
+<h2>Interested? Make an Offer</h2>
+<%= link_to "Make an offer", new_offer_path %>
+<%= link_to "Back",  listings_plants_path %>

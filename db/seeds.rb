@@ -22,67 +22,160 @@ user1 = User.create!(
   username: "user1",
   email: "user1@email.com",
   password: "password",
-  address: "Punggoll",
-  first_name: "user1",
-  last_name: "ng1"
+  address: "260B Punggol Way, Singapore 822260",
+  first_name: "Mary",
+  last_name: "Lim"
 )
 
 user2 = User.create!(
   username: "user2",
   email: "user2@email.com",
   password: "password",
-  address: "Sengkang",
-  first_name: "user2",
-  last_name: "ng2"
+  address: "333D Anchorvale Link, Singapore 544333",
+  first_name: "Ashley",
+  last_name: "Yeo"
 )
 
 plant_infos1 = PlantInfo.create!(
-  name:"Leucojum vernum",
-  common_names: "Spring Snowflake",
-  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae.
-    It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe,
-    including Great Britain and parts of Scandinavia, and in the US states of Georgia and Florida. This spring flowering bulbous
-    herbaceous perennial is cultivated as an ornamental for a sunny position. The plant multiplies in favourable conditions to form clumps.
-    Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
-    occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
-    summer.",
+  name:"Abelmoschus esculentus (L.) Moench",
+  common_names: "Lady's Fingers, Okra, Gumbo, Bendi",
+  description: "The unripe fruit of Lady’s Finger is a popular vegetable in many cuisines which has a mucilaginous texture.",
+  watering: 2,
+  propagation: "seed"
+)
+
+plant_infos2 = PlantInfo.create!(
+  name:"Monstera deliciosa",
+  common_names: "Monstera",
+  description: "Monstera is a genus of 59 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas. The genus is named from the Latin word for monstrous or abnormal, and refers to the unusual leaves with natural holes that members of the genus have.",
+  watering: 2,
+  propagation: "cutting"
+)
+
+plant_infos3 = PlantInfo.create!(
+  name:"Adenium obesum",
+  common_names: "Desert Rose, Sabi star, kudu, mock azalea, impala lily",
+  description: "Adenium obesum, more commonly known as a desert rose, is a poisonous species of flowering plant belonging to the tribe Nerieae of the subfamily Apocynoideae of the dogbane family, Apocynaceae.[3] It is native to the Sahel regions south of the Sahara (from Mauritania and Senegal to Sudan), tropical and subtropical eastern and southern Africa and also the Arabian Peninsula.",
   watering: 1,
   propagation: "cutting"
 )
 
-plant_infos2 = PlantInfo.create!(
-  name:"Monstera",
-  common_names: "Monster of a plant",
-  description: "Leucojum vernum, called the spring snowflake, is a species of flowering plant in the family Amaryllidaceae.
-  It is native to central and southern Europe from Belgium to Ukraine. It is considered naturalized in north-western Europe,
-  including Great Britain and parts of Scandinavia, and in the US states of Georgia and Florida. This spring flowering bulbous
-  herbaceous perennial is cultivated as an ornamental for a sunny position. The plant multiplies in favourable conditions to form clumps.
-  Each plant bears a single white flower with greenish marks near the tip of the tepal, on a stem about 10–20 cm (3.9–7.9 in) tall,
-  occasionally more. The Latin specific epithet vernum means relating to Spring. Its close relative, Leucojum aestivum, flowers in
-  summer.",
+plant_infos4 = PlantInfo.create!(
+  name:"Abrus precatorius L.",
+  common_names: "Rosary pea, Precatory bean, Crab's eyes",
+  description: "Abrus precatorius is a slender, perennial climber that twines around trees, shrubs and hedges. The plant is used in some traditional medicine to treat scratches and sores, and wounds. The leaves are used for their anti-suppurative.  In China, the seed were once used to treat fever, malaria, headache, worms and dropsy.",
+  watering: 3,
+  propagation: "seed"
+)
+
+plant_infos5 = PlantInfo.create!(
+  name:"Bougainvillea",
+  common_names: "Bougainvillea",
+  description: "Bougainvillea is a genus of thorny ornamental vines, bushes, and trees belonging to the four o' clock family, Nyctaginaceae. It is native to eastern South America, found from Brazil, west to Peru, and south to southern Argentina. Different authors accept from 4 to 22 species in the genus.[2] The inflorescence consists of large colourful sepal-like bracts which surround three simple waxy flowers, gaining popularity for the plant as an ornamental.",
   watering: 2,
-  propagation: "water"
+  propagation: "seed"
 )
 
 Plant.create!(
-  nickname: "Lovely Plant",
-  remarks: "This is my most loved plant of all!",
+  nickname: "Lady's Finger",
+  remarks: "1 month old seedling",
   user: user1,
   plant_info: plant_infos1,
 
 )
 
 Plant.create!(
-  nickname: "Very needy plant..",
-  remarks: "Super annoying... need to keep watering..",
-  user: user2,
+  nickname: "Lady's Finger",
+  remarks: "Flowering, ready to have fruits",
+  user: user1,
+  plant_info: plant_infos1,
+  listing: true
+)
+
+Plant.create!(
+  nickname: "Big monstera",
+  remarks: "Located in the balcony, need lots of water",
+  user: user1,
   plant_info: plant_infos2
 
 )
 
+Plant.create!(
+  nickname: "Small monstera",
+  remarks: "Just bought from nursery during Chinese New Year",
+  user: user1,
+  plant_info: plant_infos2
+
+)
+
+Plant.create!(
+  nickname: "Desert Rose",
+  remarks: "Hardy plant, need plenty of sunlight",
+  user: user1,
+  plant_info: plant_infos3
+
+)
+
+Plant.create!(
+  nickname: "Small Desert Rose 1",
+  remarks: "Propagated from Desert Rose",
+  user: user1,
+  plant_info: plant_infos3,
+  listing: true
+)
+
+Plant.create!(
+  nickname: "Small Desert Rose 2",
+  remarks: "Propagated from Desert Rose",
+  user: user1,
+  plant_info: plant_infos3,
+  listing: true
+
+)
+
+Plant.create!(
+  nickname: "Small Desert Rose 3",
+  remarks: "Propagated from Desert Rose",
+  user: user1,
+  plant_info: plant_infos3
+
+)
+
+Plant.create!(
+  nickname: "Monstera light green",
+  remarks: "Not too much sun",
+  user: user2,
+  plant_info: plant_infos2,
+  listing: true
+)
+
+Plant.create!(
+  nickname: "Desert Rose",
+  remarks: "Dont water too much!",
+  user: user2,
+  plant_info: plant_infos3
+
+)
+
+Plant.create!(
+  nickname: "Bougainvillea",
+  remarks: "Take care, keeps dropping leaves",
+  user: user2,
+  plant_info: plant_infos5,
+  listing: true
+)
+
+Plant.create!(
+  nickname: "Rosary pea",
+  remarks: "Climbing on the window frame of my balcony, careful not to close window too tight.",
+  user: user2,
+  plant_info: plant_infos4
+
+)
+
 Illness.create!(
-  name: "finished flowering period",
-  cause: "fungi infection",
+  name: "Funghi Infection",
+  cause: "Too much watering and too little fertilizer",
   description: "Fungi take energy from the plants on which they live, causing damage to the plant.
   Fungal infections are responsible for approximately two-thirds of infectious plant diseases and
   cause wilting, molding, rusts, scabs, rotted tissue, and other problems.",
