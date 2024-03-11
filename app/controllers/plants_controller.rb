@@ -48,6 +48,7 @@ class PlantsController < ApplicationController
 
   def listings
     @listings = Plant.where(listing: true)
+    authorize @listings
   end
 
   def add_listing

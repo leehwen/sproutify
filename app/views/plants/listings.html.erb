@@ -1,0 +1,14 @@
+<h1>Plant Listings of All Users</h1>
+
+<div>
+  <ol>
+  <% @listings.each do |listing| %>
+    <li>
+      <p>Plant Name (Given by Owner): <%= listing.nickname %></p>
+      <p>Plant Common Name: <%= listing.plant_info.common_names%></p>
+      <p>Owner: <%= listing.user.first_name %></p>
+      <%= link_to "View Listing", plant_path(listing) %>
+    </li>
+  <% end %>
+  </ol>
+</div>
