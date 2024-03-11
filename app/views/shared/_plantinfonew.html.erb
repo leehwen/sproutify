@@ -12,7 +12,7 @@
   <h2> Description </h2>
   <p> <%= plant_info.description %> </p>
 
-  <h2> Other common names </h2>
+  <h2> Other Common Names </h2>
   <p> <%= plant_info.common_names.titleize.gsub(',', ', ') %> </p>
 
   <h2> Propagation Methods </h2>
@@ -20,7 +20,6 @@
     <p> <%= f.titleize %> </p>
   <% end %>
 
-  <h2> Watering methods </h2>
+  <h2> Watering Methods </h2>
   <p> <%= plant_info.watering.titleize %> </p>
 </div>
-
