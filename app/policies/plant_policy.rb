@@ -7,10 +7,11 @@ class PlantPolicy < ApplicationPolicy
   def add_diagnosis?
     record.user == user
   end
+  
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
   
@@ -19,6 +20,10 @@ class PlantPolicy < ApplicationPolicy
   end
 
   def create?
+    true
+  end
+
+  def update?
     true
   end
 end

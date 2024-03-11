@@ -10,6 +10,7 @@
 
 puts "resetting data base..."
 
+PlantIllness.destroy_all
 PlantInfo.destroy_all
 Plant.destroy_all
 Illness.destroy_all
@@ -67,7 +68,7 @@ Plant.create!(
   nickname: "Lovely Plant",
   remarks: "This is my most loved plant of all!",
   user: user1,
-  plant_info: plant_infos1
+  plant_info: plant_infos1,
 
 )
 
