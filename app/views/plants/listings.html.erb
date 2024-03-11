@@ -7,7 +7,7 @@
       <p>Plant Name (Given by Owner): <%= listing.nickname %></p>
       <p>Plant Common Name: <%= listing.plant_info.common_names%></p>
       <p>Owner: <%= listing.user.first_name %></p>
-      <%= link_to "View Listing", plant_path(listing) %>
+      <%= link_to "View Listing", listing_plant_path(listing) %>
     </li>
   <% end %>
   </ol>

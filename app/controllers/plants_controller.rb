@@ -51,9 +51,14 @@ class PlantsController < ApplicationController
     authorize @listings
   end
 
-  def add_listing
+  def listing
     @plant = Plant.find(params[:id])
-    @plant.listing = true
+    authorize @plant
+  end
+
+  def update_listing
+    @plant = Plant.find(params[:id])
+    @plant.listing = true # needs to be updated based on checkbox status
     authorize @plant
   end
 

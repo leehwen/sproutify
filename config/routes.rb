@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       get 'listings'
     end
     member do
-      patch 'add-listing'
+      get 'listing'
+      patch 'update-listing'
     end
     get 'illness/:illness_id', to: "plants#add_diagnosis", as: :add_diagnosis
     delete 'illness/:illness_id', to: "plants#remove_diagnosis", as: :remove_diagnosis
