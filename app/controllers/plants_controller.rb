@@ -3,7 +3,7 @@ class PlantsController < ApplicationController
     @plants = Plant.all.where(user: current_user)
     @plants = policy_scope(Plant)
   end
-  
+
   def new
     @plant = Plant.new
     authorize @plant
@@ -15,12 +15,12 @@ class PlantsController < ApplicationController
     if @plant.save
       redirect_to plants_path
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
 
     authorize @plant
   end
-  
+
   def show
     @plant = Plant.find(params[:id])
     @plantinfo = PlantInfo.find(@plant.plant_info_id)
@@ -38,6 +38,12 @@ class PlantsController < ApplicationController
     redirect_to plant_path(@plant)
   end
 
+  def remove_diagnosis
+    @plant = Plant.find(params[:plant_id])
+    @illness = Illness.find(params[:illness_id])
+    @plant.illnesses.delete(@illness)
+  end
+
   def listings
     @listings = Plant.where(listing: true)
   end
@@ -47,7 +53,7 @@ class PlantsController < ApplicationController
     @plant.listing = true
     authorize @plant
   end
-  
+
   private
 
   def plant_params
