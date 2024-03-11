@@ -1,1 +1,13 @@
 <h1>Hello Plant Show</h1>
+
+<p>@plant <%= @plant %></p>
+<p>@plantinfo<%= @plantinfo %></p>
+<p>@illnesses<%= @illnesses %></p>
+
+<% @illnesses.each do |illness| %>
+  <span><%= illness.name %></span>
+  <%= link_to "cure plant",
+      plant_remove_diagnosis_path(@plant, illness),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+<% end %>

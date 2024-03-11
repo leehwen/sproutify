@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       patch 'add-listing'
     end
     get 'illness/:illness_id', to: "plants#add_diagnosis", as: :add_diagnosis
+    delete 'illness/:illness_id', to: "plants#remove_diagnosis", as: :remove_diagnosis
   end
 
   resources :offers, only: %i[new create] do
