@@ -40,7 +40,7 @@ class PlantsController < ApplicationController
   def remove_diagnosis
     @plant = Plant.find(params[:plant_id])
     @illness = Illness.find(params[:illness_id])
-    pi = PlantIllness.find_or_initialize_by(plant: @plant, illness: @illness)
+    pi = PlantIllness.find_by(plant: @plant, illness: @illness)
     authorize @plant
     pi.destroy
     redirect_to plant_path(@plant)
