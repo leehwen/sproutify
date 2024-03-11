@@ -31,18 +31,34 @@ class PlantsController < ApplicationController
   def add_diagnosis
     @plant = Plant.find(params[:plant_id])
     @illness = Illness.find(params[:illness_id])
-    @plant.illnesses << @illness
+    pi = PlantIllness.find_or_initialize_by(plant: @plant, illness: @illness)
     authorize @plant
+    pi.save
+    redirect_to plant_path(@plant)
+  end
+
+  def remove_diagnosis
+    @plant = Plant.find(params[:plant_id])
+    @illness = Illness.find(params[:illness_id])
+    pi = PlantIllness.find_by(plant: @plant, illness: @illness)
+    authorize @plant
+    pi.destroy
     redirect_to plant_path(@plant)
   end
 
   def listings
     @listings = Plant.where(listing: true)
+    authorize @listings
   end
 
-  def add_listing
+  def listing
     @plant = Plant.find(params[:id])
-    @plant.listing = true
+    authorize @plant
+  end
+
+  def update_listing
+    @plant = Plant.find(params[:id])
+    @plant.listing = true # needs to be updated based on checkbox status
     authorize @plant
   end
 

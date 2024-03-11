@@ -142,3 +142,19 @@
 <div class="diagnosis-results-container">
 <%= @plant.watering_frequency %>
 </div>
+
+<% @illnesses.each do |illness| %>
+  <span><%= illness.name %></span>
+  <%= link_to "cure plant",
+      plant_remove_diagnosis_path(@plant, illness),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+<% end %>
+
+<h2>Marketplace</h2>
+<span>List this plant on the marketplace</span>
+<div class="form-check form-switch">
+  <%= simple_form_for (@plant) do |f| %>
+    <%= f.input :listing, as: :boolean, class: 'form-check-input' %>
+  <% end %>
+</div>
