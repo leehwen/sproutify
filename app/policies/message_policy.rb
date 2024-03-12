@@ -1,8 +1,6 @@
-class ChatroomPolicy < ApplicationPolicy
-
-  def show?
-    true # to update policy as below
-    # record.participants.user == user
+class MessagePolicy < ApplicationPolicy
+  def create?
+    record.offer.lister == user || record.offer.buyer == user
   end
 
   class Scope < Scope

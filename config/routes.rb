@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :collections, only: %i[new create index show destroy]
+  resources :buddies, only: %i[index new create show] do
+    member do
+      get 'send_schedule'
+    end
+  end
 
   resources :plants do
     resources :collections, only: %i[new create edit update]
@@ -30,8 +35,10 @@ Rails.application.routes.draw do
 
   resources :offers, only: %i[new create] do
     member do
+      get 'chat'
       patch 'accepted'
     end
+    resources :messages, only: :create
   end
 
   resources :plant_infos, only: %i[new create show]  do
@@ -48,19 +55,5 @@ Rails.application.routes.draw do
   get "identify/results", to: "identify#results"
   post "identify/results", to: "identify#results"
   get "identify/details", to: "identify#details"
-
-  resources :chatrooms, only: :show
-
-  # resources :identity do
-  #   collection do
-  #     get
-  #     get :results
-  #     get :details
-  #   end
-  # # end
-  # get "identify", to: "identify#search"
-  # get "identify/results", to: "identify#results"
-  # post "identify/results", to: "identify#results"
-  # get "identify/details", to: "identify#details"
 
 end

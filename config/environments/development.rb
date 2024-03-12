@@ -73,4 +73,23 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = false
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "localhost",
+  user_name: "ngzijie89@gmail.com",
+  password: ENV['MAIL_PW'],
+  authentication: 'plain',
+  enable_starttls_auto: true
+  }
+
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.perform_deliveries = true
+
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => host, protocol: 'http' }
+
 end

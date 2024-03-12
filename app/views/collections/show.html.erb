@@ -18,7 +18,8 @@
   </div>
 <% end %>
 
-<%= simple_form_for (@collection) do |f| %>
-     <%= f.association :plants, value_method: :nickname, collection: current_user.plants, input_html: { multiple: true }%>
+<%= simple_form_for @collection do |f| %>
+    <%= f.label "Add plant to collection" %>
+     <%= f.association :plants, collection: current_user.plants, label_method: :nickname, label: false,  input_html: { multiple: true }%>
     <%= f.button :submit %>
 <% end %>
