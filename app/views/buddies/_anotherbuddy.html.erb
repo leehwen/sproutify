@@ -1,0 +1,25 @@
+<div data-controller="buddy">
+  <div class="clickable" data-action>
+    <p class="m-0">Select a buddy to send the schedule</p>
+    <% buddies.each do |buddy| %>
+    <%= buddy.name %>
+    <%= buddy.email %>
+    <%= buddy.hp %>
+    <% end %>
+  </div>
+
+  <div data-buddy-target="addBuddyHeader">
+    <div class="sp-btn-green clickable" data-action="click->buddy#show">
+      <p class="m-0">Add another Buddy</p>
+    </div>
+  </div>
+
+  <div>
+    <%= simple_form_for Buddy.new, html: { class: "d-none", data: { buddy_target: "addBuddy" } } do |f| %>
+    <%= f.input :name, label: 'Buddy Name' %>
+    <%= f.input :email, label: 'Buddy Email' %>
+    <%= f.input :hp, label: 'Buddy Hp' %>
+    <%= f.submit "Add your buddy!", class: 'sp-btn-green'%>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_102423) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_072343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_102423) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "buddies", force: :cascade do |t|
+    t.string "email"
+    t.string "hp"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_buddies_on_user_id"
+  end
+
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -59,6 +69,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_102423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "offer_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_messages_on_offer_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "offering_options", force: :cascade do |t|
@@ -114,6 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_102423) do
     t.bigint "collection_id"
     t.bigint "plant_info_id", null: false
     t.integer "watering_frequency"
+    t.date "start_date"
     t.index ["collection_id"], name: "index_plants_on_collection_id"
     t.index ["plant_info_id"], name: "index_plants_on_plant_info_id"
     t.index ["user_id"], name: "index_plants_on_user_id"
@@ -137,7 +158,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_102423) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buddies", "users"
   add_foreign_key "collections", "users"
+  add_foreign_key "messages", "offers"
+  add_foreign_key "messages", "users"
   add_foreign_key "offering_options", "offers"
   add_foreign_key "offering_options", "plants"
   add_foreign_key "offers", "plants", column: "buyer_plant_id"

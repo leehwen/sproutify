@@ -28,12 +28,29 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plantinfo = PlantInfo.find(@plant.plant_info_id)
     @illnesses = @plant.illnesses
+    start_date = params.fetch(:start_date, Date.today).to_date
     authorize @plant
   end
 
   def edit
     @plant = Plant.find(params[:id])
 
+    authorize @plant
+  end
+
+  def edit_schedule
+    @plant = Plant.find(params[:id])
+    authorize @plant
+  end
+
+  def update_schedule
+    @plant = Plant.find(params[:id])
+    @plant.update(schedule_params)
+    if @plant.save
+      redirect_to plant_path
+    else
+      render :edit_schedule, status: unprocessable_entity
+    end
     authorize @plant
   end
 
@@ -66,6 +83,9 @@ class PlantsController < ApplicationController
 
   def listings
     @listings = Plant.where(listing: true)
+    if params[:query].present?
+      @listings = @listings.global_search(params[:query])
+    end
     authorize @listings
   end
 
@@ -92,11 +112,14 @@ class PlantsController < ApplicationController
   private
 
   def plant_params
-    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image)
+    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image, :watering_frequency, :start_date)
   end
 
   def collection_params
     params.require(:plant).permit(:collection_id)
   end
 
+  def schedule_params
+    params.require(:plant).permit(:watering_frequency, :start_date)
+  end
 end

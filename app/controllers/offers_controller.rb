@@ -1,6 +1,15 @@
 class OffersController < ApplicationController
   before_action :skip_authorization
 
+  def index
+    @offers = policy_scope(Offer)
+  end
+
+  def show
+    @offer = Offer.find(params[:id])
+    authorize @offer
+  end
+
   def new
     # @offer = Offer.new
     # @buyer_plants = current_user.plants.where(listing: true)
@@ -16,6 +25,12 @@ class OffersController < ApplicationController
     else
       raise
     end
+  end
+
+  def chat
+    @offer = Offer.find(params[:id])
+    @messages = @offer.messages
+    @message = Message.new
   end
 
   def accepted

@@ -1,0 +1,35 @@
+<div class="container chatroom"
+  data-controller="offer-subscription"
+  data-offer-subscription-offer-id-value="<%= @offer.id %>"
+>
+  <h1>Chatroom for Offer ID <%= @offer.id %></h1>
+
+
+  <div class="border">
+    <h2>Offer Information</h2>
+    <p>Lister: <%= @offer.lister.first_name %></p>
+    <p>Lister Plant: <%= @offer.lister_plant.plant_info.common_names %></p>
+    <p>Buyer: <%= @offer.buyer.first_name %></p>
+    <p>Buyer Plant Options: TBC</p>
+  </div>
+
+  <div class="messages"
+    data-offer-subscription-target="messages"
+  >
+    <% @messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@offer, @message],
+    html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" }, class: "d-flex" } do |f|
+  %>
+    <%= f.input :content,
+      label: false,
+      placeholder: "Message for Offer ##{@offer.id}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
+
+</div>
