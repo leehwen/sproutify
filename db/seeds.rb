@@ -9,6 +9,8 @@
 #   end
 
 puts "resetting data base..."
+OfferingOption.destroy_all
+Offer.destroy_all
 PlantIllness.destroy_all
 Plant.destroy_all
 Illness.destroy_all
@@ -17,6 +19,8 @@ Collection.destroy_all
 User.destroy_all
 
 puts "creating entries..."
+
+# create users
 
 user1 = User.create!(
   username: "user1",
@@ -53,6 +57,8 @@ user4 = User.create!(
   first_name: "Thomas",
   last_name: "Tan"
 )
+
+# create plant information
 
 plant_infos1 = PlantInfo.create!(
   name:"Abelmoschus esculentus (L.) Moench",
@@ -93,6 +99,8 @@ plant_infos5 = PlantInfo.create!(
   watering: 2,
   propagation: "seed"
 )
+
+# create plants for each user (user 3 and 4 mainly for marketplace)
 
 Plant.create!(
   nickname: "Lady's Finger",
@@ -229,6 +237,8 @@ end
   )
 end
 
+# create illnesses
+
 Illness.create!(
   name: "Funghi Infection",
   cause: "Too much watering and too little fertilizer",
@@ -275,6 +285,68 @@ Illness.create!(
         "Disinfect tools, infected flower pots, and hands to avoid disease transmission."
     ]},
   common_names: "Lack of water"
+)
+
+# create marketplace offers, 1 for each status type.
+# each offer option only 1 for now
+
+user4_lister_plants = Plant.where(listing: true).sample(4)
+user3_buyer_plants = Plant.where(listing: true).sample(4)
+
+offer_pending =
+  Offer.create!(
+    accepted: "pending",
+    lister_plant: user4_lister_plants[0],
+    buyer_plant: nil,
+    lister: user4,
+    buyer: user3
+  )
+
+OfferingOption.create!(
+  offer: offer_pending,
+  offering_plant_option: user3_buyer_plants[0]
+)
+
+offer_processing =
+  Offer.create!(
+    accepted: "processing",
+    lister_plant: user4_lister_plants[1],
+    buyer_plant: nil,
+    lister: user4,
+    buyer: user3
+  )
+
+OfferingOption.create!(
+  offer: offer_processing,
+  offering_plant_option: user3_buyer_plants[1]
+)
+
+offer_rejected =
+  Offer.create!(
+    accepted: "rejected",
+    lister_plant: user4_lister_plants[2],
+    buyer_plant: nil,
+    lister: user4,
+    buyer: user3
+  )
+
+OfferingOption.create!(
+  offer: offer_rejected,
+  offering_plant_option: user3_buyer_plants[2]
+)
+
+offer_completed =
+  Offer.create!(
+    accepted: "completed",
+    lister_plant: user4_lister_plants[3],
+    buyer_plant: user3_buyer_plants[3],
+    lister: user4,
+    buyer: user3
+  )
+
+OfferingOption.create!(
+  offer: offer_completed,
+  offering_plant_option: user3_buyer_plants[3]
 )
 
 puts "seeding entries done!"
