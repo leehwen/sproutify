@@ -9,8 +9,15 @@
       <%= plant.nickname %>
     </div>
   <% end %>
+  <br>
+  <br>
+  <h1>
+    Selected
+  </h1>
 
-  <div>
-
+  <div data-offering-option-target="selectedOffering">
   </div>
+
+<input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="btn btn-primary" type="submit" value="Submit">
+
 </div>

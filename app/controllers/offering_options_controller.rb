@@ -9,9 +9,19 @@ class OfferingOptionsController < ApplicationController
   end
 
   def create
-    raise
+    @offer = Offer.find(params[:offer_id])
+    authorize @offer
+
+    @plants = params[:ids]
+
+    @plants.each do |plant_id|
+      @plant = Plant.find(plant_id)
+      @offering_option = OfferingOption.new(plant: @plant)
+      @offer.offering_options << @offering_option
+    end
+
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
-
-
-
 end

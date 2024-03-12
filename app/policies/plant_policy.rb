@@ -20,6 +20,10 @@ class PlantPolicy < ApplicationPolicy
     true
   end
 
+  def offering_option?
+    record.user == user
+  end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
