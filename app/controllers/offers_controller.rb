@@ -19,6 +19,12 @@ class OffersController < ApplicationController
     @offer.save
   end
 
+  def chat
+    @offer = Offer.find(params[:id])
+    @messages = @offer.messages
+    @message = Message.new
+  end
+
   def accepted
     @offer = Offer.find(params[:id])
     @offer.accepted = true

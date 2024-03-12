@@ -10,8 +10,6 @@
 
 puts "resetting data base..."
 Message.destroy_all
-Participant.destroy_all
-Chatroom.destroy_all
 OfferingOption.destroy_all
 Offer.destroy_all
 PlantIllness.destroy_all
@@ -374,22 +372,6 @@ offer_completed =
 OfferingOption.create!(
   offer: offer_completed,
   offering_plant_option: user3_buyer_plants[3]
-)
-
-# create 1 chatroom for users with offer pending
-chatroom_pending =
-  Chatroom.create!(
-    offer: offer_pending
-  )
-
-Participant.create!(
-  user: user3,
-  chatroom: chatroom_pending
-)
-
-Participant.create!(
-  user: user4,
-  chatroom: chatroom_pending
 )
 
 puts "seeding entries done!"

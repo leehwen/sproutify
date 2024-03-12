@@ -28,8 +28,10 @@ Rails.application.routes.draw do
 
   resources :offers, only: %i[new create] do
     member do
+      get 'chat'
       patch 'accepted'
     end
+    resources :messages, only: :create
   end
 
   resources :plant_infos, only: %i[new create show]  do
@@ -46,10 +48,6 @@ Rails.application.routes.draw do
   get "identify/results", to: "identify#results"
   post "identify/results", to: "identify#results"
   get "identify/details", to: "identify#details"
-
-  resources :chatrooms, only: :show do
-    resources :messages, only: :create
-  end
 
   # resources :identity do
   #   collection do

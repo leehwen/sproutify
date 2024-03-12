@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_072343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,13 +42,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "chatrooms", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "offer_id", null: false
-    t.index ["offer_id"], name: "index_chatrooms_on_offer_id"
-  end
-
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -70,11 +63,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.bigint "chatroom_id", null: false
+    t.bigint "offer_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["offer_id"], name: "index_messages_on_offer_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -99,15 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
     t.index ["buyer_plant_id"], name: "index_offers_on_buyer_plant_id"
     t.index ["lister_id"], name: "index_offers_on_lister_id"
     t.index ["lister_plant_id"], name: "index_offers_on_lister_plant_id"
-  end
-
-  create_table "participants", force: :cascade do |t|
-    t.bigint "chatroom_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chatroom_id"], name: "index_participants_on_chatroom_id"
-    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "plant_illnesses", force: :cascade do |t|
@@ -163,9 +147,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "chatrooms", "offers"
   add_foreign_key "collections", "users"
-  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "offers"
   add_foreign_key "messages", "users"
   add_foreign_key "offering_options", "offers"
   add_foreign_key "offering_options", "plants", column: "offering_plant_option_id"
@@ -173,8 +156,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_045701) do
   add_foreign_key "offers", "plants", column: "lister_plant_id"
   add_foreign_key "offers", "users", column: "buyer_id"
   add_foreign_key "offers", "users", column: "lister_id"
-  add_foreign_key "participants", "chatrooms"
-  add_foreign_key "participants", "users"
   add_foreign_key "plant_illnesses", "illnesses"
   add_foreign_key "plant_illnesses", "plants"
   add_foreign_key "plants", "collections"
