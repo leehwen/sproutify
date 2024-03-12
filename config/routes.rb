@@ -18,23 +18,31 @@ Rails.application.routes.draw do
     collection do
       get 'listings'
     end
+
     member do
       get 'listing'
       patch 'update-listing'
+      get :offering_option
     end
+
     get 'illness/:illness_id', to: "plants#add_diagnosis", as: :add_diagnosis
     delete 'illness/:illness_id', to: "plants#remove_diagnosis", as: :remove_diagnosis
   end
 
-  resources :offers, only: %i[new create] do
+  resources :offers, only: %i[ new create ] do
     member do
       patch 'accepted'
     end
+
+    get "/offering_options/new", to: "offering_options#new"
+    post "/offering_options", to: "offering_options#create"
+
   end
 
   resources :plant_infos, only: %i[new create show]  do
     resources :plants, only: %i[new create show]
   end
+
 
   get "/diagnose", to: "diagnosis#diagnose"
   get "/diagnose/results", to: "diagnosis#results"

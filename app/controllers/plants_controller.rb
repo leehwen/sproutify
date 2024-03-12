@@ -80,6 +80,13 @@ class PlantsController < ApplicationController
     authorize @plant
   end
 
+  def offering_option
+    respond_to do |format|
+      format.text { render plain: "Success" }
+    end
+
+  end
+
   private
 
   def plant_params

@@ -1,0 +1,16 @@
+<div data-controller="offering-option">
+  <% @plants.each do |plant|%>
+    <div data-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
+      <% if plant.image.key? %>
+        <%= cl_image_tag plant.image.key %>
+      <% else %>
+        <%= image_tag("plant_sample_10.jpg", class: "image-card") %>
+      <% end %>
+      <%= plant.nickname %>
+    </div>
+  <% end %>
+
+  <div>
+
+  </div>
+</div>

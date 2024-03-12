@@ -6,4 +6,8 @@ class Plant < ApplicationRecord
 
   has_many :plant_illnesses
   has_many :illnesses, through: :plant_illnesses
+
+  has_many :offers
+  has_many :offering_options
+
 end
