@@ -1,22 +1,30 @@
 class OffersController < ApplicationController
   before_action :skip_authorization
 
+  def index
+    @offers = policy_scope(Offer)
+  end
+
+  def show
+    @offer = Offer.find(params[:id])
+    authorize @offer
+  end
+
   def new
-    @offer = Offer.new
-    @buyer_plants = current_user.plants.where(listing: true)
+    # @offer = Offer.new
+    # @buyer_plants = current_user.plants.where(listing: true)
   end
 
   def create
-    @offer = Offer.new(offer_params)
-
-    @lister_plant = Plant.find(params[:id])
-    @offer.lister_plant = @lister_plant
-
+    @lister_plant = Plant.find(params[:create_offer][:lister_plant_id])
     @lister = @lister_plant.user
-    @offer.lister = @lister
 
-    @offer.buyer = current_user
-    @offer.save
+    @offer = Offer.new(lister_plant_id: @lister_plant.id, lister_id: @lister.id, accepted: "pending" ,buyer_id: current_user.id)
+    if @offer.save
+      redirect_to offer_offering_options_new_path(@offer)
+    else
+      raise
+    end
   end
 
   def chat
