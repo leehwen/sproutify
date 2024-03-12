@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   has_one_attached :image
   has_many :plants, dependent: :destroy
+
+  has_many :chatrooms, through: :participants
+  has_many :messages
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

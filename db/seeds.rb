@@ -9,6 +9,9 @@
 #   end
 
 puts "resetting data base..."
+Message.destroy_all
+Participant.destroy_all
+Chatroom.destroy_all
 OfferingOption.destroy_all
 Offer.destroy_all
 PlantIllness.destroy_all
