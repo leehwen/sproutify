@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_11_062751) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_021739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,10 +61,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_062751) do
     t.string "image_url"
   end
 
+  create_table "offering_options", force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "offering_plant_option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_offering_options_on_offer_id"
+    t.index ["offering_plant_option_id"], name: "index_offering_options_on_offering_plant_option_id"
+  end
+
   create_table "offers", force: :cascade do |t|
-    t.boolean "accepted"
+    t.string "accepted"
     t.bigint "lister_plant_id", null: false
-    t.bigint "buyer_plant_id", null: false
+    t.bigint "buyer_plant_id"
     t.bigint "lister_id", null: false
     t.bigint "buyer_id", null: false
     t.datetime "created_at", null: false
@@ -129,6 +138,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_062751) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collections", "users"
+  add_foreign_key "offering_options", "offers"
+  add_foreign_key "offering_options", "plants", column: "offering_plant_option_id"
   add_foreign_key "offers", "plants", column: "buyer_plant_id"
   add_foreign_key "offers", "plants", column: "lister_plant_id"
   add_foreign_key "offers", "users", column: "buyer_id"
