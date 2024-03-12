@@ -102,7 +102,6 @@
   <strong><%= @plant.nickname %></strong><%= " appears vibrant and robust, exhibiting strong growth and lush foliage, indicating its overall healthiness."  %>
 <% else %>
  <% @illnesses.each do |illness| %>
-
   <div class="mb-3">
     <h2>
     Name of illness:
@@ -203,13 +202,13 @@
     <%= "Every #{@plant.watering_frequency} days" %>
   <% end %>
 
-  <%#= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
-    <%#= date %>
+  <%= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
+    <%= date.day %>
 
-    <%# schedule.each do |item| %>
-    <div>
-      <%#= item.nickname %>
-    </div>
-    <%# end %>
-  <%# end %>
+    <% schedule.each do |item| %>
+     <div class="reminder">
+      <p><%= "Hydration alert: #{item.nickname}" %></p>
+     </div>
+    <% end %>
+  <% end %>
 </div>

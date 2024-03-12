@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get 'listings'
     end
     member do
+      get 'edit_schedule'
+      patch 'update_schedule'
       get 'listing'
       patch 'update-listing'
     end
