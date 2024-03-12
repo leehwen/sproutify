@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   get "/diagnose/add-plants", to: "diagnosis#addplants"
   get '/plants/plant_id', to: "plants#add_collection", as: :add_collection
 
-  get "schedule", to: "plants#share"
+  get "schedule/:token", to: "plants#share"
   get "identify/results", to: "identify#results"
   post "identify/results", to: "identify#results"
   get "identify/details", to: "identify#details"

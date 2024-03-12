@@ -5,6 +5,9 @@
   .today {
     background-color: #FAF3DD;
   }
+  .past {
+    background-color:#ccc;
+  }
 }
 
 .reminder {
@@ -14,7 +17,11 @@
   background: #1EDD88;
   font-size: 0.6rem;
 
-  p{
+  p {
     margin: 0;
   }
+}
+
+#copy-button {
+  width: 200px;
 }

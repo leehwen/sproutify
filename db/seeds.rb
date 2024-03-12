@@ -29,7 +29,8 @@ user1 = User.create!(
   password: "password",
   address: "260B Punggol Way, Singapore 822260",
   first_name: "Mary",
-  last_name: "Lim"
+  last_name: "Lim",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user2 = User.create!(
@@ -38,7 +39,8 @@ user2 = User.create!(
   password: "password",
   address: "333D Anchorvale Link, Singapore 544333",
   first_name: "Ashley",
-  last_name: "Yeo"
+  last_name: "Yeo",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user3 = User.create!(
@@ -47,7 +49,8 @@ user3 = User.create!(
   password: "password",
   address: "3 Nathan Rd, Singapore 248726",
   first_name: "Nathan",
-  last_name: "Yeo"
+  last_name: "Yeo",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user4 = User.create!(
@@ -56,7 +59,8 @@ user4 = User.create!(
   password: "password",
   address: "35 St Thomas Walk, Singapore 238141",
   first_name: "Thomas",
-  last_name: "Tan"
+  last_name: "Tan",
+  token: SecureRandom.alphanumeric(32)
 )
 
 # create plant information

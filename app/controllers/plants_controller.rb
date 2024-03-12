@@ -1,4 +1,6 @@
 class PlantsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[share]
+
   def index
     @plants = Plant.all.where(user: current_user)
     @collections=Collection.all.where(user: current_user)
@@ -28,7 +30,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plantinfo = PlantInfo.find(@plant.plant_info_id)
     @illnesses = @plant.illnesses
-    start_date = params.fetch(:start_date, Date.today).to_date
+    # start_date = params.fetch(:start_date, Date.today).to_date
     authorize @plant
   end
 
@@ -58,7 +60,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.update(collection_params)
 
-    redirect_to  plants_path
+    redirect_to plants_path
 
     authorize @plant
   end
@@ -98,6 +100,12 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.listing = true # needs to be updated based on checkbox status plant_listing_controller.js
     authorize @plant
+  end
+
+  def share
+    @user = User.find_by_token(params[:token])
+    @plants = @user.plants
+    authorize @plants
   end
 
   private
