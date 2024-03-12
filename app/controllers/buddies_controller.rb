@@ -13,6 +13,8 @@ class BuddiesController < ApplicationController
     @buddy.save!
 
     redirect_to buddies_path
+
+    authorize @buddy
   end
 
   def send_schedule
