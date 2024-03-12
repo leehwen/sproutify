@@ -15,4 +15,8 @@ class BuddyPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def create?
+    record.user == user
+  end
+
 end

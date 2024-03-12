@@ -1,10 +1,22 @@
 <%= render "shared/settings"%>
 
 <div class="px-3" data-controller="mygarden">
-  <div class="d-flex justify-content-center mt-4 mb-3">
-    <div class="btn btn-primary disabled rounded-5 mx-2" data-mygarden-target="collectionHeader" data-action="click->mygarden#togglePlant">Plants</div>
-    <div class="btn btn-primary rounded-5 mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#toggleCollection">Collections</div>
-    <%= link_to "Send Schedule to a buddy!", buddies_path %>
+    <div class="d-flex justify-content-center mt-4 mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="sp-btn-green disabled rounded-5 mx-2 clickable" data-mygarden-target="collectionHeader" data-action="click->mygarden#togglePlant">Plants</div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="col-4 sp-btn-green rounded-5 mx-2 clickable" data-mygarden-target="plantsHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+        </div>
+
+        <div class="col-sm-4">
+          <%= link_to "Send Schedule to a buddy!", buddies_path %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="collection d-none" data-mygarden-target="collection">
@@ -67,12 +79,13 @@
         <% else %>
         <% end %>
         <div class="plant-card-content">
-          <p><strong>Nickname: </strong><%= plant.nickname %></p>
-          <p><strong>Remarks: </strong><%= plant.remarks  %></p>
+          <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+          <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
           <p><strong>Species: </strong><%= plantinfo.name  %></p>
-          <p><strong>Watering: </strong><%= plantinfo.watering  %></p>
-          <%= link_to "View Details", plant_path(plant) %>
-          <%= link_to "Add to a collection", edit_plant_path(plant) %>
+          <div class="d-flex justify-content-between">
+            <%= link_to "View Details", plant_path(plant), class:"text-decoration-none" %>
+            <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none" %>
+          </div>
         </div>
       </div>
     </div>
