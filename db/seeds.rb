@@ -36,6 +36,24 @@ user2 = User.create!(
   last_name: "Yeo"
 )
 
+user3 = User.create!(
+  username: "user3",
+  email: "user3@email.com",
+  password: "password",
+  address: "3 Nathan Rd, Singapore 248726",
+  first_name: "Nathan",
+  last_name: "Yeo"
+)
+
+user4 = User.create!(
+  username: "user4",
+  email: "user4@email.com",
+  password: "password",
+  address: "35 St Thomas Walk, Singapore 238141",
+  first_name: "Thomas",
+  last_name: "Tan"
+)
+
 plant_infos1 = PlantInfo.create!(
   name:"Abelmoschus esculentus (L.) Moench",
   common_names: "Lady's Fingers, Okra, Gumbo, Bendi",
@@ -172,6 +190,44 @@ Plant.create!(
   plant_info: plant_infos4
 
 )
+
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.word,
+    remarks: Faker::Lorem.sentence(word_count: 3),
+    user: user3,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+  )
+end
+
+10.times do
+  Plant.create!(
+    nickname: Faker::Lorem.word,
+    remarks: Faker::Lorem.sentence(word_count: 3),
+    user: user3,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true
+  )
+end
+
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.word,
+    remarks: Faker::Lorem.sentence(word_count: 3),
+    user: user4,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+  )
+end
+
+10.times do
+  Plant.create!(
+    nickname: Faker::Lorem.word,
+    remarks: Faker::Lorem.sentence(word_count: 3),
+    user: user4,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true
+  )
+end
 
 Illness.create!(
   name: "Funghi Infection",
