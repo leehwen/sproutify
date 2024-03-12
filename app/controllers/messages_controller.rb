@@ -6,7 +6,11 @@ class MessagesController < ApplicationController
     @message.user = current_user
     authorize @message
     if @message.save
-      redirect_to chat_offer_path(@offer)
+      OfferChannel.broadcast_to(
+        @offer,
+        render_to_string(partial: "message", locals: {message: @message})
+      )
+      head :ok
     else
       render chat_offer_path(@offer), status: :unprocessable_entity
     end
