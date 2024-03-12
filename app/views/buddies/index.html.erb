@@ -21,26 +21,26 @@
 
   <% else %>
 
-      <p class="mt-5 mb-2">Select a Buddy to send the schedule</p>
+      <p class="mt-5 mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
       <% @buddies.each do |buddy| %>
-        <div class="card p-2">
+        <div class="card p-2 m-2">
           <div>
             <p><strong>Buddy Name: </strong><%= buddy.name %></p>
             <p><strong>Email: </strong><%= buddy.email %></p>
           </div>
           <div>
-            <%= link_to  "Click to send schedule to buddy", send_schedule_buddy_path(buddy) %>
+            <%= link_to  "Click to send schedule to buddy", send_schedule_buddy_path(buddy), class: "text-decoration-none" %>
           </div>
         </div>
     <% end %>
 
-  <div data-buddy-target="addBuddyHeader">
+  <div class="d-flex mt-3" data-buddy-target="addBuddyHeader">
     <div class="sp-btn-green clickable" data-action="click->buddy#show">
       <p class="m-0">Add another Buddy</p>
     </div>
   </div>
 
-  <div>
+  <div class="mt-3">
     <%= simple_form_for @buddy, html: { class: "d-none", data: { buddy_target: "addBuddy", action: "submit->buddy#submitBuddy" } } do |f| %>
     <%= f.input :name, label: 'Buddy Name' %>
     <%= f.input :email, label: 'Buddy Email' %>

@@ -8,11 +8,15 @@ class BuddiesController < ApplicationController
   end
 
   def create
+    @buddies = Buddy.all.where(user: current_user)
     @buddy = Buddy.new(buddy_params)
     @buddy.user = current_user
-    @buddy.save!
 
-    redirect_to buddies_path
+    if @buddy.save
+      redirect_to buddies_path
+    else
+      render :index, status: :unprocessable_entity
+    end
 
     authorize @buddy
   end
@@ -22,7 +26,6 @@ class BuddiesController < ApplicationController
 
     BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_now
 
-    flash[:success] = "Thank you for your order! We'll get contact you soon!"
     redirect_to plants_path
     
     authorize @buddy
