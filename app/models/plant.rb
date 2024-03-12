@@ -20,6 +20,7 @@ class Plant < ApplicationRecord
     # find the start date
     # calculate schedule based on frequency
     return [] if watering_frequency.nil?
+    return [] if start_date.nil?
 
     dates = []
     # find start date
