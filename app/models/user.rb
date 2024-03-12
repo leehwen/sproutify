@@ -1,12 +1,10 @@
 class User < ApplicationRecord
   has_many :plants
   has_many :collections
+  has_many :messages
 
   has_one_attached :image
   has_many :plants, dependent: :destroy
-
-  has_many :chatrooms, through: :participants
-  has_many :messages
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
