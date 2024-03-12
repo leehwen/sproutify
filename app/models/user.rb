@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   has_many :plants
   has_many :collections
+  has_many :buddies
   has_many :messages
+
 
   has_one_attached :image
   has_many :plants, dependent: :destroy
