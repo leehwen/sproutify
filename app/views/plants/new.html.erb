@@ -14,6 +14,7 @@
       <%= f.input :nickname, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
       <%= f.input :remarks, wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
       <%= f.input :watering_frequency, label: "Please enter the number of days between watering sessions:", wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } }, input_html: { min: '0' } %>
+      <%= f.input :start_date, label: "Please indicate when to begin watering:", wrapper_html: { class: 'd-none', data: { camera_target: "toShow" } } %>
       <%= f.label :image, class: "sp-btn-green clickable", data: { camera_target: "toHide" } do %>
         Identify
         <i class="fa-solid fa-camera"></i>

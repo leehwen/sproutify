@@ -1,0 +1,9 @@
+<div class="container mt-5">
+<h2>Update Schedule</h2>
+  <%= simple_form_for (@plant), url:update_schedule_plant_path do |f| %>
+      <%= f.input :watering_frequency %>
+      <%= f.input :start_date, label: "Choose a new start date"%>
+      <%= f.button :submit, value:"Update Schedule", class: 'sp-btn-green mt-2'%>
+    </div>
+  <% end %>
+</div>
