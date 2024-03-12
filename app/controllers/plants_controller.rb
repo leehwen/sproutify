@@ -66,6 +66,9 @@ class PlantsController < ApplicationController
 
   def listings
     @listings = Plant.where(listing: true)
+    if params[:query].present?
+      @listings = @listings.global_search(params[:query])
+    end
     authorize @listings
   end
 
