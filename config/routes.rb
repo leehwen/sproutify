@@ -33,8 +33,10 @@ Rails.application.routes.draw do
 
   resources :offers, only: %i[new create] do
     member do
+      get 'chat'
       patch 'accepted'
     end
+    resources :messages, only: :create
   end
 
   resources :plant_infos, only: %i[new create show]  do

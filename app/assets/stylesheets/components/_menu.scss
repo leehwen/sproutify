@@ -1,0 +1,14 @@
+.menu-header {
+  // fw-normal border border-primary py-3 text-center
+  font-weight: normal;
+  border: 1px solid $dark-green;
+  padding: 1rem 0;
+  text-align: center;
+  transition: 300ms;
+
+  &.active {
+    background-color: $dark-green;
+    color: white;
+    font-weight: bold;
+  }
+}
