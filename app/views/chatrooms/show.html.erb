@@ -1,6 +1,14 @@
 <div class="container chatroom">
   <h1>Chatroom <%= @chatroom.id %></h1>
 
+  <div>
+    <h2>Offer Information</h2>
+    <p>Lister: <%= @chatroom.offer.lister.first_name %></p>
+    <p>Lister Plant: <%= @chatroom.offer.lister_plant.plant_info.common_names %></p>
+    <p>Buyer: <%= @chatroom.offer.buyer.first_name %></p>
+    <p>Buyer Plant Options: TBC</p>
+  </div>
+
   <div class="messages">
     <% @chatroom.messages.each do |message| %>
       <div id="message-<%= message.id %>">
@@ -12,4 +20,16 @@
       </div>
     <% end %>
   </div>
+
+  <%= simple_form_for [@chatroom, @message],
+    html: {class: "d-flex"} do |f|
+  %>
+    <%= f.input :content,
+      label: false,
+      placeholder: "Message for Offer ##{@chatroom.offer.id}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
+
 </div>
