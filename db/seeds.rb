@@ -242,7 +242,7 @@ end
 
 # create illnesses
 
-Illness.create!(
+illness_funghi = Illness.create!(
   name: "Funghi Infection",
   cause: "Too much watering and too little fertilizer",
   description: "Fungi take energy from the plants on which they live, causing damage to the plant.
@@ -267,7 +267,7 @@ Illness.create!(
   common_names: "butterfly bacteria"
 )
 
-Illness.create!(
+illness_browning = Illness.create!(
   name: "Browning",
   cause: "Insufficient water",
   description: "Insufficient water can cause a deteorioriation of growth. Browning will eventually cause the plant to wilt ",
@@ -288,6 +288,30 @@ Illness.create!(
         "Disinfect tools, infected flower pots, and hands to avoid disease transmission."
     ]},
   common_names: "Lack of water"
+)
+
+# randomly assign illness to 2 plants of user1 and user2
+user1_plants = Plant.where(user: user1).sample(2)
+user2_plants = Plant.where(user: user2).sample(2)
+
+PlantIllness.create!(
+  illness: illness_funghi,
+  plant: user1_plants[0]
+)
+
+PlantIllness.create!(
+  illness: illness_browning,
+  plant: user1_plants[1]
+)
+
+PlantIllness.create!(
+  illness: illness_funghi,
+  plant: user2_plants[0]
+)
+
+PlantIllness.create!(
+  illness: illness_browning,
+  plant: user2_plants[1]
 )
 
 # create marketplace offers, 1 for each status type.
