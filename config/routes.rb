@@ -47,7 +47,9 @@ Rails.application.routes.draw do
   post "identify/results", to: "identify#results"
   get "identify/details", to: "identify#details"
 
-  resources :chatrooms, only: :show
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   # resources :identity do
   #   collection do

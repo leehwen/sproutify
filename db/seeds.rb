@@ -352,4 +352,20 @@ OfferingOption.create!(
   offering_plant_option: user3_buyer_plants[3]
 )
 
+# create 1 chatroom for users with offer pending
+chatroom_pending =
+  Chatroom.create!(
+    offer: offer_pending
+  )
+
+Participant.create!(
+  user: user3,
+  chatroom: chatroom_pending
+)
+
+Participant.create!(
+  user: user4,
+  chatroom: chatroom_pending
+)
+
 puts "seeding entries done!"
