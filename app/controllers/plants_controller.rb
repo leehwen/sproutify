@@ -100,6 +100,15 @@ class PlantsController < ApplicationController
     authorize @plant
   end
 
+  def offering_option
+    @plant = Plant.find(params[:id])
+    authorize @plant
+
+    respond_to do |format|
+      format.text { render partial: "plants/offering_option", locals: {plant: @plant}, formats: [:html] }
+    end
+  end
+
   private
 
   def plant_params

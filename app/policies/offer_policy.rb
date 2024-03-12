@@ -1,4 +1,8 @@
 class OfferPolicy < ApplicationPolicy
+  def create?
+    record.buyer_id == user.id
+  end
+
   def show?
     record.lister == user || record.buyer == user
   end

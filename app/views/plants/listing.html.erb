@@ -11,6 +11,13 @@
 <p>Watering Requirement: <%= @plant.plant_info.watering %></p>
 <p>Propagation: <%= @plant.plant_info.propagation %></p>
 
-<h2>Interested? Make an Offer</h2>
-<%= link_to "Make an offer", new_offer_path %>
 <%= link_to "Back",  listings_plants_path %>
+
+<h2>Interested? Make an Offer</h2>
+
+  <div class="d-flex mt-5 justify-content-center">
+    <%= simple_form_for :create_offer, method: :post, url: offers_path  do |f| %>
+      <%= f.hidden_field :lister_plant_id, value: @plant.id %>
+      <%= f.submit 'Offer to Swap', class: "sp-btn-green" %>
+    <% end %>
+  </div>

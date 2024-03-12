@@ -83,11 +83,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_072343) do
 
   create_table "offering_options", force: :cascade do |t|
     t.bigint "offer_id", null: false
-    t.bigint "offering_plant_option_id", null: false
+    t.bigint "plant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["offer_id"], name: "index_offering_options_on_offer_id"
-    t.index ["offering_plant_option_id"], name: "index_offering_options_on_offering_plant_option_id"
+    t.index ["plant_id"], name: "index_offering_options_on_plant_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -163,7 +163,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_072343) do
   add_foreign_key "messages", "offers"
   add_foreign_key "messages", "users"
   add_foreign_key "offering_options", "offers"
-  add_foreign_key "offering_options", "plants", column: "offering_plant_option_id"
+  add_foreign_key "offering_options", "plants"
   add_foreign_key "offers", "plants", column: "buyer_plant_id"
   add_foreign_key "offers", "plants", column: "lister_plant_id"
   add_foreign_key "offers", "users", column: "buyer_id"

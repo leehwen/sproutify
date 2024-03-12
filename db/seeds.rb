@@ -13,6 +13,7 @@ Message.destroy_all
 OfferingOption.destroy_all
 Offer.destroy_all
 PlantIllness.destroy_all
+Offer.destroy_all
 Plant.destroy_all
 Illness.destroy_all
 PlantInfo.destroy_all

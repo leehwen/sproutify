@@ -20,6 +20,10 @@ class PlantPolicy < ApplicationPolicy
     true
   end
 
+  def offering_option?
+    record.user == user
+  end
+
   def edit_schedule?
     record.user == user
   end
