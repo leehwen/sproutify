@@ -27,6 +27,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plantinfo = PlantInfo.find(@plant.plant_info_id)
     @illnesses = @plant.illnesses
+    start_date = params.fetch(:start_date, Date.today).to_date
     authorize @plant
   end
 
@@ -82,7 +83,7 @@ class PlantsController < ApplicationController
   private
 
   def plant_params
-    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image)
+    params.require(:plant).permit(:nickname, :remarks, :plant_info_id, :image, :watering_frequency)
   end
 
   def collection_params

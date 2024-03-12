@@ -4,22 +4,58 @@
   <% end %>
 </div>
 
+<div data-controller="plant-show">
 
-<div class="diagnosis-results-container">
+<div class="container-fluid">
+  <div class="row">
+    <h2 class='col-4 menu-header active' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
+    <h2 class='col-4 menu-header' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Diagnosis</h2>
+    <h2 class='col-4 menu-header' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
+  </div>
+</div>
+
+
+<div data-content="info" class="diagnosis-results-container mt-0 <%= "d-none" if params[:start_date].present? %>" data-plant-show-target="content">
+
+<div class="container">
+  <div class="form-check form-switch d-flex justify-content-end py-0">
+    <%= simple_form_for (@plant) do |f| %>
+      <%= f.input :listing,
+        label: "List in Marketplace",
+        as: :boolean,
+        class: 'form-check-input',
+        input_html: {
+                      data: {
+                          controller: "plant-listing",
+                          action: "change->plant-listing#fire",
+                          'plant-listing-target': "checkbox"
+                        }}
+      %>
+    <% end %>
+  </div>
+</div>
 
   <div class="mb-3">
     <h1>
-      <%= @plant.nickname%> <%= "(#{@plantinfo.name.titleize})" %>
+      <%= @plant.nickname %> <%= "(#{@plantinfo.name.titleize})" %>
     <h1>
   </div>
 
+  <div class="mb-4">
+    <h2>
+      Remarks:
+    </h2>
+    <p>
+      <%= @plant.remarks %>
+    </p>
+  </div>
 
   <div class="mb-4">
     <h2>
       Description:
     </h2>
     <p>
-      <%= @plantinfo.description  %>
+      <%= @plantinfo.description %>
     </p>
   </div>
 
@@ -36,7 +72,7 @@
     <h2>
       Propagation Methods:
     </h2>
-      <% if @plantinfo.image_url == !nil %>
+      <% if @plantinfo.image_url != nil %>
       <ul>
           <% JSON.parse(@plantinfo.propagation).each do |f|  %>
             <li><%= f.titleize %></li>
@@ -58,10 +94,13 @@
   </div>
 </div>
 
-<hr>
 
-<div class="diagnosis-results-container">
 
+
+<div data-content="diagnose" class="diagnosis-results-container d-none" data-plant-show-target="content">
+<%  if @illnesses.empty? %>
+  <strong><%= @plant.nickname %></strong><%= " appears vibrant and robust, exhibiting strong growth and lush foliage, indicating its overall healthiness."  %>
+<% else %>
  <% @illnesses.each do |illness| %>
 
   <div class="mb-3">
@@ -138,36 +177,39 @@
       <% end %>
     </ul>
   </div>
-<% end %>
-</div>
-
-<hr>
-
-<h1>Watering Schedule</h1>
-<div class="diagnosis-results-container">
-<%= @plant.watering_frequency %>
-</div>
-
-<% @illnesses.each do |illness| %>
-  <span><%= illness.name %></span>
-  <%= link_to "cure plant",
+  <%= link_to "#{@plant.nickname} has recovered!",
       plant_remove_diagnosis_path(@plant, illness),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+      class: "sp-btn-green",
+      style: "text-decoration:none"
   %>
+  <% end %>
 <% end %>
 
-<h2>Marketplace</h2>
-<span>List this plant on the marketplace</span>
-<div class="form-check form-switch">
-  <%= simple_form_for (@plant) do |f| %>
-    <%= f.input :listing,
-        as: :boolean,
-        class: 'form-check-input',
-        input_html: { data: {
-                              controller: "plant-listing",
-                              action: "change->plant-listing#fire",
-                              'plant-listing-target': "checkbox"
-                            }}
-    %>
+</div>
+
+<div data-content="schedule" class="diagnosis-results-container <%= "d-none" unless params[:start_date].present? %>" data-plant-show-target="content">
+  <h2>Watering Schedule</h2>
+  <% case @plant.watering_frequency %>
+  <% when 1 %>
+    <%= "Daily" %>
+  <% when 2 %>
+    <%= "Every other day" %>
+  <% when 7 %>
+    <%= "Once a week" %>
+  <% when 14 %>
+    <%= "Fortnightly" %>
+  <% else %>
+    <%= "Every #{@plant.watering_frequency} days" %>
+  <% end %>
+
+  <%= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
+    <%= date %>
+
+    <% schedule.each do |item| %>
+    <div>
+      <%= item.nickname %>
+    </div>
+    <% end %>
   <% end %>
 </div>
