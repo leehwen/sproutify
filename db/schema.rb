@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_064726) do
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_032503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,6 +135,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_032503) do
     t.bigint "collection_id"
     t.bigint "plant_info_id", null: false
     t.integer "watering_frequency"
+    t.date "start_date"
     t.index ["collection_id"], name: "index_plants_on_collection_id"
     t.index ["plant_info_id"], name: "index_plants_on_plant_info_id"
     t.index ["user_id"], name: "index_plants_on_user_id"

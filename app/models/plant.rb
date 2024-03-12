@@ -16,22 +16,24 @@ class Plant < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  # def schedule()
-  #   # find the start date
-  #   # calculate schedule based on frequency
-  #   return [] if watering_frequency.nil?
+  def schedule
+    # find the start date
+    # calculate schedule based on frequency
+    return [] if watering_frequency.nil?
+    return [] if start_date.nil?
 
-  #   dates = []
-  #   # find start date
-  #   # find no of days
-  #   # no of days / watering schedule => instances (rounded)
-  #   instances.times do |index|
-  #     dates << OpenStruct.new(
-  #       nickname:,
-  #       watering_date: updated_at + (index * watering_frequency).days
-  #     )
-  #   end
-  #   dates
-  # end
+    dates = []
+    # find start date
+    # find no of days
+    # no of days / watering schedule => instances (rounded)
+    instances = 120 / watering_frequency
+    instances.times do |index|
+      dates << OpenStruct.new(
+        nickname:,
+        watering_date: start_date + (index * watering_frequency).days
+      )
+    end
+    dates
+  end
 
 end
