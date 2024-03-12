@@ -2,6 +2,7 @@ class PlantsController < ApplicationController
   def index
     @plants = Plant.all.where(user: current_user)
     @collections=Collection.all.where(user: current_user)
+    @collection = Collection.new
     @plants = policy_scope(Plant)
     @collections= policy_scope(Collection)
   end
@@ -66,6 +67,9 @@ class PlantsController < ApplicationController
 
   def listings
     @listings = Plant.where(listing: true)
+    if params[:query].present?
+      @listings = @listings.global_search(params[:query])
+    end
     authorize @listings
   end
 

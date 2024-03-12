@@ -1,14 +1,32 @@
 <h1>Plant Listings of All Users</h1>
 
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: listings_plants_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search by Species or Plant Common Name"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
 <div>
-  <ol>
-  <% @listings.each do |listing| %>
-    <li>
-      <p>Plant Name (Given by Owner): <%= listing.nickname %></p>
-      <p>Plant Common Name: <%= listing.plant_info.common_names%></p>
-      <p>Owner: <%= listing.user.first_name %></p>
-      <%= link_to "View Listing", listing_plant_path(listing) %>
-    </li>
+  <% if @listings.length == 0 %>
+    <p>There are no listings for <strong><%= "#{params[:query]}" %></strong>. Try searching for something else.</p>
+  <% else %>
+    <ol>
+    <% @listings.each do |listing| %>
+      <li>
+        <p>Plant Name (Given by Owner): <%= listing.nickname %></p>
+        <p>Species: <%= listing.plant_info.name %></p>
+        <p>Plant Common Name: <%= listing.plant_info.common_names%></p>
+        <p>Owner: <%= listing.user.first_name %></p>
+        <%= link_to "View Listing", listing_plant_path(listing) %>
+      </li>
+    <% end %>
+    </ol>
   <% end %>
-  </ol>
 </div>

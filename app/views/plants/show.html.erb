@@ -203,13 +203,13 @@
     <%= "Every #{@plant.watering_frequency} days" %>
   <% end %>
 
-  <%= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
-    <%= date %>
+  <%#= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
+    <%#= date %>
 
-    <% schedule.each do |item| %>
+    <%# schedule.each do |item| %>
     <div>
-      <%= item.nickname %>
+      <%#= item.nickname %>
     </div>
-    <% end %>
-  <% end %>
+    <%# end %>
+  <%# end %>
 </div>

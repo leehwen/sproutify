@@ -8,21 +8,47 @@
 
   <div class="collection d-none" data-mygarden-target="collection">
   <% if @collections.count == 0 %>
-    <p> You do not have any collections yet </p>
-    <%= link_to "Create a Collection", new_collection_path %>
+    <div class="d-flex flex-column align-items-center", data-mygarden-target="addCollectionHeader">
+      <div>
+        <p> You do not have any collections yet </p>
+      </div>
+      <div>
+        <button class="sp-btn-green clickable" data-action="click->mygarden#addCollection">Click to add a collection</button>
+      </div>
+    </div>
+        <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addCollectionForm" } } do |f| %>
+      <%= f.input :name, label: 'Your collection title' %>
+      <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
+      <%= f.submit "Create a collection", class: 'sp-btn-green'%>
+    <% end %>
   <% else %>
     <% @collections.each do |collection| %>
       <div class="row gx-0">
-      <%= link_to collection_path(collection) do %>
+      <%= link_to collection_path(collection), class: 'text-decoration-none' do %>
       <div class="plant-card col-sm-12 col-lg-4 collection-card">
-        <%= link_to "Delete a collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"deletecollection"%>
         <%= cl_image_tag collection.image.key, class: "plant-card-image" %>
-        <p class="collection-card-label"><%= collection.name %></p>
+        <div class="d-flex justify-content-between align-items-center p-2">
+          <div>
+            <span class="collection-card-label"><%= collection.name %></span>
+          </div>
+          <div>
+            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none"%>
+          </div>
+        </div>
       </div>
       <% end %>
     </div>
     <% end %>
-    <%= link_to "Create another Collection", new_collection_path %>
+      <div class="d-flex justify-content-center" data-mygarden-target="addAnotherCollectionHeader">
+        <button class="sp-btn-green clickable " data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
+      </div>
+      <div>
+        <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addAnotherCollectionForm" } } do |f| %>
+          <%= f.input :name, label: 'Your collection title' %>
+          <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
+          <%= f.submit "Create a collection", class: 'sp-btn-green'%>
+        <% end %>
+      </div>
   <% end %>
   </div>
 
