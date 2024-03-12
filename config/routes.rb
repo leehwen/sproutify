@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     delete 'illness/:illness_id', to: "plants#remove_diagnosis", as: :remove_diagnosis
   end
 
-  resources :offers, only: %i[new create] do
+  resources :offers, only: %i[index show new create] do
     member do
       get 'chat'
       patch 'accepted'
