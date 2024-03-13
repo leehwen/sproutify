@@ -21,7 +21,8 @@ class OfferingOptionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { resp: 'ok' } }
+      # format.json { render json: { status: :ok } }
+      format.json { render json: { message: :ok }, status: :ok }
       # format.json { render json: {params:}}
     end
   end
