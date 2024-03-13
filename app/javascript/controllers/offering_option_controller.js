@@ -51,6 +51,7 @@ export default class extends Controller {
     const url = `/offers/${e.currentTarget.dataset.offerId}/offering_options`
     // console.log(this.#getMetaValue("csrf-token"));
     // console.log(JSON.stringify(this.offeringOptionIds));
+    e.currentTarget.classList.add("d-none")
     fetch(url, {
       method: "POST",
       headers: {

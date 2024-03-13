@@ -1,3 +1,15 @@
-<h1>Details of the Offer</h1>
+<% if @offer.lister == current_user %>
+  <div class="container" data-controller="offer-select">
+    <div data-offer-select-target="content">
+      <%= render "options", offer: @offer %>
+    </div>
+  </div>
 
-<p>TBC</p>
+<% else %>
+<%# Deregister offer select controller of current_user is just the buyer %>
+  <div class="container">
+    <div>
+      <%= render "options", offer: @offer %>
+    </div>
+  </div>
+<% end %>

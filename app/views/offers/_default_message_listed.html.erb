@@ -1,0 +1,14 @@
+  <div class="row">
+    <div class="col-3">
+      <%= link_to "#{offer.lister_plant.nickname}", listing_plant_path(offer.lister_plant), class: "text-decoration-none" %>
+    </div>
+    <div class="col-6">
+      <% if offer.lister_plant.image.attached? %>
+        <%= cl_image_tag plant.image.key, class: "tiny-image-card" %>
+      <% else %>
+        <%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none" do %>
+          <%= image_tag("plant_sample_10.jpg", class: "tiny-image-card") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
