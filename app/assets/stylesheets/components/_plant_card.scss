@@ -3,6 +3,7 @@
   border-radius: 10px;
   margin: 10px auto;
   position: relative;
+  font-size: 0.7rem;
 
   .plant-card-image {
     border-top-left-radius: 10px;
@@ -22,6 +23,7 @@
 
   .plant-card-content {
     padding: 15px;
+    height: calc(100% - 225px);
   }
 }
 
@@ -50,6 +52,12 @@
     font-weight: 500;
     transition: 0.2s ease;
   }
+}
+
+.deleteplant{
+  position: absolute;
+  top: 242px;
+  right: 15px;
 }
 
 
