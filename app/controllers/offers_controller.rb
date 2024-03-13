@@ -49,8 +49,19 @@ class OffersController < ApplicationController
   end
 
   def default_message
-    @offer = Offer.find(params[:offer_id])
+    @offer = Offer.find(params[:id])
+    @offering_options = OfferingOption.where(offer: @offer)
+    content = "I would like to make an offer to #{@offer.lister_plant.nickname}.
+    These are plants I would like to swap"
+    @default_message = Message.new(content:)
+    @default_message.offer = @offer
+    @default_message.user = current_user
+    authorize @offer
+    if @default_message.save
+      redirect_to chat_offer_path(@offer)
+    else
 
+    end
   end
 
   private
