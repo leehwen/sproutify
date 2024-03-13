@@ -18,7 +18,8 @@
     </div>
 
     <div>
-      <%= render "shared/nav" %>
+
+      <%= render "shared/nav" if @full_schedule.nil?  %>
     </div>
   </body>
 </html>

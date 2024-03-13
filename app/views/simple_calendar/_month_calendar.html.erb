@@ -1,11 +1,17 @@
 <div class="simple-calendar" data-controller="plant-show">
   <div class="d-flex align-items-center justify-content-between">
-    <div class="calendar-heading my-2">
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: 'btn btn-outline-success',  data: { action: 'click->plant-show#displayCalendar' } %>
-      <span class="calendar-title btn btn-success"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: 'btn btn-outline-success' %>
+    <div class="calendar-heading my-2 d-flex" id="calendar">
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: 'btn sp-btn-green-calendar-outline',  data: { action: 'click->plant-show#handleClick' } %>
+      <span class="calendar-title sp-btn-green-calendar"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: 'btn sp-btn-green-calendar-outline',  data: { turbolinks: false, action: 'click->plant-show#handleClick' } %>
     </div>
+
   </div>
+    <div class="my-3">
+      <% if @full_schedule.nil? %>
+        <%= link_to "Edit Schedule", edit_schedule_plant_path , class: 'sp-btn-green', style:'text-decoration:none' %>
+      <% end %>
+    </div>
 
   <table class="table table-striped mt-3">
     <thead>

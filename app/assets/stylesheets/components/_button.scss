@@ -49,3 +49,24 @@
     display: none;
   }
 }
+
+.sp-btn-green-calendar-outline {
+  background-color: $off-white;
+  color: $dark-green;
+  border-color: $dark-green;
+  text-align: center;
+  padding: 8.5px 20px;
+
+  &:hover {
+    background-color: $dark-green;
+    color: $off-white;
+  }
+}
+
+.sp-btn-green-calendar {
+  background-color: $dark-green;
+  color: $off-white;
+  border: none;
+  text-align: center;
+  padding: 8.5px 20px;
+}
