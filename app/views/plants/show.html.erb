@@ -8,9 +8,9 @@
 
 <div class="container-fluid">
   <div class="row">
-    <h2 class='col-4 menu-header active clickable' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
+    <h2 class='col-4 menu-header active clickable ' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
     <h2 class='col-4 menu-header clickable' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Diagnosis</h2>
-    <h2 class='col-4 menu-header clickable' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
+    <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].present? %>' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
   </div>
 </div>
 

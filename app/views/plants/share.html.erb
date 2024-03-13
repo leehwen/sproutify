@@ -1,18 +1,18 @@
 <div class="diagnosis-results-container">
-  <h2>Watering Schedule</h2>
+  <h2>Overall Watering Schedule</h2>
 <% @plants.each do |plant| %>
-  <span><%= plant.nickname %>: </span>
+  <p><%= plant.nickname %>: </p>
   <% case plant.watering_frequency %>
   <% when 1 %>
-    <span><%= "Daily" %></span>
+    <p><%= "Daily" %></p>
   <% when 2 %>
-    <span><%= "Every other day" %></span>
+    <p><%= "Every other day" %></p>
   <% when 7 %>
-    <span><%= "Once a week" %></span>
+    <p><%= "Once a week" %></p>
   <% when 14 %>
-    <span><%= "Fortnightly" %></span>
+    <p><%= "Fortnightly" %></p>
   <% else %>
-    <span><%= "Every #{plant.watering_frequency} days" %></span>
+    <p><%= "Every #{plant.watering_frequency} days" %></p>
   <% end %>
 <% end %>
 
