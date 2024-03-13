@@ -23,7 +23,7 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to offer_offering_options_new_path(@offer)
     else
-      raise
+      render :listing, status: :unprocessable_entity
     end
   end
 

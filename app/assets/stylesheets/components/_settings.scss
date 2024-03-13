@@ -1,8 +1,10 @@
 .sp-settings {
-  position: sticky;
-  top: 0px;
-  justify-content: space-between;
-  background: white;
+  position: fixed;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0);
+  color: $charcoal;
+  top: 1rem;
+  right: 1rem;
   z-index: 25;
 }
 

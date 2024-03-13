@@ -72,7 +72,7 @@ plant_infos1 = PlantInfo.create!(
   common_names: "Lady's Fingers, Okra, Gumbo, Bendi",
   description: "The unripe fruit of Lady’s Finger is a popular vegetable in many cuisines which has a mucilaginous texture.",
   watering: 2,
-  propagation: "seed"
+  propagation: "[\"seeds\"]"
 )
 
 plant_infos2 = PlantInfo.create!(
@@ -80,7 +80,7 @@ plant_infos2 = PlantInfo.create!(
   common_names: "Monstera",
   description: "Monstera is a genus of 59 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas. The genus is named from the Latin word for monstrous or abnormal, and refers to the unusual leaves with natural holes that members of the genus have.",
   watering: 2,
-  propagation: "cuttings"
+  propagation: "[\"cuttings\", \"seeds\"]"
 )
 
 plant_infos3 = PlantInfo.create!(
@@ -88,7 +88,7 @@ plant_infos3 = PlantInfo.create!(
   common_names: "Desert Rose, Sabi star, kudu, mock azalea, impala lily",
   description: "Adenium obesum, more commonly known as a desert rose, is a poisonous species of flowering plant belonging to the tribe Nerieae of the subfamily Apocynoideae of the dogbane family, Apocynaceae.[3] It is native to the Sahel regions south of the Sahara (from Mauritania and Senegal to Sudan), tropical and subtropical eastern and southern Africa and also the Arabian Peninsula.",
   watering: 1,
-  propagation: "cuttings"
+  propagation: "[\"cuttings\"]"
 )
 
 plant_infos4 = PlantInfo.create!(
@@ -96,7 +96,7 @@ plant_infos4 = PlantInfo.create!(
   common_names: "Rosary pea, Precatory bean, Crab's eyes",
   description: "Abrus precatorius is a slender, perennial climber that twines around trees, shrubs and hedges. The plant is used in some traditional medicine to treat scratches and sores, and wounds. The leaves are used for their anti-suppurative.  In China, the seed were once used to treat fever, malaria, headache, worms and dropsy.",
   watering: 3,
-  propagation: "cuttings"
+  propagation: "[\"cuttings\", \"seeds\"]"
 )
 
 plant_infos5 = PlantInfo.create!(
@@ -104,7 +104,7 @@ plant_infos5 = PlantInfo.create!(
   common_names: "Bougainvillea",
   description: "Bougainvillea is a genus of thorny ornamental vines, bushes, and trees belonging to the four o' clock family, Nyctaginaceae. It is native to eastern South America, found from Brazil, west to Peru, and south to southern Argentina. Different authors accept from 4 to 22 species in the genus.[2] The inflorescence consists of large colourful sepal-like bracts which surround three simple waxy flowers, gaining popularity for the plant as an ornamental.",
   watering: 2,
-  propagation: "seed"
+  propagation: "[\"seeds\"]"
 )
 
 # create plants for each user (user 3 and 4 mainly for marketplace)
