@@ -3,7 +3,7 @@
 <div class="px-3" data-controller="mygarden">
     <div class="d-flex justify-content-center mt-4">
     <div class="container">
-  
+
       <div class="row justify-content-center">
         <div class="index_header col-sm-12 col-lg-4">
           <div class="d-flex justify-content-center">
@@ -98,7 +98,7 @@
               <% if plant.image.attached? %>
                   <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
               <% else %>
-                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image-lg") %>
+                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
               <% end %>
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
@@ -107,7 +107,7 @@
                     <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
                     <p><strong>Species: </strong><%= plantinfo.name  %></p>
                   </div>
-                  
+
                   <div class="d-flex w-100  justify-content-between plantlinks">
                     <%= link_to "View Details", plant_path(plant), class:"text-decoration-none" %>
                     <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none" %>
