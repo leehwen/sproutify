@@ -8,6 +8,6 @@ class Offer < ApplicationRecord
   has_many :messages
 
   STATUSES = %w[pending accepted rejected].freeze
-
   validates :accepted, inclusion: { in: STATUSES }, presence: true
+  validates :lister_plant, uniqueness: { scope: %i[lister buyer], message: "You can only make an offer to this plant once"}
 end
