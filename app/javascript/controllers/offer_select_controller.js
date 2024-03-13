@@ -11,13 +11,11 @@ export default class extends Controller {
 
   select(event) {
     this.optionTargets.forEach((option) => {
-      option.classList.remove("border-success")
-      option.classList.remove("border-4")
-      option.classList.add("border-black")
+      option.classList.remove("plant-card-sm-active")
+      option.classList.add("plant-card-sm")
     })
-    event.currentTarget.classList.add("border-success")
-    event.currentTarget.classList.add("border-4")
-    event.currentTarget.classList.remove("border-black")
+    event.currentTarget.classList.remove("plant-card-sm")
+    event.currentTarget.classList.add("plant-card-sm-active")
 
     this.offerId = event.currentTarget.dataset.offerId
     this.selectedPlantId = event.currentTarget.dataset.plantId
