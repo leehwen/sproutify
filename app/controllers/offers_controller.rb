@@ -72,9 +72,11 @@ class OffersController < ApplicationController
 
     @offer = Offer.find(params[:id])
     @offering_options = OfferingOption.where(offer: @offer)
-    options = render_to_string partial: "default_message", locals: { offering_options: @offering_options }
-    content = "I would like to make an offer to #{@offer.lister_plant.nickname}.
-    These are plants I would like to swap. #{options}"
+    listed_msg = render_to_string partial: "default_message_listed", locals: { offer: @offer }
+    options_msg = render_to_string partial: "default_message_options", locals: { offering_options: @offering_options }
+    content = "I would like to make an offer to #{listed_msg}
+    These are plants I would like to swap. #{options_msg}
+    <a href=#{offer_path(@offer)}>View details</a>"
     @default_message = Message.new(content:)
     @default_message.offer = @offer
     @default_message.user = current_user
