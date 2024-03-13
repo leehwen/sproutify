@@ -4,10 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["content", "menuHeader"]
 
-  connect() {
-  }
-
-
   displayContent(e) {
     this.menuHeaderTargets.forEach(menu => menu.classList.remove("active"))
 
@@ -22,7 +18,13 @@ export default class extends Controller {
     })
   }
 
-  displayCalendar(e) {
-    console.log("bingo")
+  handleClick(e) {
+    e.preventDefault();
+    // get the url of that link
+    let url = e.currentTarget.href;
+    // add the #watering-schedule at the end of the link
+    url = url + "#calendar"
+    // proceed with the default flow
+    window.location.replace(url);
   }
 }

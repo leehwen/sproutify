@@ -12,11 +12,15 @@
 
 .reminder {
   color: white;
-  padding: 8px;
+  padding: 4px;
   border-radius: 4px;
-  background: #1EDD88;
-  font-size: 0.6rem;
+  background: $dark-green;
+  font-size: 0.4rem;
   margin-bottom: 8px;
+  // color: $dark-green;
+  // text-decoration: underline;
+  // margin-bottom: 8px;
+  // font-size: 0.6rem;
 
   p {
     margin: 0;

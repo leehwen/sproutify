@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = { feedbackText: String }
 
   connect() {
-    console.log("connected copy");
+    // console.log("connected copy");
   }
 
   copy() {

@@ -18,4 +18,12 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :address, :username, :email, :password, presence: true
   validates :username, :email, uniqueness: true
 
+
+  after_create :set_token
+
+  private
+
+  def set_token
+    self.update(token:  SecureRandom.alphanumeric(32))
+  end
 end
