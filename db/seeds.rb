@@ -330,12 +330,12 @@ offer_pending =
 
 OfferingOption.create!(
   offer: offer_pending,
-  offering_plant_option: user3_buyer_plants[0]
+  plant: user3_buyer_plants[0]
 )
 
-offer_processing =
+offer_pending2 =
   Offer.create!(
-    accepted: "processing",
+    accepted: "pending",
     lister_plant: user4_lister_plants[1],
     buyer_plant: nil,
     lister: user4,
@@ -343,8 +343,8 @@ offer_processing =
   )
 
 OfferingOption.create!(
-  offer: offer_processing,
-  offering_plant_option: user3_buyer_plants[1]
+  offer: offer_pending2,
+  plant: user3_buyer_plants[1]
 )
 
 offer_rejected =
@@ -358,12 +358,12 @@ offer_rejected =
 
 OfferingOption.create!(
   offer: offer_rejected,
-  offering_plant_option: user3_buyer_plants[2]
+  plant: user3_buyer_plants[2]
 )
 
-offer_completed =
+offer_accepted =
   Offer.create!(
-    accepted: "completed",
+    accepted: "accepted",
     lister_plant: user4_lister_plants[3],
     buyer_plant: user3_buyer_plants[3],
     lister: user4,
@@ -371,8 +371,8 @@ offer_completed =
   )
 
 OfferingOption.create!(
-  offer: offer_completed,
-  offering_plant_option: user3_buyer_plants[3]
+  offer: offer_accepted,
+  plant: user3_buyer_plants[3]
 )
 
 puts "seeding entries done!"
