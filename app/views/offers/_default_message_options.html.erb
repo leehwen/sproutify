@@ -1,0 +1,14 @@
+<div class="d-flex">
+  <% offering_options.each do |option| %>
+    <div class="border">
+      <% if option.plant.image.attached? %>
+        <div class="border tiny-image-card" style="background-image:url('<%= cl_image_path(option.plant.image.key) %>')"></div>
+      <% else %>
+        <div class="border tiny-image-card" style="background-image:url('<%= asset_path('plant_sample_10.jpg')%>')"></div>
+      <% end %>
+      <div>
+        <%= option.plant.plant_info.name %>
+      </div>
+    </div>
+  <% end %>
+</div>
