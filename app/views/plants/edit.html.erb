@@ -4,22 +4,32 @@
       <div>
         <% @collections = Collection.where.not(id: @plant.collection_id) %>
         <% if Collection.count == 0 %>
-          <p><em>You do not have any collection yet.</em></p>
-          <div class="sp-btn-green clickable" data-action="click->collection#show">
-            <p class="m-0">Add a Collection</p>
+          <div data-collection-target="header">
+            <p><em>You do not have any collection yet.</em></p>
+            <div class="sp-btn-green clickable" data-action="click->collection#show">
+              <p class="m-0" data-collection-target="hide">Add a Collection</p>
+            </div>
           </div>
+
+          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show" } }) do |f| %>
+            <%= f.input :name, label: 'Your collection title' %>
+            <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
+            <%= f.submit "Create a collection", class: 'sp-btn-green' %>
+          <% end %>
 
         <% elsif @collections.count == 0 %>
-          <p><em>You do not have any available collection to add.</em></p>
-          <div class="sp-btn-green clickable" data-action="click->collection#show">
-            <p class="m-0">Add a Collection</p>
+          <div data-collection-target="header">
+            <p><em>You do not have any available collection to add.</em></p>
+            <div class="sp-btn-green clickable" data-action="click->collection#show">
+              <p class="m-0">Add a Collection</p>
+            </div>
           </div>
 
-            <%= simple_form_for (@collection) do |f| %>
-              <%= f.input :name, label: 'Your collection title' %>
-              <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
-              <%= f.submit "Create a collection", class: 'sp-btn-green'%>
-            <% end %>
+          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show" } }) do |f| %>
+            <%= f.input :name, label: 'Your collection title' %>
+            <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
+            <%= f.submit "Create a collection", class: 'sp-btn-green' %>
+          <% end %>
 
         <% else %>
           <h1 class="mt-3"> Pick a collection for your plant.</h1>
