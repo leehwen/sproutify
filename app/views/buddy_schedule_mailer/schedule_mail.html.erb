@@ -13,6 +13,12 @@
           <p>Due to unforeseen circumstances, I need to be away from home. As you know, my plants require regular watering to stay healthy, and I would greatly appreciate it if you could spare some time to help with this task.</p>
           <p>I have left everything you need neatly arranged near the plants, including watering cans and instructions for each plant's specific needs. Your help in ensuring they receive the proper care would mean a lot to me.</p>
           <p> Please refer to the link for the schedule </p>
+
+          <% prod_link = "https://sproutify-staging-b96e84e48ea6.herokuapp.com/#{@user.token}"%>
+          <% dev_link = "http://localhost:3000/schedule/#{@user.token}"%>
+
+          <a href="<%= Rails.env.development? ? dev_link : prod_link %>">Link to Schedule</a>
+
           <p>Thank you so much for helping out! Your kindness and support are truly appreciated.</p>
           <p>Best regards,</p>
           <p><%= @user.username %>!</p>

@@ -9,6 +9,7 @@
 #   end
 
 puts "resetting data base..."
+Buddy.destroy_all
 Message.destroy_all
 OfferingOption.destroy_all
 Offer.destroy_all
@@ -407,6 +408,27 @@ offer_accepted =
 OfferingOption.create!(
   offer: offer_accepted,
   plant: user3_buyer_plants[3]
+)
+
+buddy = Buddy.create!(
+  name: "Zi Jie",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user1,
+)
+
+buddy = Buddy.create!(
+  name: "Ng Zi Jie",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user1,
+)
+
+buddy = Buddy.create!(
+  name: "Ng Zi Jie Clifton",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user2,
 )
 
 puts "seeding entries done!"
