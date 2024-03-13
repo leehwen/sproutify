@@ -1,7 +1,7 @@
 <%= render "shared/settings"%>
 
 <div class="px-3" data-controller="mygarden">
-    <div class="d-flex justify-content-center mt-4 mb-3">
+    <div class="d-flex justify-content-center mt-4">
     <div class="container">
 
       <div class="row gx-0">
@@ -26,7 +26,21 @@
     </div>
   </div>
 
-  <div class="collection d-none" data-mygarden-target="collection">
+  <div class="row gx-0 mt-3" data-mygarden-target="toHide">
+    <div class="col-sm-12 col-lg-4 d-flex m-auto">
+      <div class="d-flex justify-content-center">
+        <%= link_to new_plant_path, class:"scheduling" do %>
+          <% if @plants.count ==0 %>
+            <span>Identify and add a plant <i class="fa-solid fa-plus"></i></span>
+          <% else %>
+            <span>Identify and add another plant <i class="fa-solid fa-plus"></i></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="collection d-none mt-3" data-mygarden-target="collection">
   <% if @collections.count == 0 %>
     <div class="d-flex flex-column align-items-center", data-mygarden-target="addCollectionHeader">
       <div>
@@ -53,7 +67,7 @@
             <span class="collection-card-label"><%= collection.name %></span>
           </div>
           <div>
-            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none"%>
+            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection"}, class:"text-decoration-none"%>
           </div>
         </div>
       </div>

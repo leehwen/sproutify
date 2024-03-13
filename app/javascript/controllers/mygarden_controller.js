@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="mygarden"
 export default class extends Controller {
   static targets = ["collectionHeader", "plantsHeader", "collection", "plants", 
-                    "addCollectionHeader", "addCollectionForm", "addAnotherCollectionForm", "addAnotherCollectionHeader", "displayAddPlant"]
+                    "addCollectionHeader", "addCollectionForm", "addAnotherCollectionForm", "addAnotherCollectionHeader", "displayAddPlant", "toHide"]
   
   connect() {
     console.log("hello")
@@ -16,6 +16,8 @@ export default class extends Controller {
     this.plantsHeaderTarget.classList.remove("index_header_toggle");
     this.collectionTarget.classList.remove("d-none")
     this.plantsTarget.classList.add("d-none");
+    this.toHideTarget.classList.add("d-none");
+
   }
 
   togglePlant() {
@@ -25,6 +27,7 @@ export default class extends Controller {
     this.plantsHeaderTarget.classList.add("index_header_toggle");
     this.collectionTarget.classList.add("d-none")
     this.plantsTarget.classList.remove("d-none");
+    this.toHideTarget.classList.remove("d-none");
   }
 
   addCollection(){

@@ -4,7 +4,7 @@ class Plant < ApplicationRecord
   belongs_to :plant_info, optional: true
   has_one_attached :image
 
-  has_many :plant_illnesses
+  has_many :plant_illnesses, dependent: :nullify
   has_many :illnesses, through: :plant_illnesses
 
   has_many :offers
