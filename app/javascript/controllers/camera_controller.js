@@ -15,10 +15,13 @@ export default class extends Controller {
   fire(e) {
     e.preventDefault;
     this.toShowTargets.forEach ((target) => {
-    target.classList.remove('d-none');
+      target.classList.remove('d-none');
     });
     this.btnShowBTarget.classList.add("d-none");
     this.btnShowATarget.classList.add("d-none");
+
+    // const div = document.querySelector('plant-info-form');
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   identify(e) {
