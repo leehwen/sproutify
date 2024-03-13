@@ -13,15 +13,22 @@ export default class extends Controller {
 
   add (e) {
     const id = e.currentTarget.dataset.plantId;
-    this.offeringOptionIds.push(id);
 
-    this.offeringOptionIds = Array.from(new Set(this.offeringOptionIds))
-
-    if (this.offeringOptionIds.length > 5 ) {
-      console.log('rejected');
+    if (this.offeringOptionIds.includes(id)) {
+      // alert
     } else {
-      this.updateOfferingHTML(id);
+      if (this.offeringOptionIds.length > 5 ) {
+      // alert
+        console.log('rejected');
+      } else {
+        this.offeringOptionIds.push(id);
+        this.updateOfferingHTML(id);
+      }
     }
+
+
+    // this.offeringOptionIds = Array.from(new Set(this.offeringOptionIds))
+
   }
 
   updateOfferingHTML(id) {
