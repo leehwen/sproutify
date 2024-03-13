@@ -1,7 +1,7 @@
 class Plant < ApplicationRecord
   belongs_to :user
   belongs_to :collection, optional: true
-  belongs_to :plant_info
+  belongs_to :plant_info, optional: true
   has_one_attached :image
 
   has_many :plant_illnesses

@@ -3,19 +3,26 @@
 <div class="px-3" data-controller="mygarden">
     <div class="d-flex justify-content-center mt-4 mb-3">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="sp-btn-green disabled rounded-5 mx-2 clickable" data-mygarden-target="collectionHeader" data-action="click->mygarden#togglePlant">Plants</div>
-        </div>
 
-        <div class="col-sm-4">
-          <div class="col-4 sp-btn-green rounded-5 mx-2 clickable" data-mygarden-target="plantsHeader" data-action="click->mygarden#toggleCollection">Collections</div>
-        </div>
-
-        <div class="col-sm-4">
-          <%= link_to "Send watering schedule to a buddy!", buddies_path %>
+      <div class="row gx-0">
+        <div class="index_header col-sm-12 col-lg-4">
+          <div class="d-flex justify-content-center">
+            <div class="sp-btn-green-index disabled rounded-5 mx-2 index_header_toggle" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
+            <div class="col-4 sp-btn-green-index rounded-5 mx-2 clickable " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+          </div>
         </div>
       </div>
+
+      <div class="row gx-0">
+        <div class="index_header col-sm-12 col-lg-4">
+          <div class="d-flex justify-content-center">
+            <%= link_to buddies_path, class:"scheduling" do %>
+               <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -54,7 +61,7 @@
     </div>
     <% end %>
       <div class="d-flex justify-content-center" data-mygarden-target="addAnotherCollectionHeader">
-        <button class="sp-btn-green clickable " data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
+        <button class="sp-btn-green clickable mt-4" data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
       </div>
       <div>
         <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addAnotherCollectionForm" } } do |f| %>
@@ -62,9 +69,6 @@
           <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
           <%= f.submit "Create a collection", class: 'sp-btn-green'%>
         <% end %>
-        <div>
-        <%= link_to "Go Back", html: { class: "d-none", data: { mygarden_target: "hide" } } %>
-        </div>
       </div>
   <% end %>
   </div>
@@ -79,7 +83,12 @@
         <% else %>
         <% end %>
         <div class="plant-card-content">
+          <div class="d-flex justify-content-between">
           <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+          <%= link_to plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+          <p><i class="fa-solid fa-trash"></i></p>
+          <% end %>
+          </div>
           <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
           <p><strong>Species: </strong><%= plantinfo.name  %></p>
           <div class="d-flex justify-content-between">
