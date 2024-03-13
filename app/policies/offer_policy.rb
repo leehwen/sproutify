@@ -11,6 +11,14 @@ class OfferPolicy < ApplicationPolicy
     true
   end
 
+  def accept?
+    record.lister == user
+  end
+
+  def reject?
+    record.lister == user
+  end
+
   class Scope < Scope
 
     def resolve

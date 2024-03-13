@@ -8,6 +8,7 @@ class OffersController < ApplicationController
   def show
     @offer = Offer.find(params[:id])
     authorize @offer
+    @offering_options = @offer.offering_options
   end
 
   def new
@@ -33,19 +34,26 @@ class OffersController < ApplicationController
     @message = Message.new
   end
 
-  def accepted
+  def accept
     @offer = Offer.find(params[:id])
-    @offer.accepted = true
+    authorize @offer
+    @offer.buyer_plant_id = params[:selectedPlantId]
+    @offer.accepted = "accepted"
+    @offer.save!
 
-    @lister_plant = @offer.lister_plant
-    @buyer_plant = @offer.buyer_plant
+    # swap the owners of the plants
+    @offer.lister_plant.user = @offer.buyer
+    @offer.buyer_plant.user = @offer.lister
 
-    @lister_plant_user = @offer.lister
-    @buyer_plant_user = @offer.buyer
+    redirect_to offer_path(@offer)
 
-    @lister_plant.user = @buyer_plant_user
-    @buyer_plant.user = @lister_plant_user
-    authorize @offer # need to authorise this
+  end
+
+  def reject
+    @offer = Offer.find(params[:id])
+    authorize @offer
+    @offer.update(accepted: "rejected")
+    redirect_to offer_path(@offer)
   end
 
   private

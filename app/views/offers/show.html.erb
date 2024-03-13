@@ -1,3 +1,82 @@
-<h1>Details of the Offer</h1>
+<div class="container">
+  <h1>Details of the Offer</h1>
 
-<p>TBC</p>
+  <h2>Status: <%= @offer.accepted %></h2>
+
+  <h2>Details of my plant</h2>
+  <p>Plant listed: <%= @offer.lister_plant.nickname %></p>
+  <p>Plant listed: <%= @offer.lister_plant.plant_info.name %></p>
+  <p>Plant listed: <%= @offer.lister_plant.plant_info.common_names %></p>
+
+  <% if @offer.accepted == "pending" %>
+    <h2>Offering Options</h2>
+    <div data-controller="offer-select">
+      <% @offering_options.each do |option|%>
+        <div
+          data-plant-id="<%= option.plant.id %>"
+          data-offer-id="<%= option.offer.id %>"
+          data-action="click->offer-select#select"
+          data-offer-select-target="option"
+          class="border border-black"
+        >
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag("plant_sample_10.jpg", class: "image-card") %>
+          <% end %>
+          <p>Name: <%= option.plant.plant_info.name %></p>
+          <p>Common Names: <%= option.plant.plant_info.common_names %></p>
+        </div>
+      <% end %>
+      <hr>
+      <h2>Action Required</h2>
+      <%= link_to "Accept Offer", "#", data: {action: "click->offer-select#accept", turbo_method: :patch} %>
+      <%= link_to "Reject Offer", reject_offer_path(@offer), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
+    </div>
+
+  <% elsif @offer.accepted == "rejected" %>
+    <h2>Offering Options</h2>
+    <div>
+      <% @offering_options.each do |option|%>
+        <div class="border border-black">
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag("plant_sample_10.jpg", class: "image-card") %>
+          <% end %>
+          <p>Name: <%= option.plant.plant_info.name %></p>
+          <p>Common Names: <%= option.plant.plant_info.common_names %></p>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <h2>Offering Options</h2>
+    <div>
+      <% @offering_options.each do |option|%>
+        <div class="border border-black">
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag("plant_sample_10.jpg", class: "image-card") %>
+          <% end %>
+          <p>Name: <%= option.plant.plant_info.name %></p>
+          <p>Common Names: <%= option.plant.plant_info.common_names %></p>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <h2>Final Offering Selected</h2>
+    <div class="border border-black">
+      <% if @offer.buyer_plant.image.key? %>
+        <%= cl_image_tag @offer.buyer_plant.image.key %>
+      <% else %>
+        <%= image_tag("plant_sample_10.jpg", class: "image-card") %>
+      <% end %>
+      <p>Name: <%= @offer.buyer_plant.plant_info.name %></p>
+      <p>Common Names: <%= @offer.buyer_plant.plant_info.common_names %></p>
+    </div>
+
+  <% end %>
+
+</div>

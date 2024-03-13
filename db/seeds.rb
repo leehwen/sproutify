@@ -348,7 +348,8 @@ PlantIllness.create!(
 )
 
 # create marketplace offers, 1 for each status type.
-# each offer option only 1 for now
+# pending offers: each offer 2 options
+# other offers: each offer 1 option
 
 user4_lister_plants = Plant.where(listing: true).sample(4)
 user3_buyer_plants = Plant.where(listing: true).sample(4)
@@ -367,6 +368,11 @@ OfferingOption.create!(
   plant: user3_buyer_plants[0]
 )
 
+OfferingOption.create!(
+  offer: offer_pending,
+  plant: user3_buyer_plants[1]
+)
+
 offer_pending2 =
   Offer.create!(
     accepted: "pending",
@@ -375,6 +381,11 @@ offer_pending2 =
     lister: user4,
     buyer: user3
   )
+
+OfferingOption.create!(
+  offer: offer_pending2,
+  plant: user3_buyer_plants[0]
+)
 
 OfferingOption.create!(
   offer: offer_pending2,
