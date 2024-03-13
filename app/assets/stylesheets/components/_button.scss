@@ -8,6 +8,23 @@
   min-width: 225px;
   border-radius: 25px;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
+    transition: 0.2s ease;
+  }
+}
+
+.sp-btn-green-index {
+  background-color: $dark-green;
+  color: $off-white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8.5px 20px;
+  min-width: 150px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.4);
 }
 
 .sp-btn-green-sm {
@@ -20,6 +37,11 @@
   min-width: 125px;
   border-radius: 25px;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
+    transition: 0.2s ease;
+  }
 }
 
 .sp-btn-gray {

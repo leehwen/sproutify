@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="offering-option"
 export default class extends Controller {
 
-  static targets = ["selectedOffering"]
+  static targets = ["selectedOffering", "chatButton"]
 
   connect() {
     console.log('connected')
@@ -50,6 +50,7 @@ export default class extends Controller {
     const url = `/offers/${e.currentTarget.dataset.offerId}/offering_options`
     // console.log(this.#getMetaValue("csrf-token"));
     // console.log(JSON.stringify(this.offeringOptionIds));
+    e.currentTarget.classList.add("d-none")
     fetch(url, {
       method: "POST",
       headers: {
@@ -61,7 +62,9 @@ export default class extends Controller {
     })
     .then(res => res.json())
     .then(data => {
+      console.log(this.chatButtonTarget)
       console.log(data);
+      this.chatButtonTarget.classList.remove("d-none")
       // target
       // change the button
     })

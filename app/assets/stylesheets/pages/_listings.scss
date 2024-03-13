@@ -1,0 +1,29 @@
+.listings-container {
+  padding: 0 1.2rem;
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+
+  .grid-item {
+    height: 100%;
+    width: 100%;
+  }
+
+  a {
+   text-decoration: none;
+   color: $charcoal;
+  }
+}
+
+.lister {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+}

@@ -24,9 +24,9 @@ class BuddiesController < ApplicationController
   def send_schedule
     @buddy = Buddy.find(params[:id])
 
-    BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_now
+    BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_later
 
-    redirect_to plants_path
+    redirect_to plants_path, notice: "Schedule sent to #{@buddy.name}"
     
     authorize @buddy
   end

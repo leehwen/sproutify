@@ -40,6 +40,15 @@ class PlantsController < ApplicationController
     authorize @plant
   end
 
+  def destroy
+    @plant = Plant.find(params[:id])
+    @plant.destroy
+
+    redirect_to plants_path
+
+    authorize @plant
+  end
+
   def edit_schedule
     @plant = Plant.find(params[:id])
     authorize @plant
@@ -84,10 +93,12 @@ class PlantsController < ApplicationController
   end
 
   def listings
-    @listings = Plant.where(listing: true)
+    @listings = Plant.where.not(user: current_user).where(listing: true)
+
     if params[:query].present?
       @listings = @listings.global_search(params[:query])
     end
+
     authorize @listings
   end
 

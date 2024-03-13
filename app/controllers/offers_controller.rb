@@ -33,19 +33,59 @@ class OffersController < ApplicationController
     @message = Message.new
   end
 
-  def accepted
+  def accept
     @offer = Offer.find(params[:id])
-    @offer.accepted = true
+    authorize @offer
+    @offer.buyer_plant_id = params[:selectedPlantId]
+    @offer.accepted = "accepted"
+    @offer.save!
 
-    @lister_plant = @offer.lister_plant
-    @buyer_plant = @offer.buyer_plant
+    if @offer.save
+      # swap the owners of the plants
+      @offer.lister_plant.user = @offer.buyer
+      @offer.lister_plant.save
+      @offer.buyer_plant.user = @offer.lister
+      @offer.buyer_plant.save
 
-    @lister_plant_user = @offer.lister
-    @buyer_plant_user = @offer.buyer
+      # respond back to update the page
+      respond_to do |format|
+        format.text { render partial: "options",
+                      locals: { offer: @offer },
+                      formats: [:html]
+                    }
+      end
+    else
+      flash.now[:alert] = "Error with accepting the offer"
+    end
 
-    @lister_plant.user = @buyer_plant_user
-    @buyer_plant.user = @lister_plant_user
-    authorize @offer # need to authorise this
+  end
+
+  def reject
+    @offer = Offer.find(params[:id])
+    authorize @offer
+    @offer.update(accepted: "rejected")
+    redirect_to offer_path(@offer)
+  end
+
+  def default_message
+
+
+    @offer = Offer.find(params[:id])
+    @offering_options = OfferingOption.where(offer: @offer)
+    listed_msg = render_to_string partial: "default_message_listed", locals: { offer: @offer }
+    options_msg = render_to_string partial: "default_message_options", locals: { offering_options: @offering_options }
+    content = "I would like to make an offer to #{listed_msg}
+    These are plants I would like to swap. #{options_msg}
+    <a href=#{offer_path(@offer)}>View details</a>"
+    @default_message = Message.new(content:)
+    @default_message.offer = @offer
+    @default_message.user = current_user
+    authorize @offer
+    if @default_message.save
+      redirect_to chat_offer_path(@offer)
+    else
+
+    end
   end
 
   private

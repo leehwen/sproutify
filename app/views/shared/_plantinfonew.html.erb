@@ -1,25 +1,61 @@
+<div>
+  <img src=<%= plant_info.image_url %> alt=<%= plant_info.name %> class="image-card">
+</div>
 
-<div class="identifier-main">
-  <div class="identify-header">
-    <h1><strong>Your Plant</strong></h1>
+<div class="plant-info-container">
+  <div class="mb-3">
+    <h1>
+      <%= plant_info.name.titleize %>
+    <h1>
   </div>
 
-  <img src=<%= plant_info.image_url %> alt=<%= plant_info.name %> class="image-card">
+  <div class="mb-4">
+    <% if plant_info.common_names.nil? %>
+    <% else %>
+      <h2>
+        Commonly known as:
+      </h2>
+      <p>
+        <%= plant_info.common_names.titleize.gsub(',', ', ') %>
+      </p>
+    <% end %>
+  </div>
 
-  <h2 class="mt-3"> Plant Species </h2>
-  <p> <%= plant_info.name.titleize %> </p>
+  <div class="mb-4">
+    <h2>
+      Description
+    </h2>
+    <p>
+      <%= plant_info.description %>
+    </p>
+  </div>
 
-  <h2> Description </h2>
-  <p> <%= plant_info.description %> </p>
+  <div class="mb-4">
+    <h2>
+      Plant Species
+    </h2>
+    <p>
+      <%= plant_info.name.titleize %>
+    </p>
+  </div>
 
-  <h2> Other Common Names </h2>
-  <p> <%= plant_info.common_names.titleize.gsub(',', ', ') %> </p>
+  <div class="mb-4">
+    <h2>
+      Propagation Methods
+    </h2>
+    <ul>
+      <% JSON.parse(plant_info.propagation).each do |f| %>
+          <li> <%= f.titleize %> </li>
+      <% end %>
+    </ul>
+  </div>
 
-  <h2> Propagation Methods </h2>
-  <% JSON.parse(plant_info.propagation).each do |f| %>
-    <p> <%= f.titleize %> </p>
-  <% end %>
-
-  <h2> Watering Methods </h2>
-  <p> <%= plant_info.watering.titleize %> </p>
+  <div class="mb-4">
+    <h2>
+      Watering Methods
+    </h2>
+    <p>
+      <%= plant_info.watering.titleize %>
+    </p>
+  </div>
 </div>

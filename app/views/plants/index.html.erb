@@ -1,25 +1,46 @@
 <%= render "shared/settings"%>
 
 <div class="px-3" data-controller="mygarden">
-    <div class="d-flex justify-content-center mt-4 mb-3">
+    <div class="d-flex justify-content-center mt-4">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="sp-btn-green disabled rounded-5 mx-2 clickable" data-mygarden-target="collectionHeader" data-action="click->mygarden#togglePlant">Plants</div>
+  
+      <div class="row justify-content-center">
+        <div class="index_header col-sm-12 col-lg-4">
+          <div class="d-flex justify-content-center">
+            <div class="sp-btn-green-index disabled rounded-5 index_header_toggle mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
+            <div class="sp-btn-green-index rounded-5 clickable mx-2 " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+          </div>
         </div>
+      </div>
 
-        <div class="col-sm-4">
-          <div class="col-4 sp-btn-green rounded-5 mx-2 clickable" data-mygarden-target="plantsHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+      <div class="row justify-content-center">
+        <div class="index_header col-sm-12 col-lg-4">
+          <div class="d-flex justify-content-center">
+            <%= link_to buddies_path, class:"scheduling" do %>
+               <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
+            <% end %>
+          </div>
         </div>
+      </div>
 
-        <div class="col-sm-4">
-          <%= link_to "Send Schedule to a buddy!", buddies_path %>
-        </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3" data-mygarden-target="toHide">
+    <div class="col-sm-12 col-lg-4 d-flex">
+      <div class="d-flex justify-content-left">
+        <%= link_to new_plant_path, class:"scheduling" do %>
+          <% if @plants.count ==0 %>
+            <span>Identify and add a plant <i class="fa-solid fa-plus"></i></span>
+          <% else %>
+            <span>Identify and add another plant <i class="fa-solid fa-plus"></i></span>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="collection d-none" data-mygarden-target="collection">
+  <div class="collection d-none mt-3" data-mygarden-target="collection">
   <% if @collections.count == 0 %>
     <div class="d-flex flex-column align-items-center", data-mygarden-target="addCollectionHeader">
       <div>
@@ -40,13 +61,13 @@
       <%= link_to collection_path(collection), class:"collection-card-label" do %>
 
       <div class="plant-card col-sm-12 col-lg-4 collection-card">
-        <%= cl_image_tag collection.image.key, class: "plant-card-image" %>
+        <%= cl_image_tag collection.image.key, class: "plant-card-image" if collection.image.attached? %>
         <div class="d-flex justify-content-between align-items-center p-2">
           <div>
             <span class="collection-card-label"><%= collection.name %></span>
           </div>
           <div>
-            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none"%>
+            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection"}, class:"text-decoration-none"%>
           </div>
         </div>
       </div>
@@ -54,7 +75,7 @@
     </div>
     <% end %>
       <div class="d-flex justify-content-center" data-mygarden-target="addAnotherCollectionHeader">
-        <button class="sp-btn-green clickable " data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
+        <button class="sp-btn-green clickable mt-4" data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
       </div>
       <div>
         <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addAnotherCollectionForm" } } do |f| %>
@@ -62,36 +83,47 @@
           <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
           <%= f.submit "Create a collection", class: 'sp-btn-green'%>
         <% end %>
-        <div>
-        <%= link_to "Go Back", html: { class: "d-none", data: { mygarden_target: "hide" } } %>
-        </div>
       </div>
   <% end %>
   </div>
 
-  <div data-mygarden-target="plants">
-  <% @plants.each do |plant| %>
-    <div class="row gx-0">
-      <div class="plant-card col-sm-12 col-lg-4">
-        <% plantinfo = PlantInfo.find(plant.plant_info_id) %>
-        <% if plant.image.attached? %>
-            <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
-        <% else %>
-        <% end %>
-        <div class="plant-card-content">
-          <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
-          <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
-          <p><strong>Species: </strong><%= plantinfo.name  %></p>
-          <div class="d-flex justify-content-between">
-            <%= link_to "View Details", plant_path(plant), class:"text-decoration-none" %>
-            <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none" %>
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6 mb-4">
+      <div data-mygarden-target="plants">
+        <div class="grid-container">
+        <% @plants.each do |plant| %>
+          <div class="grid-item plant-card">
+
+              <% plantinfo = PlantInfo.find(plant.plant_info_id) %>
+              <% if plant.image.attached? %>
+                  <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
+              <% else %>
+                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image-lg") %>
+              <% end %>
+
+              <div class="plant-card-content d-flex flex-column justify-content-between">
+                  <div>
+                    <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+                    <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
+                    <p><strong>Species: </strong><%= plantinfo.name  %></p>
+                  </div>
+                  
+                  <div class="d-flex w-100  justify-content-between plantlinks">
+                    <%= link_to "View Details", plant_path(plant), class:"text-decoration-none" %>
+                    <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none" %>
+                  </div>
+
+                  <div class="deleteplant">
+                    <%= link_to plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+                    <p><i class="fa-solid fa-trash"></i></p>
+                    <% end %>
+                </div>
+              </div>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
-
-<div></div>
-
+  </div>
 
 </div>

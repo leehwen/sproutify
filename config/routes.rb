@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   resources :offers, only: %i[index show new create] do
     member do
       get 'chat'
-      patch 'accepted'
+      get 'default_message'
+      patch 'accept'
+      patch 'reject'
     end
 
     get "/offering_options/new", to: "offering_options#new"

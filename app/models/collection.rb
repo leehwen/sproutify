@@ -1,6 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
-  has_many :plants
+  has_many :plants, dependent: :nullify
 
   has_one_attached :image
 
