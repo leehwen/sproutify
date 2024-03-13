@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="offer-select"
 export default class extends Controller {
 
-  static targets = ["option"]
+  static targets = ["content", "option"]
 
   connect() {
     console.log("Hello offer-select controller")
@@ -30,14 +30,13 @@ export default class extends Controller {
     fetch(url, {
       method: "PATCH",
       headers: {
-        "Accepts": "application/json",
-        "Content-Type": "application/json",
+        "Accept": "text/plain",
         "X-CSRF-Token": this.#getMetaValue("csrf-token")
       }
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
-      console.log(data);
+      this.contentTarget.innerHTML = data;
     })
   }
 

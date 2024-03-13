@@ -8,7 +8,6 @@ class OffersController < ApplicationController
   def show
     @offer = Offer.find(params[:id])
     authorize @offer
-    @offering_options = @offer.offering_options
   end
 
   def new
@@ -41,11 +40,23 @@ class OffersController < ApplicationController
     @offer.accepted = "accepted"
     @offer.save!
 
-    # swap the owners of the plants
-    @offer.lister_plant.user = @offer.buyer
-    @offer.buyer_plant.user = @offer.lister
+    if @offer.save
+      # swap the owners of the plants
+      @offer.lister_plant.user = @offer.buyer
+      @offer.lister_plant.save
+      @offer.buyer_plant.user = @offer.lister
+      @offer.buyer_plant.save
 
-    redirect_to offer_path(@offer)
+      # respond back to update the page
+      respond_to do |format|
+        format.text { render partial: "options",
+                      locals: { offer: @offer },
+                      formats: [:html]
+                    }
+      end
+    else
+      flash.now[:alert] = "Error with accepting the offer"
+    end
 
   end
 
