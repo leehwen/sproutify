@@ -3,17 +3,17 @@
 <div class="px-3" data-controller="mygarden">
     <div class="d-flex justify-content-center mt-4">
     <div class="container">
-
-      <div class="row gx-0">
+  
+      <div class="row justify-content-center">
         <div class="index_header col-sm-12 col-lg-4">
           <div class="d-flex justify-content-center">
-            <div class="sp-btn-green-index disabled rounded-5 mx-2 index_header_toggle" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
-            <div class="col-4 sp-btn-green-index rounded-5 mx-2 clickable " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+            <div class="sp-btn-green-index disabled rounded-5 index_header_toggle mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
+            <div class="sp-btn-green-index rounded-5 clickable mx-2 " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
           </div>
         </div>
       </div>
 
-      <div class="row gx-0">
+      <div class="row justify-content-center">
         <div class="index_header col-sm-12 col-lg-4">
           <div class="d-flex justify-content-center">
             <%= link_to buddies_path, class:"scheduling" do %>
@@ -26,9 +26,9 @@
     </div>
   </div>
 
-  <div class="row gx-0 mt-3" data-mygarden-target="toHide">
-    <div class="col-sm-12 col-lg-4 d-flex m-auto">
-      <div class="d-flex justify-content-center">
+  <div class="row justify-content-center mt-3" data-mygarden-target="toHide">
+    <div class="col-sm-12 col-lg-4 d-flex">
+      <div class="d-flex justify-content-left">
         <%= link_to new_plant_path, class:"scheduling" do %>
           <% if @plants.count ==0 %>
             <span>Identify and add a plant <i class="fa-solid fa-plus"></i></span>
