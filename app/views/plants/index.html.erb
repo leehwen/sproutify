@@ -113,12 +113,14 @@
                     <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none" %>
                   </div>
 
-                  <div class="deleteplant">
-                    <%= link_to plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
-                    <p><i class="fa-solid fa-trash"></i></p>
-                    <% end %>
-                </div>
               </div>
+
+               
+                  <%# <div class="deleteplant">
+                    <%= link_to plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+                    <%# <p><i class="fa-solid fa-trash"></i></p>
+                    <% end %>
+                <%# </div>   %>
           </div>
           <% end %>
         </div>
