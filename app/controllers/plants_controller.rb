@@ -36,6 +36,7 @@ class PlantsController < ApplicationController
 
   def edit
     @plant = Plant.find(params[:id])
+    @collection = Collection.new
 
     authorize @plant
   end

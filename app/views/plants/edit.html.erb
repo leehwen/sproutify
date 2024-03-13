@@ -1,5 +1,35 @@
-<%= simple_form_for (@plant) do |f| %>
-    <%= f.association :collection %>
-    <%= f.button :submit %>
+<div class="container" data-controller="collection">
+  <div class="row d-flex justify-content-center align-items-center" style="height: calc(100vh - 68px);">
+    <div class="col-sm-12 col-lg-4">
+      <div>
+        <% @collections = Collection.where.not(id: @plant.collection_id) %>
+        <% if Collection.count == 0 %>
+          <p><em>You do not have any collection yet.</em></p>
+          <div class="sp-btn-green clickable" data-action="click->collection#show">
+            <p class="m-0">Add a Collection</p>
+          </div>
+
+        <% elsif @collections.count == 0 %>
+          <p><em>You do not have any available collection to add.</em></p>
+          <div class="sp-btn-green clickable" data-action="click->collection#show">
+            <p class="m-0">Add a Collection</p>
+          </div>
+
+            <%= simple_form_for (@collection) do |f| %>
+              <%= f.input :name, label: 'Your collection title' %>
+              <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
+              <%= f.submit "Create a collection", class: 'sp-btn-green'%>
+            <% end %>
+
+        <% else %>
+          <h1 class="mt-3"> Pick a collection for your plant.</h1>
+
+          <%= simple_form_for (@plant) do |f| %>
+            <%= f.association :collection, collection: @collections %>
+            <%= f.button :submit, class:"sp-btn-green" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
