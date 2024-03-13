@@ -84,10 +84,12 @@ class PlantsController < ApplicationController
   end
 
   def listings
-    @listings = Plant.where(listing: true)
+    @listings = Plant.where.not(user: current_user).where(listing: true)
+
     if params[:query].present?
       @listings = @listings.global_search(params[:query])
     end
+
     authorize @listings
   end
 
