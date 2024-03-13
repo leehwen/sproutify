@@ -21,6 +21,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @plants = Plant.all.where(collection_id: @collection.id)
     @plants.each do |plant| plant.collection_id = nil end
+    
     @collection.destroy
 
     redirect_to plants_path
