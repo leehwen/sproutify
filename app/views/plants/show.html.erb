@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <h2 class='col-4 menu-header active clickable ' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
+    <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].nil? %>' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
     <h2 class='col-4 menu-header clickable' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Diagnosis</h2>
     <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].present? %>' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
   </div>
@@ -177,7 +177,7 @@
     </ul>
   </div>
   <div class="mb-3">
-  <%= link_to "#{@plant.nickname} has recovered from #{illness.name}!",
+  <%= link_to "Recovered from #{illness.name}!",
       plant_remove_diagnosis_path(@plant, illness),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
       class: "sp-btn-green",
@@ -190,7 +190,7 @@
 </div>
 
 <div data-content="schedule" class="diagnosis-results-container <%= "d-none" unless params[:start_date].present? %>" data-plant-show-target="content">
-  <div>
+  <div id="watering-schedule">
     <h2>Watering Schedule</h2>
     <% case @plant.watering_frequency %>
     <% when 1 %>
@@ -207,23 +207,22 @@
   <div>
 
 <div data-controller="copy-to-clipboard">
-  <div class="d-flex">
+
     <div class='my-3'>
-      <%= link_to "Edit Schedule", edit_schedule_plant_path , class: 'sp-btn-green mt-2', style:'text-decoration:none'%>
-    </div>
-
-
-    <div class='ms-3 my-3'>
       <span class="sp-btn-green clickable" data-action="click->copy-to-clipboard#toggle">Share Watering Schedules</span>
     </div>
-  </div>
 
-  <div class="input-group d-none" data-copy-to-clipboard-target="button">
+  <div class="input-group d-none mb-2" data-copy-to-clipboard-target="button">
         <input class="form-control" type="text"
         data-copy-to-clipboard-target="input"
-        value=<%="http://localhost:3000/schedule/#{current_user.token}" %> readonly>
+        <% if Rails.env.development? %>
+          value=<%="http://localhost:3000/schedule/#{current_user.token}" %> readonly
+        <% else %>
+          value=<%="https://sproutify-c4e444894f0a.herokuapp.com//schedule/#{current_user.token}" %> readonly
+        <% end %>
+        >
         <div class="input-group-append">
-          <button class="btn btn-outline-success"
+          <button class="btn sp-btn-green-calendar-outline"
           data-action="click->copy-to-clipboard#copy"
           >Copy to Clipboard</button>
         </div>
@@ -231,11 +230,11 @@
     </div>
   </div>
 
-  <%= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
+<%= month_calendar(events: @plant.schedule(params[:start_date]), attribute: :watering_date) do |date, schedule| %>
     <%= date.day %>
 
     <% schedule.each do |item| %>
-      <%= render "schedule_reminder", item: item %>
+      <%= render "schedule_reminder", item: "" %>
     <% end %>
   <% end %>
 </div>

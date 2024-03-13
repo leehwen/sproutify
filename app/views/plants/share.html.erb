@@ -1,29 +1,27 @@
 <div class="diagnosis-results-container">
-  <h2>Watering Schedule</h2>
-<% @plants.each do |plant| %>
-  <p><%= plant.nickname %>: </p>
-  <% case plant.watering_frequency %>
-  <% when 1 %>
-    <span><%= "Daily" %></span>
-  <% when 2 %>
-    <span><%= "Every other day" %></span>
-  <% when 7 %>
-    <span><%= "Once a week" %></span>
-  <% when 14 %>
-    <span><%= "Fortnightly" %></span>
-  <% else %>
-    <span><%= "Every #{plant.watering_frequency} days" %></span>
-  <% end %>
-<% end %>
+  <h2> <%= "#{@user.first_name + " " + @user.last_name}" %> Consolidated Watering Schedule</h2>
+<%# @plants.each do |plant| %>
+  <!-- <p><%#= plant.nickname %>: </p>
+  <%# case plant.watering_frequency %>
+  <%# when 1 %>
+    <span><%#= "Daily" %></span>
+  <%# when 2 %>
+    <span><%#= "Every other day" %></span>
+  <%# when 7 %>
+    <span><%#= "Once a week" %></span>
+  <%# when 14 %>
+    <span><%#= "Fortnightly" %></span>
+  <%# else %>
+    <span><%#= "Every #{plant.watering_frequency} days" %></span>
+  <%# end %>
+<%# end %> -->
 
 <%= month_calendar(events: @full_schedule, attribute: :watering_date) do |date, schedule| %>
   <%= date.day %>
 
   <% schedule.each do |item| %>
-    <%= render "schedule_reminder", item: item %>
+    <%= render "schedule_reminder", item: item.nickname %>
   <% end %>
 <% end %>
-
-
 
 </div>

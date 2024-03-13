@@ -116,7 +116,7 @@ class PlantsController < ApplicationController
   def share
     @user = User.find_by_token(params[:token])
     @plants = @user.plants
-    @full_schedule = @plants.map { |plant| plant.schedule }.flatten
+    @full_schedule = @plants.map { |plant| plant.schedule(params[:start_date]) }.flatten
     authorize @plants
   end
 
