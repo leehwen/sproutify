@@ -21,6 +21,7 @@ class Plant < ApplicationRecord
 
   def schedule
     # find the start date
+    # params[:start_date]
     # calculate schedule based on frequency
     return [] if watering_frequency.nil?
     return [] if start_date.nil?

@@ -235,9 +235,7 @@
     <%= date.day %>
 
     <% schedule.each do |item| %>
-     <div class="reminder">
-      <p><%= "Hydration alert: #{item.nickname}" %></p>
-     </div>
+      <%= render "schedule_reminder", item: item %>
     <% end %>
   <% end %>
 </div>
