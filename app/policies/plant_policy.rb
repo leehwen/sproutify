@@ -20,6 +20,10 @@ class PlantPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    record.user == user
+  end
+
   def offering_option?
     record.user == user
   end

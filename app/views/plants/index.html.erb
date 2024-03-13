@@ -83,7 +83,12 @@
         <% else %>
         <% end %>
         <div class="plant-card-content">
+          <div class="d-flex justify-content-between">
           <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+          <%= link_to plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+          <p><i class="fa-solid fa-trash"></i></p>
+          <% end %>
+          </div>
           <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
           <p><strong>Species: </strong><%= plantinfo.name  %></p>
           <div class="d-flex justify-content-between">
