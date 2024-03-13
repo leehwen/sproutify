@@ -33,19 +33,38 @@ class OffersController < ApplicationController
     @message = Message.new
   end
 
-  def accepted
+  def accept
     @offer = Offer.find(params[:id])
-    @offer.accepted = true
+    authorize @offer
+    @offer.buyer_plant_id = params[:selectedPlantId]
+    @offer.accepted = "accepted"
+    @offer.save!
 
-    @lister_plant = @offer.lister_plant
-    @buyer_plant = @offer.buyer_plant
+    if @offer.save
+      # swap the owners of the plants
+      @offer.lister_plant.user = @offer.buyer
+      @offer.lister_plant.save
+      @offer.buyer_plant.user = @offer.lister
+      @offer.buyer_plant.save
 
-    @lister_plant_user = @offer.lister
-    @buyer_plant_user = @offer.buyer
+      # respond back to update the page
+      respond_to do |format|
+        format.text { render partial: "options",
+                      locals: { offer: @offer },
+                      formats: [:html]
+                    }
+      end
+    else
+      flash.now[:alert] = "Error with accepting the offer"
+    end
 
-    @lister_plant.user = @buyer_plant_user
-    @buyer_plant.user = @lister_plant_user
-    authorize @offer # need to authorise this
+  end
+
+  def reject
+    @offer = Offer.find(params[:id])
+    authorize @offer
+    @offer.update(accepted: "rejected")
+    redirect_to offer_path(@offer)
   end
 
   def default_message
