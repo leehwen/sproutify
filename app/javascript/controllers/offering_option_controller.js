@@ -24,7 +24,6 @@ export default class extends Controller {
         this.offeringOptionIds.push(id);
         this.updateOfferingHTML(id);
       }
-      window.scrollTo(0, document.body.scrollHeight);
     }
 
 
@@ -44,6 +43,7 @@ export default class extends Controller {
           "beforeend",
             data
           )
+          window.scrollTo(0, document.body.scrollHeight);
       })
   }
 

@@ -1,43 +1,57 @@
 <div class="offering-options-container">
-    <div class="mt-4 mb-4">
-      <h1>
-        Select Plants to Swap
-      </h1>
-      <p>
-        Please choose up to 5 listed plants from your garden to swap:
-      </p>
-    </div>
-
-<div data-controller="offering-option">
-  <div class="grid-container">
-
-    <% @plants.each do |plant|%>
-
-      <div class="grid-item plant-card-sm" data-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
-        <% if plant.image.key? %>
-          <%= cl_image_tag plant.image.key %>
-        <% else %>
-          <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
-        <% end %>
-        <div class="plant-card-content">
-          <h3><%= plant.nickname %></h3>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-6">
+        <div class="mt-4 mb-4">
+          <h1>
+            Select Plants to Swap
+          </h1>
+          <p>
+            Please choose up to 5 listed plants from your garden to swap:
+          </p>
         </div>
       </div>
-    <% end %>
-  </div>
-
-  <div class="mt-5">
-    <h2>
-      Selected Plants
-    </h2>
-
-      <div class="grid-container" data-offering-option-target="selectedOffering">
-      </div>
-
-    <div class="mt-5">
-      <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="sp-btn-green-sm" type="submit" value="Submit">
-      <%= link_to "Chat with owner", default_message_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
     </div>
 
+  <div data-controller="offering-option">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-6 mb-3">
+        <div class="grid-container">
+          <% @plants.each do |plant|%>
+
+          <div class="grid-item plant-card-sm" data-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
+            <% if plant.image.key? %>
+              <%= cl_image_tag plant.image.key %>
+            <% else %>
+              <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
+            <% end %>
+            <div class="plant-card-content">
+              <h3><%= plant.nickname %></h3>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-6">
+        <div class="mt-5">
+          <h2>
+            Selected Plants
+          </h2>
+
+            <div class="grid-container" data-offering-option-target="selectedOffering">
+            </div>
+
+          <div id="selected-plants" class="mt-5">
+            <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="sp-btn-green-sm" type="submit" value="Submit">
+            <%= link_to "Chat with owner", default_message_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
+
+
 </div>
