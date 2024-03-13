@@ -1,4 +1,4 @@
-<div class="grid-item plant-card-sm" ata-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
+<div class="grid-item plant-card-sm" data-plant-id="<%= plant.id %>">
   <% if plant.image.key? %>
     <%= cl_image_tag plant.image.key %>
   <% else %>

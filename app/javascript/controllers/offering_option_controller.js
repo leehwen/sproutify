@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import Swal from 'sweetalert2'
 
 // Connects to data-controller="offering-option"
 export default class extends Controller {
@@ -16,9 +17,21 @@ export default class extends Controller {
 
     if (this.offeringOptionIds.includes(id)) {
       // alert
+      Swal.fire({
+        title: 'Plant has been selected',
+        text: 'Please choose other plants',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
     } else {
-      if (this.offeringOptionIds.length > 5 ) {
+      if (this.offeringOptionIds.length >= 5 ) {
       // alert
+        Swal.fire({
+          title: 'Reached the maximum',
+          text: '5 plants maximum can be chosen',
+          icon: 'warning',
+          confirmButtonText: 'Ok'
+        })
         console.log('rejected');
       } else {
         this.offeringOptionIds.push(id);
@@ -68,6 +81,12 @@ export default class extends Controller {
       this.chatButtonTarget.classList.remove("d-none")
       // target
       // change the button
+      Swal.fire({
+        title: 'Offer is made',
+        text: 'Continue to chat with the owner',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      })
     })
   }
 
