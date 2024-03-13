@@ -49,10 +49,13 @@ class OffersController < ApplicationController
   end
 
   def default_message
+
+
     @offer = Offer.find(params[:id])
     @offering_options = OfferingOption.where(offer: @offer)
+    options = render_to_string partial: "default_message", locals: { offering_options: @offering_options }
     content = "I would like to make an offer to #{@offer.lister_plant.nickname}.
-    These are plants I would like to swap"
+    These are plants I would like to swap. #{options}"
     @default_message = Message.new(content:)
     @default_message.offer = @offer
     @default_message.user = current_user
