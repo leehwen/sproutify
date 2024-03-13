@@ -2,7 +2,7 @@ class PlantInfosController < ApplicationController
   before_action :skip_authorization
 
   def new
-    
+
   end
 
   def create
@@ -10,6 +10,7 @@ class PlantInfosController < ApplicationController
     mock_data = {
           "id": "ad11b3384dd5c143",
           "name": "Monstera deliciosa",
+
           "probability": 0.831,
           "similar_images": [
               {
@@ -64,7 +65,7 @@ class PlantInfosController < ApplicationController
           }
       }
 
-    
+    raise
     @data = Rails.env.development? ? mock_data : params[:data]
 
     @name= @data[:name]
@@ -73,7 +74,7 @@ class PlantInfosController < ApplicationController
     @image_url = @data[:details][:image][:value]
     @propagation = @data[:details][:propagation_methods]
     @watering = @data[:details][:watering][:min].to_i
-    
+
     @plant_info = PlantInfo.find_or_initialize_by(
       name: @name
     )
@@ -84,17 +85,17 @@ class PlantInfosController < ApplicationController
     @plant_info.propagation = @propagation
     @plant_info.watering = @watering
     @plant_info.save
-    
+
     respond_to do |format|
-      format.json 
-      # format.text { render partial: "shared/plantinfonew", locals: {name: @name, 
-      # common_names: @common_names, description: @description, image_url: @image_url, 
+      format.json
+      # format.text { render partial: "shared/plantinfonew", locals: {name: @name,
+      # common_names: @common_names, description: @description, image_url: @image_url,
       # propagation: @propagation, watering: @watering}, formats: [:html] }
     end
 
   end
 
-  def show 
+  def show
     @plant_info = PlantInfo.find_by(name: params[:id])
   end
 end
