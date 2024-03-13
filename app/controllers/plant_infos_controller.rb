@@ -65,7 +65,6 @@ class PlantInfosController < ApplicationController
           }
       }
 
-    raise
     @data = Rails.env.development? ? mock_data : params[:data]
 
     @name= @data[:name]
