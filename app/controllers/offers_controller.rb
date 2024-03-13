@@ -23,7 +23,8 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to offer_offering_options_new_path(@offer)
     else
-      render :listing, status: :unprocessable_entity
+      flash[:alert] = @offer.errors.messages.values[0]
+      redirect_to listing_plant_path(@lister_plant)
     end
   end
 
@@ -55,7 +56,8 @@ class OffersController < ApplicationController
                     }
       end
     else
-      flash.now[:alert] = "Error with accepting the offer"
+      flash[:alert] = "Error with accepting the offer"
+      redirect_to offer_path(@offer)
     end
 
   end
