@@ -19,6 +19,10 @@ class OfferPolicy < ApplicationPolicy
     record.lister == user
   end
 
+  def default_message?
+    record.buyer == user
+  end
+
   class Scope < Scope
 
     def resolve

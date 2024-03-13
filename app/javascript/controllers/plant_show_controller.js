@@ -21,4 +21,8 @@ export default class extends Controller {
       }
     })
   }
+
+  displayCalendar(e) {
+    console.log("bingo")
+  }
 }

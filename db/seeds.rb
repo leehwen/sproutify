@@ -9,6 +9,7 @@
 #   end
 
 puts "resetting data base..."
+Buddy.destroy_all
 Message.destroy_all
 OfferingOption.destroy_all
 Offer.destroy_all
@@ -79,7 +80,7 @@ plant_infos2 = PlantInfo.create!(
   common_names: "Monstera",
   description: "Monstera is a genus of 59 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas. The genus is named from the Latin word for monstrous or abnormal, and refers to the unusual leaves with natural holes that members of the genus have.",
   watering: 2,
-  propagation: "cutting"
+  propagation: "cuttings"
 )
 
 plant_infos3 = PlantInfo.create!(
@@ -87,7 +88,7 @@ plant_infos3 = PlantInfo.create!(
   common_names: "Desert Rose, Sabi star, kudu, mock azalea, impala lily",
   description: "Adenium obesum, more commonly known as a desert rose, is a poisonous species of flowering plant belonging to the tribe Nerieae of the subfamily Apocynoideae of the dogbane family, Apocynaceae.[3] It is native to the Sahel regions south of the Sahara (from Mauritania and Senegal to Sudan), tropical and subtropical eastern and southern Africa and also the Arabian Peninsula.",
   watering: 1,
-  propagation: "cutting"
+  propagation: "cuttings"
 )
 
 plant_infos4 = PlantInfo.create!(
@@ -95,7 +96,7 @@ plant_infos4 = PlantInfo.create!(
   common_names: "Rosary pea, Precatory bean, Crab's eyes",
   description: "Abrus precatorius is a slender, perennial climber that twines around trees, shrubs and hedges. The plant is used in some traditional medicine to treat scratches and sores, and wounds. The leaves are used for their anti-suppurative.  In China, the seed were once used to treat fever, malaria, headache, worms and dropsy.",
   watering: 3,
-  propagation: "seed"
+  propagation: "cuttings"
 )
 
 plant_infos5 = PlantInfo.create!(
@@ -418,6 +419,27 @@ offer_accepted =
 OfferingOption.create!(
   offer: offer_accepted,
   plant: user3_buyer_plants[3]
+)
+
+buddy = Buddy.create!(
+  name: "Zi Jie",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user1,
+)
+
+buddy = Buddy.create!(
+  name: "Ng Zi Jie",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user1,
+)
+
+buddy = Buddy.create!(
+  name: "Ng Zi Jie Clifton",
+  email: "ng_zi_jie@hotmail.com",
+  hp: 94373184,
+  user: user2,
 )
 
 puts "seeding entries done!"

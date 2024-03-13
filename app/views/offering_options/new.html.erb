@@ -19,5 +19,6 @@
   </div>
 
 <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="btn btn-primary" type="submit" value="Submit">
+<%= link_to "Chat with owner", default_message_offer_path(@offer), class: "btn btn-primary d-none", data: { "offering-option-target": "chatButton" } %>
 
 </div>

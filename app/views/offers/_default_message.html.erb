@@ -1,0 +1,5 @@
+<% offering_options.each do |option| %>
+<br>
+<%= link_to "#{option.plant.plant_info.name}", listing_plant_path(option.plant) %>
+<br>
+<% end %>
