@@ -5,7 +5,7 @@
 <h2>Status: <%= @offer.accepted %></h2>
 <hr>
 
-<h2>Details of my plant</h2>
+<h2>Details of lister plant</h2>
 <p>Plant nickname: <%= @offer.lister_plant.nickname %></p>
 <p>Plant info name: <%= @offer.lister_plant.plant_info.name %></p>
 <p>Plant common names: <%= @offer.lister_plant.plant_info.common_names %></p>
@@ -33,9 +33,8 @@
       </div>
     <% end %>
     <hr>
-    <h2>Action Required</h2>
-    <%= link_to "Accept Offer", "#", data: {action: "click->offer-select#accept", turbo_method: :patch} %>
-    <%= link_to "Reject Offer", reject_offer_path(@offer), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
+    <%= link_to "Accept Offer", "#", data: {action: "click->offer-select#accept", turbo_method: :patch} if policy(@offer).accept? %>
+    <%= link_to "Reject Offer", reject_offer_path(@offer), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} if policy(@offer).reject? %>
   </div>
 
 <% elsif @offer.accepted == "rejected" %>
