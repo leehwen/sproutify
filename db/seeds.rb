@@ -30,7 +30,8 @@ user1 = User.create!(
   password: "password",
   address: "260B Punggol Way, Singapore 822260",
   first_name: "Mary",
-  last_name: "Lim"
+  last_name: "Lim",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user2 = User.create!(
@@ -39,7 +40,8 @@ user2 = User.create!(
   password: "password",
   address: "333D Anchorvale Link, Singapore 544333",
   first_name: "Ashley",
-  last_name: "Yeo"
+  last_name: "Yeo",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user3 = User.create!(
@@ -48,7 +50,8 @@ user3 = User.create!(
   password: "password",
   address: "3 Nathan Rd, Singapore 248726",
   first_name: "Nathan",
-  last_name: "Yeo"
+  last_name: "Yeo",
+  token: SecureRandom.alphanumeric(32)
 )
 
 user4 = User.create!(
@@ -57,7 +60,8 @@ user4 = User.create!(
   password: "password",
   address: "35 St Thomas Walk, Singapore 238141",
   first_name: "Thomas",
-  last_name: "Tan"
+  last_name: "Tan",
+  token: SecureRandom.alphanumeric(32)
 )
 
 # create plant information
@@ -109,7 +113,8 @@ Plant.create!(
   remarks: "1 month old seedling",
   user: user1,
   plant_info: plant_infos1,
-
+  watering_frequency: 1,
+  start_date: Date.today
 )
 
 Plant.create!(
@@ -117,22 +122,27 @@ Plant.create!(
   remarks: "Flowering, ready to have fruits",
   user: user1,
   plant_info: plant_infos1,
-  listing: true
+  listing: true,
+  watering_frequency: 2,
+  start_date: Date.today + 2.days
 )
 
 Plant.create!(
   nickname: "Big monstera",
   remarks: "Located in the balcony, need lots of water",
   user: user1,
-  plant_info: plant_infos2
-
+  plant_info: plant_infos2,
+  watering_frequency: 7,
+  start_date: Date.today + 1.days
 )
 
 Plant.create!(
   nickname: "Small monstera",
   remarks: "Just bought from nursery during Chinese New Year",
   user: user1,
-  plant_info: plant_infos2
+  plant_info: plant_infos2,
+  watering_frequency: 1,
+  start_date: Date.today + 2.days
 
 )
 
@@ -140,7 +150,9 @@ Plant.create!(
   nickname: "Desert Rose",
   remarks: "Hardy plant, need plenty of sunlight",
   user: user1,
-  plant_info: plant_infos3
+  plant_info: plant_infos3,
+  watering_frequency: 6,
+  start_date: Date.today + 3.days
 
 )
 
@@ -149,7 +161,9 @@ Plant.create!(
   remarks: "Propagated from Desert Rose",
   user: user1,
   plant_info: plant_infos3,
-  listing: true
+  listing: true,
+  watering_frequency: 6,
+  start_date: Date.today + 4.days
 )
 
 Plant.create!(
@@ -157,7 +171,9 @@ Plant.create!(
   remarks: "Propagated from Desert Rose",
   user: user1,
   plant_info: plant_infos3,
-  listing: true
+  listing: true,
+  watering_frequency: 5,
+  start_date: Date.today + 3.days
 
 )
 
@@ -165,7 +181,9 @@ Plant.create!(
   nickname: "Small Desert Rose 3",
   remarks: "Propagated from Desert Rose",
   user: user1,
-  plant_info: plant_infos3
+  plant_info: plant_infos3,
+  watering_frequency: 2,
+  start_date: Date.today + 3.days
 
 )
 
@@ -174,14 +192,18 @@ Plant.create!(
   remarks: "Not too much sun",
   user: user2,
   plant_info: plant_infos2,
-  listing: true
+  listing: true,
+  watering_frequency: 2,
+  start_date: Date.today + 2.days
 )
 
 Plant.create!(
   nickname: "Desert Rose",
   remarks: "Dont water too much!",
   user: user2,
-  plant_info: plant_infos3
+  plant_info: plant_infos3,
+  watering_frequency: 3,
+  start_date: Date.today
 
 )
 
@@ -190,14 +212,18 @@ Plant.create!(
   remarks: "Take care, keeps dropping leaves",
   user: user2,
   plant_info: plant_infos5,
-  listing: true
+  listing: true,
+  watering_frequency: 4,
+  start_date: Date.today
 )
 
 Plant.create!(
   nickname: "Rosary pea",
   remarks: "Climbing on the window frame of my balcony, careful not to close window too tight.",
   user: user2,
-  plant_info: plant_infos4
+  plant_info: plant_infos4,
+  watering_frequency: 3,
+  start_date: Date.today
 
 )
 
@@ -207,6 +233,8 @@ Plant.create!(
     remarks: Faker::Lorem.sentence(word_count: 3),
     user: user3,
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    watering_frequency: 1,
+    start_date: Date.today
   )
 end
 
@@ -216,7 +244,9 @@ end
     remarks: Faker::Lorem.sentence(word_count: 3),
     user: user3,
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-    listing: true
+    listing: true,
+    watering_frequency: 2,
+    start_date: Date.today
   )
 end
 
@@ -226,6 +256,8 @@ end
     remarks: Faker::Lorem.sentence(word_count: 3),
     user: user4,
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    watering_frequency: 3,
+    start_date: Date.today
   )
 end
 
@@ -235,7 +267,9 @@ end
     remarks: Faker::Lorem.sentence(word_count: 3),
     user: user4,
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-    listing: true
+    listing: true,
+    watering_frequency: 4,
+    start_date: Date.today
   )
 end
 

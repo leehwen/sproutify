@@ -32,6 +32,10 @@ class PlantPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def share?
+    true
+  end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve

@@ -176,31 +176,60 @@
       <% end %>
     </ul>
   </div>
-  <%= link_to "#{@plant.nickname} has recovered!",
+  <div class="mb-3">
+  <%= link_to "#{@plant.nickname} has recovered from #{illness.name}!",
       plant_remove_diagnosis_path(@plant, illness),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
       class: "sp-btn-green",
       style: "text-decoration:none"
   %>
+  </div>
   <% end %>
 <% end %>
 
 </div>
 
 <div data-content="schedule" class="diagnosis-results-container <%= "d-none" unless params[:start_date].present? %>" data-plant-show-target="content">
-  <h2>Watering Schedule</h2>
-  <% case @plant.watering_frequency %>
-  <% when 1 %>
-    <%= "Daily" %>
-  <% when 2 %>
-    <%= "Every other day" %>
-  <% when 7 %>
-    <%= "Once a week" %>
-  <% when 14 %>
-    <%= "Fortnightly" %>
-  <% else %>
-    <%= "Every #{@plant.watering_frequency} days" %>
-  <% end %>
+  <div>
+    <h2>Watering Schedule</h2>
+    <% case @plant.watering_frequency %>
+    <% when 1 %>
+      <%= "Daily" %>
+    <% when 2 %>
+      <%= "Every other day" %>
+    <% when 7 %>
+      <%= "Once a week" %>
+    <% when 14 %>
+      <%= "Fortnightly" %>
+    <% else %>
+      <%= "Every #{@plant.watering_frequency} days" %>
+    <% end %>
+  <div>
+
+<div data-controller="copy-to-clipboard">
+  <div class="d-flex">
+    <div class='my-3'>
+      <%= link_to "Edit Schedule", edit_schedule_plant_path , class: 'sp-btn-green mt-2', style:'text-decoration:none'%>
+    </div>
+
+
+    <div class='ms-3 my-3'>
+      <span class="sp-btn-green clickable" data-action="click->copy-to-clipboard#toggle">Share Watering Schedules</span>
+    </div>
+  </div>
+
+  <div class="input-group d-none" data-copy-to-clipboard-target="button">
+        <input class="form-control" type="text"
+        data-copy-to-clipboard-target="input"
+        value=<%="http://localhost:3000/schedule/#{current_user.token}" %> readonly>
+        <div class="input-group-append">
+          <button class="btn btn-outline-success"
+          data-action="click->copy-to-clipboard#copy"
+          >Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <%= month_calendar(events: @plant.schedule, attribute: :watering_date) do |date, schedule| %>
     <%= date.day %>

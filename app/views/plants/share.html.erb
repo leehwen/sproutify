@@ -1,0 +1,31 @@
+<div class="diagnosis-results-container">
+  <h2>Watering Schedule</h2>
+<% @plants.each do |plant| %>
+  <span><%= plant.nickname %>: </span>
+  <% case plant.watering_frequency %>
+  <% when 1 %>
+    <span><%= "Daily" %></span>
+  <% when 2 %>
+    <span><%= "Every other day" %></span>
+  <% when 7 %>
+    <span><%= "Once a week" %></span>
+  <% when 14 %>
+    <span><%= "Fortnightly" %></span>
+  <% else %>
+    <span><%= "Every #{plant.watering_frequency} days" %></span>
+  <% end %>
+
+  <%= month_calendar(events: plant.schedule, attribute: :watering_date) do |date, schedule| %>
+    <%= date.day %>
+
+    <% schedule.each do |item| %>
+     <div class="reminder">
+      <p><%= "Hydration alert: #{item.nickname}" %></p>
+     </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+
+</div>
