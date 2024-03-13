@@ -21,6 +21,7 @@ class Plant < ApplicationRecord
 
   def schedule
     # find the start date
+    # params[:start_date]
     # calculate schedule based on frequency
     return [] if watering_frequency.nil?
     return [] if start_date.nil?
@@ -29,7 +30,7 @@ class Plant < ApplicationRecord
     # find start date
     # find no of days
     # no of days / watering schedule => instances (rounded)
-    instances = 120 / watering_frequency
+    instances = 30 / watering_frequency
     instances.times do |index|
       dates << OpenStruct.new(
         nickname:,
