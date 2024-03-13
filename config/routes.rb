@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     member do
       get 'chat'
       patch 'accepted'
+      get 'default_message'
     end
 
     get "/offering_options/new", to: "offering_options#new"

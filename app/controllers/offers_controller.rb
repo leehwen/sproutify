@@ -48,6 +48,11 @@ class OffersController < ApplicationController
     authorize @offer # need to authorise this
   end
 
+  def default_message
+    @offer = Offer.find(params[:offer_id])
+
+  end
+
   private
 
   def offer_params
