@@ -15,3 +15,23 @@
     padding: 15px;
   }
 }
+
+.index_header{
+  margin: 10px auto;
+
+  .index_header_toggle{
+    color: $gray;
+  }
+
+  .clickable{
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);;
+      transition: 0.2s ease;
+    }
+  }
+
+}
+
+
