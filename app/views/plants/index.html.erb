@@ -98,7 +98,7 @@
               <% if plant.image.attached? %>
                   <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
               <% else %>
-                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image-lg") %>
+                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
               <% end %>
 
               <div class="plant-card-content d-flex flex-column justify-content-between">

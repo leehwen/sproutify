@@ -19,8 +19,6 @@ class CollectionsController < ApplicationController
 
   def destroy
     @collection = Collection.find(params[:id])
-    @plants = Plant.all.where(collection_id: @collection.id)
-    @plants.each do |plant| plant.collection_id = nil end
     
     @collection.destroy
 
