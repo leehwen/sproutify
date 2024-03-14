@@ -20,6 +20,10 @@ class PlantPolicy < ApplicationPolicy
     true
   end
 
+  def update_listing?
+    record.user == user
+  end
+
   def destroy?
     record.user == user
   end

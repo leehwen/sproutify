@@ -6,34 +6,38 @@
 
 <div data-controller="plant-show">
 
-<div class="container-fluid">
-  <div class="row">
-    <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].nil? %>' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
-    <h2 class='col-4 menu-header clickable' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Diagnosis</h2>
-    <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].present? %>' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].nil? %>' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Plant Info</h2>
+      <h2 class='col-4 menu-header clickable' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Diagnosis</h2>
+      <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].present? %>' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">Watering Schedule</h2>
+    </div>
   </div>
-</div>
 
 
 <div data-content="info" class="diagnosis-results-container mt-0 <%= "d-none" if params[:start_date].present? %>" data-plant-show-target="content">
 
-<div class="container">
-  <div class="form-check form-switch d-flex justify-content-end py-0">
-    <%= simple_form_for (@plant) do |f| %>
-      <%= f.input :listing,
-        label: "List in Marketplace",
-        as: :boolean,
-        class: 'form-check-input',
-        input_html: {
-                      data: {
-                          controller: "plant-listing",
-                          action: "change->plant-listing#fire",
-                          'plant-listing-target': "checkbox"
-                        }}
-      %>
-    <% end %>
+  <div class="container">
+    <div class="form-check form-switch d-flex justify-content-end py-0"
+      data-controller="plant-listing"
+      data-plant-listing-target="form"
+      data-plant-id="<%= @plant.id %>"
+    >
+      <%= simple_form_for (@plant) do |f| %>
+        <%= f.input :listing,
+          label: "List in Marketplace",
+          as: :boolean,
+          class: 'form-check-input',
+          input_html: {
+                        data: {
+                            action: "change->plant-listing#fire",
+                            'plant-listing-target': "checkbox"
+                          }
+                      }
+        %>
+      <% end %>
+    </div>
   </div>
-</div>
 
   <div class="mb-3">
     <h1>
