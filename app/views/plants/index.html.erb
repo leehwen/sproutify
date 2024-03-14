@@ -110,18 +110,16 @@
               <% end %>
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
-                <div>
-                  <p class="m-0 p-0" style="font-size:1.2rem"><strong><%= plant.nickname %></strong> <span style="font-size:0.8rem"> (<%= plantinfo.name  %>)</span></p>
+                <div class="m-0 p-0">
+                  <p class="m-0 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong> </p>
                   <% if plant.remarks.present? %>
-                  <p class="m-0 p-0" style="font-size:0.7rem"><%= plant.remarks %></p>
+                  <p class="m-0 p-0" style="font-size:0.8rem"><%= plant.remarks %></p>
                   <% end %>
-                  <br>
-                  <p style="font-size:0.7rem"><strong>Common Name: </strong><%= plantinfo.common_names %></p>
                 </div>
 
                 <div class="d-flex w-100  justify-content-between plantlinks">
-                  <%= link_to "View Details", plant_path(plant), class:"text-decoration-none fw-bold" %>
-                  <%= link_to "Add to a collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
+                  <%= link_to "Details", plant_path(plant), class:"text-decoration-none fw-bold" %>
+                  <%= link_to "+ Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
                 </div>
               </div>
             </div>

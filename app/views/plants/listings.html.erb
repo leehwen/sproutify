@@ -56,14 +56,6 @@
                     <p>
                       <%= listing.plant_info.name %>
                     </p>
-                    <p class="m-0">
-                      <strong>
-                        Common names:
-                      </strong>
-                    </p>
-                    <p>
-                      <%= listing.plant_info.common_names.titleize.gsub(',', ', ') %>
-                    </p>
                     <div class="lister d-flex">
                       <div class="me-1">
                         <% if listing.user.image.attached? %>

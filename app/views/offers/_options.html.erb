@@ -56,7 +56,7 @@
             <% if option.plant.image.key? %>
               <%= cl_image_tag option.plant.image.key %>
             <% else %>
-              <%= image_tag option.plant_info.image_url, class: "plant-card-image" %>
+              <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image" %>
             <% end %>
             <div class="plant-card-content">
               <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
