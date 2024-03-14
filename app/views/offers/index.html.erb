@@ -7,7 +7,9 @@
     </div>
   </div>
 
-
+  <%= link_to listings_plants_path do %>
+    <i class="back-button-right fa-solid fa-angles-left"></i>
+  <% end %>
 
   <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
 
