@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-6 mt-2 mb-1">
       <div class="d-flex justify-content-between">
-        
+
         <div>
           <h1>My <%= @collection.name  %> Collection</h1>
         </div>
@@ -27,7 +27,7 @@
             <% if plant.image.attached? %>
                 <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
             <% else %>
-              <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
+              <%= image_tag plant.plant_info.image_url, class: "plant-card-image" %>
             <% end %>
 
             <div class="plant-card-content d-flex flex-column justify-content-between">
@@ -61,8 +61,8 @@
 
   <%# <div class="d-none" data-mygarden-target="displayAddPlant">
     <%= simple_form_for @collection do |f| %>
-        <%# <%= f.label "Add plant to collection" %> 
-        <%# <%= f.association :plants, collection: current_user.plants, label_method: :nickname, label: false,  input_html: { multiple: true }%> 
-        <%# <%= f.button :submit %> 
+        <%# <%= f.label "Add plant to collection" %>
+        <%# <%= f.association :plants, collection: current_user.plants, label_method: :nickname, label: false,  input_html: { multiple: true }%>
+        <%# <%= f.button :submit %>
     <%# <% end %>
   <%# <div>   %>
