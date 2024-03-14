@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :collections, only: %i[new create index show destroy]
-  resources :buddies, only: %i[index new create show] do
+  resources :buddies, only: %i[index new create show destroy] do
     member do
       get 'send_schedule'
     end
