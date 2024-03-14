@@ -239,40 +239,40 @@ Plant.create!(
   )
 end
 
-10.times do
-  Plant.create!(
-    nickname: Faker::Lorem.word,
-    remarks: Faker::Lorem.sentence(word_count: 3),
-    user: user3,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-    listing: true,
-    watering_frequency: 2,
-    start_date: Date.today
-  )
-end
+# 10.times do
+#   Plant.create!(
+#     nickname: Faker::Lorem.word,
+#     remarks: Faker::Lorem.sentence(word_count: 3),
+#     user: user2,
+#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+#     listing: true,
+#     watering_frequency: 2,
+#     start_date: Date.today
+#   )
+# end
 
-5.times do
-  Plant.create!(
-    nickname: Faker::Lorem.word,
-    remarks: Faker::Lorem.sentence(word_count: 3),
-    user: user4,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-    watering_frequency: 3,
-    start_date: Date.today
-  )
-end
+# 5.times do
+#   Plant.create!(
+#     nickname: Faker::Lorem.word,
+#     remarks: Faker::Lorem.sentence(word_count: 3),
+#     user: user3,
+#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+#     watering_frequency: 3,
+#     start_date: Date.today
+#   )
+# end
 
-10.times do
-  Plant.create!(
-    nickname: Faker::Lorem.word,
-    remarks: Faker::Lorem.sentence(word_count: 3),
-    user: user4,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-    listing: true,
-    watering_frequency: 4,
-    start_date: Date.today
-  )
-end
+# 10.times do
+#   Plant.create!(
+#     nickname: Faker::Lorem.word,
+#     remarks: Faker::Lorem.sentence(word_count: 3),
+#     user: user4,
+#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+#     listing: true,
+#     watering_frequency: 4,
+#     start_date: Date.today
+#   )
+# end
 
 # create illnesses
 

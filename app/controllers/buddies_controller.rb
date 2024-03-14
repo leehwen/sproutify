@@ -26,7 +26,7 @@ class BuddiesController < ApplicationController
 
     BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_later
 
-    redirect_to plants_path, notice: "Schedule sent to #{@buddy.name}"
+    redirect_to plants_path, success: "Schedule sent to #{@buddy.name}"
     
     authorize @buddy
   end
