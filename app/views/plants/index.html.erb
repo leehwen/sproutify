@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center">
     <div class="w-100">
       <div class="row d-flex justify-content-center ps-1 pe-2">
-        <div class="d-flex justify-content-between col-sm-12 col-lg-6 mt-2">
+        <div class="d-flex justify-content-between col-sm-12 col-lg-6 mt-2 mb-4">
           <div class="d-flex align-items-center">
             <h1 class="m-0">
               My Garden
@@ -31,10 +31,10 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="index_header col-sm-12 col-lg-12">
+        <div class="index_header mb-4 col-sm-12 col-lg-12">
           <div class="d-flex justify-content-center">
             <%= link_to buddies_path, class:"scheduling" do %>
-                <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
+                <span>Share watering schedule with a buddy <i class="fa-solid fa-user-group"></i></span>
             <% end %>
           </div>
         </div>
@@ -59,7 +59,7 @@
   <div class="collection d-none mt-3" data-mygarden-target="collection">
   <% if @collections.count == 0 %>
     <div class="d-flex flex-column align-items-center", data-mygarden-target="addCollectionHeader">
-      <div>
+      <div class="mt-4">
         <%= image_tag "Sad plant vector.png", width: 350, alt: "Sad plant vector" %>
       </div>
       <div>
@@ -125,7 +125,7 @@
                   <p class="mb-2 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong></p>
                   <div>
                     <% if plant.illnesses.exists? %>
-                      <p class="bg-danger px-2 rounded-2">sick</p>
+                      <p class="sick-badge px-2 rounded-pill">sick</p>
                     <% else %>
                     <% end %>
                   </div>
