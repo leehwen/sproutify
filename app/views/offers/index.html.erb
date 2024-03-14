@@ -1,31 +1,35 @@
-<h1>My Offers Made</h1>
+<div class="offers-container">
+  <h1>Offers</h1>
 
-<% @offers_made = @offers.where(buyer: current_user) %>
-<% @offers_received = @offers.where(lister: current_user) %>
+  <h1>My Offers Made</h1>
 
-<ul>
-  <% @offers_made.each do |offer| %>
-    <li>
-      <p>Lister Plant (Common Name): <%= offer.lister_plant.plant_info.common_names %></p>
-      <p>Lister: <%= offer.lister.first_name %></p>
-      <p>Status: <%= offer.accepted %></p>
-      <%= link_to "See details", offer_path(offer) %>
-      <%= link_to "Contact #{offer.lister.first_name}", chat_offer_path(offer) %>
-    </li>
-  <% end %>
-</ul>
+  <% @offers_made = @offers.where(buyer: current_user) %>
+  <% @offers_received = @offers.where(lister: current_user) %>
+
+  <ul>
+    <% @offers_made.each do |offer| %>
+      <li>
+        <p>Lister Plant (Common Name): <%= offer.lister_plant.plant_info.common_names %></p>
+        <p>Lister: <%= offer.lister.first_name %></p>
+        <p>Status: <%= offer.accepted %></p>
+        <%= link_to "See details", offer_path(offer) %>
+        <%= link_to "Contact #{offer.lister.first_name}", chat_offer_path(offer) %>
+      </li>
+    <% end %>
+  </ul>
 
 
-<h1>My Received Offers</h1>
+  <h1>My Received Offers</h1>
 
-<ul>
-  <% @offers_received.each do |offer| %>
-    <li>
-      <p>My Plant (Nickname): <%= offer.lister_plant.nickname %></p>
-      <p>Buyer: <%= offer.buyer.first_name %></p>
-      <p>Status: <%= offer.accepted %></p>
-      <%= link_to "See details", offer_path(offer) %>
-      <%= link_to "Contact #{offer.buyer.first_name}", chat_offer_path(offer) %>
-    </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @offers_received.each do |offer| %>
+      <li>
+        <p>My Plant (Nickname): <%= offer.lister_plant.nickname %></p>
+        <p>Buyer: <%= offer.buyer.first_name %></p>
+        <p>Status: <%= offer.accepted %></p>
+        <%= link_to "See details", offer_path(offer) %>
+        <%= link_to "Contact #{offer.buyer.first_name}", chat_offer_path(offer) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
