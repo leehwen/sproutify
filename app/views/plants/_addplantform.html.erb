@@ -1,0 +1,19 @@
+    <div class="d-flex justify-content-center plant-info-form">
+      <%= simple_form_for (plant), html: { data: { action: "submit->camera#formSubmit", camera_target:"form" }} do |f| %>
+        <%= f.input :nickname, wrapper_html: { class: "#{"d-none" if plant.errors.empty?}", data: { camera_target: "toShow" } } %>
+        <%= f.input :remarks, wrapper_html: {  class: "#{"d-none" if plant.errors.empty?}", data: { camera_target: "toShow" } } %>
+        <%= f.input :watering_frequency, label: "Please enter the number of days between watering sessions:", wrapper_html: {  class: "#{"d-none" if plant.errors.empty?}", data: { camera_target: "toShow" } }, input_html: { min: '0' } %>
+        <%= f.input :start_date, label: "Please indicate when to begin watering:", wrapper_html: {  class: "#{"d-none" if plant.errors.empty?}", data: { camera_target: "toShow" } } %>
+        <%= f.label :image, class: "#{"d-none" unless plant.errors.empty?} sp-btn-green clickable", data: { camera_target: "toHide" } do %>
+          Identify
+          <i class="fa-solid fa-camera"></i>
+        <% end %>
+        <%= f.input :image, as: :file, label: false, wrapper_html: { data: { action: "change->camera#identify", camera_target:"toHide"}, class: "d-none"} %>
+        <%= f.association :plant_info, as: :hidden, input_html: { data: {camera_target: "plantInfo"}} %>
+        <div class="d-flex justify-content-center">
+        <%= f.submit "Add to Garden", class: "#{"d-none" if plant.errors.empty?} sp-btn-green mt-2", data: { camera_target: "toShow" }%>
+        </div>
+      <% end %>
+    </div>
+<%# 
+    class: "#{"d-none" if plant.errors.empty?}" %>

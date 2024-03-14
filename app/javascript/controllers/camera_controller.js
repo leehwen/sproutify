@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="camera"
 export default class extends Controller {
-  static targets = ["info", "toShow", "plantInfo", "toHide", "btnShowA", "btnShowB"]
+  static targets = ["info", "toShow", "plantInfo", "toHide", "btnShowA", "btnShowB", "display", "form"]
 
   static values = {
     apiKey: String
@@ -89,6 +89,31 @@ export default class extends Controller {
         })
     // })
   }
+
+  formSubmit (e) {
+    e.preventDefault();
+    console.log("test")
+    
+    const form_url = this.formTarget.action
+
+    fetch (form_url, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+      },
+      body: new FormData(this.formTarget) })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data) 
+        console.log(data.status)
+        if (data.status === true) {
+          window.location.replace(form_url);
+          // save plant instance
+        } else {
+          this.displayTarget.innerHTML = data.info;
+        }
+    });
+    }
 
   #getMetaValue(name) {
     const element = document.head.querySelector(`meta[name="${name}"]`)

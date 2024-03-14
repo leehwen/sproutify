@@ -17,11 +17,18 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     @plant.user = current_user
-    if @plant.save
-      redirect_to plants_path
-    else
-      render :new, status: :unprocessable_entity
+    @plant.save! if @plant.valid?
+
+    respond_to do |format|
+      format.json
     end
+
+
+    # if @plant.save
+    #   redirect_to plants_path
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
 
     authorize @plant
   end

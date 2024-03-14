@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center">
       <div class="col-sm-12 col-lg-6 mb-4 ps-0">
         <h1>
-          My Garden
+          My Garden <i class="fa-solid fa-seedling nav-icon"></i>
         </h1>
       </div>
     </div>
@@ -110,7 +110,9 @@
               <div class="plant-card-content d-flex flex-column justify-content-between">
                   <div>
                     <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+                    <% if plant.remarks.present? %>
                     <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
+                    <% end %>
                     <p><strong>Species: </strong><%= plantinfo.name  %></p>
                   </div>
 
