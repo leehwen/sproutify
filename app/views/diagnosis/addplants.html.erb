@@ -1,15 +1,29 @@
 <%# <%= render 'shared/plant_cards', plants: @plants %>
-
-<div class="px-3">
+<div class="add-plants-container">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6 mt-4 mb-4">
-      <h1>
-        Add Diagnosis to Plant
-      </h1>
-      <p>
-        Please pick a plant from your garden to assign the diagnosis to:
-      </p>
+
+    <div class="mt-2 mb-2 col-sm-12 col-lg-6">
+      <div class="d-flex mb-4">
+        <div class="d-flex align-items-center me-2">
+            <%= link_to diagnose_path do %>
+              <i class="back-button fa-solid fa-angles-left"></i>
+            <% end %>
+        </div>
+
+        <div>
+          <h1 class="m-0">
+            Add Diagnosis to Plant
+          </h1>
+        </div>
+      </div>
+
+      <div>
+        <p class="m-0 mb-1">
+          Please pick a plant from your garden to assign the diagnosis to:
+        </p>
+      </div>
     </div>
+
   </div>
 
    <div class="row justify-content-center">

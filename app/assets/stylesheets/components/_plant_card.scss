@@ -1,7 +1,7 @@
 .plant-card-sm {
   background-color: $light-green;
   border-radius: 10px;
-  margin: 0px auto;
+  margin: 10px auto;
   position: relative;
   font-size: 0.8rem;
 
@@ -29,7 +29,7 @@
 .plant-card-sm-active {
   background-color: $dark-green;
   border-radius: 10px;
-  margin: 0px auto;
+  margin: 10px auto;
   position: relative;
   font-size: 0.8rem;
 
@@ -65,6 +65,14 @@
   .plant-card-image {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .plant-card-image-left {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     width: 100%;
     height: 150px;
     object-fit: cover;

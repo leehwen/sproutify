@@ -1,9 +1,31 @@
 .back-button {
   font-size: 1.5rem;
   color: $charcoal;
+}
+
+.back-button-fixed {
+  background-color: $off-white;
+  padding: 7.5px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: $charcoal;
   position: absolute;
   top: 1rem;
   left: 1rem;
+  z-index: 25;
+}
+
+.back-button-fixed-black {
+  font-size: 1.5rem;
+  color: $charcoal;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 25;
+}
+
+.back-button-collection {
+  margin-top: 2px;
 }
 
 .chat-back-button {
@@ -13,18 +35,4 @@
   top: 50%;
   transform: translateY(-50%);
   left: 1rem;
-}
-
-.back-button-right {
-  font-size: 1.5rem;
-  color: $charcoal;
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-
-}
-
-.back-button-link {
-  font-size: 1.5rem;
-  color: $charcoal;
 }
