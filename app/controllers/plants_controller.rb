@@ -66,7 +66,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.update(schedule_params)
     if @plant.save
-      redirect_to plant_path
+      redirect_to plant_path, success: "Schedule updated successfully."
     else
       render :edit_schedule, status: unprocessable_entity
     end
@@ -77,7 +77,12 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.update(collection_params)
 
-    redirect_to plants_path
+    if @plant.save
+      redirect_to plants_path, success: "Plant added to collection."
+      
+    else
+      render :edit, notice: "Plant not able to be added. Try again"
+    end
 
     authorize @plant
   end

@@ -5,7 +5,7 @@ class Offer < ApplicationRecord
   belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id', required: true
 
   has_many :offering_options
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   STATUSES = %w[pending accepted rejected].freeze
   validates :accepted, inclusion: { in: STATUSES }, presence: true
