@@ -65,15 +65,19 @@ class PlantInfosController < ApplicationController
           }
       }
 
-    # @data = Rails.env.development? ? mock_data : params[:data]
+    @data = Rails.env.development? ? mock_data : params[:data]
 
-    @data = params[:data]
+    # @data = params[:data]
     @name= @data[:name]
     @common_names = @data[:details][:common_names].first(3).join(",")
     @description = @data[:details][:description][:value]
     @image_url = @data[:details][:image][:value]
     @propagation = @data[:details][:propagation_methods]
-    @watering = @data[:details][:watering][:min].to_i
+    if @data[:details][:watering].nil?
+      @watering = 0
+    else
+      @watering = @data[:details][:watering][:min].to_i
+    end
 
     @plant_info = PlantInfo.find_or_initialize_by(
       name: @name

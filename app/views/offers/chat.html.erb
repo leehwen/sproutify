@@ -1,35 +1,42 @@
-<div class="container chatroom"
-  data-controller="offer-subscription"
-  data-offer-subscription-offer-id-value="<%= @offer.id %>"
->
-  <h1>Chatroom for Offer ID <%= @offer.id %></h1>
+  <div>
+    <div class="pt-3 position-sticky">
+      <div class="text-center py-2 mb-4 border-bottom">
+        <h1><%= @offer.lister.first_name %>'s <%= @offer.lister_plant.nickname.capitalize %></h1>
+      </div>
+      <%= link_to offers_path do %>
+      <i class="chat-back-button fa-solid fa-angles-left"></i>
+      <% end %>
+    </div>
+      <div class="container"
+        data-controller="offer-subscription"
+        data-offer-subscription-offer-id-value="<%= @offer.id %>"
+        >
+          <!-- div class="border">
+            <h2>Offer Information</h2>
+            <p>Lister: <%= @offer.lister.first_name %></p>
+            <p>Lister Plant: <%= @offer.lister_plant.plant_info.common_names %></p>
+            <p>Buyer: <%= @offer.buyer.first_name %></p>
+            <p>Buyer Plant Options: TBC</p>
+          </div -->
+          <div class="chat d-flex flex-column justify-content-between">
 
+            <div class="flex-grow-1" data-offer-subscription-target="messages">
+              <% @messages.each do |message| %>
+                <%= render "messages/message", message: message %>
+              <% end %>
+            </div>
 
-  <div class="border">
-    <h2>Offer Information</h2>
-    <p>Lister: <%= @offer.lister.first_name %></p>
-    <p>Lister Plant: <%= @offer.lister_plant.plant_info.common_names %></p>
-    <p>Buyer: <%= @offer.buyer.first_name %></p>
-    <p>Buyer Plant Options: TBC</p>
-  </div>
+            <%= simple_form_for [@offer, @message],
+              html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" }, class: "d-flex mt-3" } do |f|
+            %>
+              <%= f.input :content,
+                label: false,
+                placeholder: "Message for Offer #{@offer.lister.first_name}'s #{@offer.lister_plant.nickname.capitalize}",
+                wrapper_html: {class: "flex-grow-1"}
+              %>
+              <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+            <% end %>
+          </div>
 
-  <div class="messages"
-    data-offer-subscription-target="messages"
-  >
-    <% @messages.each do |message| %>
-      <%= render "messages/message", message: message %>
-    <% end %>
-  </div>
-
-  <%= simple_form_for [@offer, @message],
-    html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" }, class: "d-flex" } do |f|
-  %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Message for Offer ##{@offer.id}",
-      wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
-
+      </div>
 </div>
