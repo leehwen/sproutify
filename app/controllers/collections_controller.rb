@@ -5,9 +5,12 @@ class CollectionsController < ApplicationController
     @collection.user = current_user
     @collection.save!
 
+    respond_to do |format|
+      format.html { redirect_to plants_path }
+      format.json 
+    end
+    
     authorize @collection
-
-    redirect_to plants_path
   end
 
   def show

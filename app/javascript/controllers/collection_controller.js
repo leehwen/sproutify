@@ -15,14 +15,18 @@ export default class extends Controller {
   fire(e){
     e.preventDefault();
     
-    const url = `${this.showTarget.action}`
-    console.log(this.showTarget.action);
+    const url = `${this.showTarget.action}`;
 
-    fetch(url, {headers: {"Accept": "text/plain"}})
-    .then(response => response.text())
+    fetch(url, {
+      method: "POST",
+      headers: {"Accept": "application/json"},
+      body: new FormData(this.showTarget)})
+    .then(response => response.json())
     .then((data) => {
-      this.displayTarget.outerHTML = data
-      this.showTarget.classList.add("d-none");
+      // this.displayTarget.outerHTML = data
+      window.location.reload;
+      // this.displayTarget.classList.add("d-none");
+      // this.headerTarget.classList.add("d-none");
     })
   }
 }

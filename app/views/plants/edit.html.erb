@@ -41,7 +41,13 @@
         <% end %>
       </div>
 
-      <div data-collection-target="display">
+      <div class="d-none" data-collection-target="display">
+        <h1 class="mt-3"> Pick a collection for your plant.</h1>
+
+        <%= simple_form_for (@plant) do |f| %>
+          <%= f.association :collection, collection: @collections %>
+          <%= f.button :submit, class:"sp-btn-green" %>
+        <% end %>
     </div>
   </div>
 </div>
