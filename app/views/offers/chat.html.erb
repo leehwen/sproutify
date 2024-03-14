@@ -1,6 +1,6 @@
   <div>
     <div class="pt-3 position-sticky">
-      <div class="text-center py-2 mb-4 border-bottom">
+      <div class="text-center py-2 border-bottom">
         <h1><%= @offer.lister.first_name %>'s <%= @offer.lister_plant.nickname.capitalize %></h1>
       </div>
       <%= link_to offers_path do %>
@@ -11,16 +11,8 @@
         data-controller="offer-subscription"
         data-offer-subscription-offer-id-value="<%= @offer.id %>"
         >
-          <!-- div class="border">
-            <h2>Offer Information</h2>
-            <p>Lister: <%= @offer.lister.first_name %></p>
-            <p>Lister Plant: <%= @offer.lister_plant.plant_info.common_names %></p>
-            <p>Buyer: <%= @offer.buyer.first_name %></p>
-            <p>Buyer Plant Options: TBC</p>
-          </div -->
-          <div class="chat d-flex flex-column justify-content-between">
-
-            <div class="flex-grow-1" data-offer-subscription-target="messages">
+          <div class="chat d-flex flex-column justify-content-between" data-offer-subscription-target="scroller">
+            <div id="messages" class="flex-grow-1" data-offer-subscription-target="messages">
               <% @messages.each do |message| %>
                 <%= render "messages/message", message: message %>
               <% end %>

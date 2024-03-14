@@ -1,15 +1,17 @@
 .message-sender {
   width: 80%;
+  max-width: 312px;
   border-radius: 12px;
   background-color: $light-green;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .message-receiver {
   width: 80%;
+  max-width: 312px;
   border-radius: 12px;
   background-color: $gray;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .chat {
