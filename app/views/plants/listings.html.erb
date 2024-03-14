@@ -52,7 +52,7 @@
                   <div class="plant-card-content">
                     <p class="m-0">
                       <strong>
-                        <%= listing.nickname %>
+                        <%= listing.nickname.titleize %>
                       </strong>
                     </p>
                     <p>
@@ -60,11 +60,11 @@
                     </p>
                     <p class="m-0">
                       <strong>
-                        Commonly known as:
+                        Common names:
                       </strong>
                     </p>
                     <p>
-                      <%= listing.plant_info.common_names%>
+                      <%= listing.plant_info.common_names.titleize.gsub(',', ', ') %>
                     </p>
                     <div class="lister">
                       <p class="m-0">
