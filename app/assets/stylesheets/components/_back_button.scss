@@ -1,9 +1,15 @@
 .back-button {
   font-size: 1.5rem;
   color: $charcoal;
+}
+
+.back-button-fixed {
+  font-size: 1.5rem;
+  color: $off-white;
   position: absolute;
   top: 1rem;
   left: 1rem;
+  z-index: 25;
 }
 
 .chat-back-button {
@@ -13,18 +19,4 @@
   top: 50%;
   transform: translateY(-50%);
   left: 1rem;
-}
-
-.back-button-right {
-  font-size: 1.5rem;
-  color: $charcoal;
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-
-}
-
-.back-button-link {
-  font-size: 1.5rem;
-  color: $charcoal;
 }

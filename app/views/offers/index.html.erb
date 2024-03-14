@@ -1,15 +1,20 @@
 <div class="offers-container">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6">
-      <h1>
-        Offers
-      </h1>
+
+    <div class="d-flex mt-2 col-sm-12 col-lg-6">
+      <div class="d-flex align-items-center me-2">
+        <%= link_to listings_plants_path do %>
+          <i class="back-button fa-solid fa-angles-left"></i>
+        <% end %>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <h1 class="m-0">
+          Offers
+        </h1>
+      </div>
     </div>
   </div>
-
-  <%= link_to listings_plants_path do %>
-    <i class="back-button-right fa-solid fa-angles-left"></i>
-  <% end %>
 
   <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
 

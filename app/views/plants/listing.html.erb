@@ -1,4 +1,8 @@
 <div>
+  <%= link_to listings_plants_path do %>
+    <i class="back-button-fixed fa-solid fa-angles-left"></i>
+  <% end %>
+
   <% if @plant.image.attached? %>
     <%= cl_image_tag @plant.image.key, class: "image-card" %>
   <% else %>
@@ -70,9 +74,4 @@
       <% end %>
     </ul>
   </div>
-
-  <%= link_to listings_plants_path do %>
-    <i class="back-button fa-solid fa-angles-left"></i>
-  <% end %>
-
 </div>
