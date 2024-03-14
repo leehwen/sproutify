@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     if @message.save
       OfferChannel.broadcast_to(
         @offer,
-        render_to_string(partial: "message", locals: {message: @message})
+        render_to_string(partial: "message", locals: { message: @message })
       )
       head :ok
     else
