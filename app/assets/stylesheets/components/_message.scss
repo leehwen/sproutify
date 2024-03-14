@@ -1,0 +1,18 @@
+.message-sender {
+  width: 80%;
+  border-radius: 12px;
+  background-color: $light-green;
+  margin-top: 2rem;
+}
+
+.message-receiver {
+  width: 80%;
+  border-radius: 12px;
+  background-color: $gray;
+  margin-top: 2rem;
+}
+
+.chat {
+  height: 80vh;
+  overflow:scroll;
+}

@@ -5,3 +5,12 @@
   top: 1rem;
   left: 1rem;
 }
+
+.chat-back-button {
+  font-size: 1rem;
+  color: $charcoal;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+}
