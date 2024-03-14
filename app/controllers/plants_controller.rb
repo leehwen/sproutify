@@ -66,7 +66,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.update(schedule_params)
     if @plant.save
-      redirect_to plant_path
+      redirect_to plant_path, success: "Schedule updated successfully."
     else
       render :edit_schedule, status: unprocessable_entity
     end
