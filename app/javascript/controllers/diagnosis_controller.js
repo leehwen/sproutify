@@ -42,72 +42,71 @@ export default class extends Controller {
       })
     }
 
-    // fetch(url, requestDetails)
-    //   .then(response => response.json())
-    //   .then((data) => {
+    fetch(url, requestDetails)
+      .then(response => response.json())
+      .then((data) => {
 
-    //     const illnesses = data.result.disease.suggestions;
+        const illness = data.result.disease.suggestions[0];
 
-    //     illnesses.forEach((illness) => {
-    //       let body = {
-    //         name: illness.name,
-    //         common_names: illness.details.common_names,
-    //         cause: illness.details.cause,
-    //         description: illness.details.description,
-    //         treatment: illness.details.treatment,
-    //         image_url: illness.similar_images[0].url,
-    //       }
-    //       results = JSON.stringify(body);
+        let body = {
+          results:  {
+            name: illness.name,
+            common_names: illness.details.common_names,
+            cause: illness.details.cause,
+            description: illness.details.description,
+            treatment: illness.details.treatment,
+            image_url: illness.similar_images[0].url,
+          }
+        }
+        const results = JSON.stringify(body);
 
-    //       fetch('/diagnose/results/', {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           "Accept": "text/plain",
-    //           "X-CSRF-Token": this.#getMetaValue("csrf-token")
-    //         },
-    //         body: results
-    //       })
-    //       .then(response => response.text())
-    //       .then((HTMLstring) => {
-    //         console.log(HTMLstring);
-    //         this.resultsTarget.innerHTML = HTMLstring
-    //       })
-    //     }
-    //     )
-    //     }
-    //   );
+        fetch('/diagnose/results/', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "text/plain",
+            "X-CSRF-Token": this.#getMetaValue("csrf-token")
+          },
+          body: results
+        })
+        .then(response => response.text())
+        .then((HTMLstring) => {
+          console.log(HTMLstring);
+          this.resultsTarget.innerHTML = HTMLstring
+          this.diagnoseTarget.classList.toggle("d-none")
+        })
+      });
 
-    const body = JSON.stringify({
-      results: {
-        name: "bacterial leaf spot",
-        common_names: null,
-        cause: null,
-        description: "Bacterial leaf spot is caused by the bacteria Xanthomonas and Pseudomonas. Typical symptoms are black spots on the leaves or black-edged lesions and light and dark areas on the leaves, which usually develop on older leaves.",
-        treatment: {
-          "chemical": ["If necessary, apply fungicide containing azoxystrobin (GHS06: Toxic, GHS09: Environmental hazard).","If necessary, apply fungicide containing chlorothalonil (GHS05: Corrosive, GHS06: Toxic, GHS07: Harmful, GHS08: Health hazard, GHS09: Environmental hazard)."],
-          "biological":["Remove weeds as well as all dead plant tissue. They may be a source of infection.","Apply ecological products for plant protection (e.g. copper-based spray)."],
-          "prevention":["Use resistant species and cultivars as well as healthy, certified seeds and seedlings.","Avoid prolonged wetting of the leaves, which can be caused e.g. by overhead irrigation.","Improve the air circulation around the plant (e.g. by pruning excess foliage or increasing the spacing between plants).","Rotate crops. Avoid planting sensitive crops in infested soil.","Disinfect tools, infected flower pots, and hands to avoid disease transmission."]
-        },
-        image_url: "https://plant-id.ams3.cdn.digitaloceanspaces.com/similar_images/3/120/85e5ad1d14b6c0bba7e14e2f707158b0dfe77.jpg"
-      }
-    })
+    // const body = JSON.stringify({
+    //   results: {
+    //     name: "bacterial leaf spot",
+    //     common_names: null,
+    //     cause: null,
+    //     description: "Bacterial leaf spot is caused by the bacteria Xanthomonas and Pseudomonas. Typical symptoms are black spots on the leaves or black-edged lesions and light and dark areas on the leaves, which usually develop on older leaves.",
+    //     treatment: {
+    //       "chemical": ["If necessary, apply fungicide containing azoxystrobin (GHS06: Toxic, GHS09: Environmental hazard).","If necessary, apply fungicide containing chlorothalonil (GHS05: Corrosive, GHS06: Toxic, GHS07: Harmful, GHS08: Health hazard, GHS09: Environmental hazard)."],
+    //       "biological":["Remove weeds as well as all dead plant tissue. They may be a source of infection.","Apply ecological products for plant protection (e.g. copper-based spray)."],
+    //       "prevention":["Use resistant species and cultivars as well as healthy, certified seeds and seedlings.","Avoid prolonged wetting of the leaves, which can be caused e.g. by overhead irrigation.","Improve the air circulation around the plant (e.g. by pruning excess foliage or increasing the spacing between plants).","Rotate crops. Avoid planting sensitive crops in infested soil.","Disinfect tools, infected flower pots, and hands to avoid disease transmission."]
+    //     },
+    //     image_url: "https://plant-id.ams3.cdn.digitaloceanspaces.com/similar_images/3/120/85e5ad1d14b6c0bba7e14e2f707158b0dfe77.jpg"
+    //   }
+    // })
 
-    fetch('/diagnose/results/', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "text/plain",
-        "X-CSRF-Token": this.#getMetaValue("csrf-token")
-      },
-      body: body
-    })
-    .then(response => response.text())
-    .then((HTMLstring) => {
-      console.log(HTMLstring);
-      this.resultsTarget.innerHTML = HTMLstring
-      this.diagnoseTarget.classList.toggle("d-none")
-    })
+    // fetch('/diagnose/results/', {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "text/plain",
+    //     "X-CSRF-Token": this.#getMetaValue("csrf-token")
+    //   },
+    //   body: body
+    // })
+    // .then(response => response.text())
+    // .then((HTMLstring) => {
+    //   console.log(HTMLstring);
+    //   this.resultsTarget.innerHTML = HTMLstring
+    //   this.diagnoseTarget.classList.toggle("d-none")
+    // })
   }
 
   #getMetaValue(name) {

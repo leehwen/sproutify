@@ -1,6 +1,26 @@
-<div class="container" data-controller="buddy">
-  <% if Buddy.count == 0 %>
-  <div class="d-flex justify-content-center align-items-center vh-100" data-buddy-target="addBuddyHeader">
+<div class="listings-container" data-controller="buddy">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6 mt-2 mb-1">
+      <div class="d-flex justify-content-between">
+        
+        <div>
+          <h1>My Buddies</h1>
+        </div>
+
+        <div>
+          <%= link_to plants_path do %>
+            <i class="back-button-link fa-solid fa-angles-left"></i>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6 mb-4">
+      <% if Buddy.count == 0 %>
+  <div class="d-flex justify-content-center mt-5" data-buddy-target="addBuddyHeader">
     <div>
         <p><em>You do not have a buddy yet.</em></p>
       <div class="sp-btn-green clickable" data-action="click->buddy#show">
@@ -9,13 +29,14 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="d-flex justify-content-center mt-5">
     <%= simple_form_for (@buddy), html: { class: "d-none", data: { buddy_target: "addBuddy", action: "submit->buddy#submitBuddy" } } do |f| %>
     <%= f.input :name, label: 'Buddy Name' %>
     <%= f.input :email, label: 'Buddy Email' %>
     <%= f.input :hp, label: 'Buddy Hp' %>
     <%= f.submit "Add your buddy!", class: 'sp-btn-green'%>
     <% end %>
+
   </div>
 
 
@@ -23,13 +44,19 @@
 
       <p class="mt-5 mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
       <% @buddies.each do |buddy| %>
-        <div class="card p-2 m-2">
+        <div class="plant-card p-3 m-2">
           <div>
-            <p><strong>Buddy Name: </strong><%= buddy.name %></p>
+            <div class="d-flex justify-content-between">
+              <p><strong>Buddy Name: </strong><%= buddy.name %></p>
+              <%= link_to buddy_path(buddy), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+              <p><strong>X</strong></p>
+              <% end %>
+            </div>
+
             <p><strong>Email: </strong><%= buddy.email %></p>
           </div>
           <div>
-            <%= link_to  "Click to send schedule to buddy", send_schedule_buddy_path(buddy), class: "text-decoration-none" %>
+            <%= link_to  "Send watering schedule", send_schedule_buddy_path(buddy), class: "text-decoration-none fw-bold" %>
           </div>
         </div>
     <% end %>
