@@ -33,6 +33,8 @@ export default class extends Controller {
 
     reader.onload = (e) => {
       const base64String = e.target.result;
+      // load the loader
+      document.querySelector("#loader").classList.remove("d-none")
       const results = this.#getEnv() === 'production' ? this.#callapi(base64String) : this.#passToBackend()
       // this.#createPlantInfo(results)
     };
@@ -42,6 +44,7 @@ export default class extends Controller {
     e.preventDefault();
 
     const form_url = this.formTarget.action
+  document.querySelector("#loader").classList.remove("d-none")
 
     fetch (form_url, {
       method: "POST",
@@ -55,6 +58,7 @@ export default class extends Controller {
           window.location.replace(form_url);
           // save plant instance
         } else {
+          document.querySelector("#loader").classList.add("d-none")
           this.displayTarget.innerHTML = data.info;
         }
       });
@@ -76,6 +80,7 @@ export default class extends Controller {
         data: info });
 
       this.#passToBackend(plantInfo)
+
     });
   }
 
@@ -105,6 +110,8 @@ export default class extends Controller {
 
         this.btnShowATarget.classList.remove('d-none');
         this.btnShowBTarget.classList.remove('d-none');
+
+        document.querySelector("#loader").classList.add("d-none")
         });
   }
 

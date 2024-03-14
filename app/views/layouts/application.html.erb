@@ -12,8 +12,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="position-relative">
     <%= render "shared/flashes" %>
+
+    <div id="loader" class="z-2 position-fixed bg-light opacity-75 vw-100 vh-100 d-flex justify-content-center align-items-center d-none">
+      <%= image_tag "spinner.svg" %>
+    </div>
 
     <div class="sp-container">
       <%= yield %>
