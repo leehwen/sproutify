@@ -68,7 +68,7 @@
     <h2>
       Propagation:
     </h2>
-    <ul class="list-unstyled">
+    <ul>
       <% JSON.parse(@plant.plant_info.propagation).each do |f| %>
           <li> <%= f.titleize %> </li>
       <% end %>
