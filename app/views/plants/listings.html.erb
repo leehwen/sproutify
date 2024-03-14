@@ -64,11 +64,15 @@
                     <p>
                       <%= listing.plant_info.common_names.titleize.gsub(',', ', ') %>
                     </p>
-                    <div class="lister">
+                    <div class="lister d-flex">
+                      <div class="me-1">
+                        <% if current_user.profile_picture.attached? %>
+                          <%= cl_image_tag current_user.profile_picture.key, class: "avatar-small", alt: "user profile image"%>
+                        <% else %>
+                          <%= image_tag "User vector.png", class: "avatar-small", alt: "user profile image"%>
+                        <% end %>
+                      </div>
                       <p class="m-0">
-                        <strong>
-                          Listed by
-                        </strong>
                         <%= listing.user.first_name %>
                       </p>
                     </div>
