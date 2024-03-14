@@ -1,4 +1,7 @@
 <div>
+  <%= link_to plants_path do %>
+    <i class="back-button-fixed-white fa-solid fa-angles-left"></i>
+  <% end %>
   <% if @plant.image.attached? %>
     <%= cl_image_tag @plant.image.key, class: "image-card" %>
   <% else %>
