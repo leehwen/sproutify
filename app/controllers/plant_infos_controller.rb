@@ -65,8 +65,9 @@ class PlantInfosController < ApplicationController
           }
       }
 
-    @data = Rails.env.development? ? mock_data : params[:data]
+    # @data = Rails.env.development? ? mock_data : params[:data]
 
+    @data = params[:data]
     @name= @data[:name]
     @common_names = @data[:details][:common_names].first(3).join(",")
     @description = @data[:details][:description][:value]
