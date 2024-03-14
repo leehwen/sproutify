@@ -10,7 +10,7 @@
 
   <div class="mb-3">
     <h1>
-      <%= @plant.nickname %>
+      <%= @plant.nickname.titleize %>
     <h1>
   </div>
 
@@ -24,10 +24,10 @@
     <% if @plant.plant_info.common_names.nil? %>
     <% else %>
       <h2>
-        Commonly known as:
+        Common names:
       </h2>
       <p>
-        <%= @plant.plant_info.common_names %>
+        <%= @plant.plant_info.common_names.titleize.gsub(',', ', ') %>
       </p>
     <% end %>
   </div>

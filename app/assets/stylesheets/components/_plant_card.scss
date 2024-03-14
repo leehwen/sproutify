@@ -58,7 +58,7 @@
   border-radius: 10px;
   margin: 10px auto;
   position: relative;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 
   .plant-card-image {
     border-top-left-radius: 10px;
@@ -101,6 +101,7 @@
 }
 
 .scheduling{
+  color: $charcoal;
   text-decoration: none;
 
   &:hover {
