@@ -70,7 +70,7 @@
       <%= link_to collection_path(collection), class:"collection-card-label" do %>
 
       <div class="plant-card col-sm-12 col-lg-4 collection-card">
-        <%= cl_image_tag collection.image.key, class: "plant-card-image" if collection.image.attached? %>
+        <%= cl_image_tag collection.image.key, class: "plant-card-image-lg" if collection.image.attached? %>
         <div class="d-flex justify-content-between align-items-center p-2">
           <div>
             <span class="collection-card-label"><%= collection.name %></span>
@@ -105,9 +105,9 @@
 
               <% plantinfo = PlantInfo.find(plant.plant_info_id) %>
               <% if plant.image.attached? %>
-                  <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
+                  <%= cl_image_tag plant.image.key, class: "plant-card-image-lg" %>
               <% else %>
-                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
+                <%= image_tag("plant_sample_10.jpg", class: "plant-card-image-lg") %>
               <% end %>
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
