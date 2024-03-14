@@ -21,10 +21,10 @@
                 <div class="d-flex flex-column justify-content-between ps-3 py-3">
                   <div class="d-flex mt-3">
                     <div class="me-3">
-                      <% if current_user.profile_picture.attached? %>
+                      <% if offer.lister_plant.user.profile_picture.attached? %>
                         <%= cl_image_tag current_user.profile_picture.key, class: "avatar", alt: "user profile image"%>
                       <% else %>
-                        <%= image_tag "User vector.png", class: "avatar", alt: "user profile image"%>
+                        <%= image_tag "https://thispersondoesnotexist.com", class: "avatar", alt: "user profile image"%>
                       <% end %>
                     </div>
 
