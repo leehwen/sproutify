@@ -84,9 +84,9 @@ class OffersController < ApplicationController
       @offering_options = OfferingOption.where(offer: @offer)
       listed_msg = render_to_string partial: "default_message_listed", locals: { offer: @offer }
       options_msg = render_to_string partial: "default_message_options", locals: { offering_options: @offering_options }
-      content = "I would like to make an offer to #{listed_msg}
+      content = "#{listed_msg} I would like to make an offer.
       These are plants I would like to swap. #{options_msg}
-      <a href=#{offer_path(@offer)}>View details</a>"
+      <div class='my-1 text-center'><a href=#{offer_path(@offer)}>View details</a></div>"
       @default_message = Message.new(content:)
       @default_message.offer = @offer
       @default_message.user = current_user

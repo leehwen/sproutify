@@ -1,14 +1,16 @@
-  <div class="row">
-    <div class="col-3">
-      <%= link_to "#{offer.lister_plant.nickname}", listing_plant_path(offer.lister_plant), class: "text-decoration-none" %>
+<% if offer.lister_plant.image.attached? %>
+  <%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none" do %>
+    <div class="chat-image-card" style="background-image:url('<%= cl_image_tag plant.image.key %>')">
     </div>
-    <div class="col-6">
-      <% if offer.lister_plant.image.attached? %>
-        <%= cl_image_tag plant.image.key, class: "tiny-image-card" %>
-      <% else %>
-        <%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none" do %>
-          <%= image_tag("plant_sample_10.jpg", class: "tiny-image-card") %>
-        <% end %>
-      <% end %>
+  <% end %>
+<% else %>
+  <%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none" do %>
+    <div class="chat-image-card" style="background-image:url('<%= asset_path('plant_sample_10.jpg')%>')">
     </div>
-  </div>
+  <% end %>
+<% end %>
+<div class="mb-3 mt-1 text-center">
+  <%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none text-center" do %>
+  <%= offer.lister_plant.nickname.capitalize %>
+  <% end %>
+</div>

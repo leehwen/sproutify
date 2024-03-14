@@ -1,7 +1,9 @@
   <% if message.user == current_user %>
     <div class="d-flex justify-content-end">
       <div id="message-<%= message.id %>" class="message-sender">
-        <p><%= raw(message.content) %></p>
+        <div class="p-2">
+          <%= raw(message.content) %>
+        </div>
         <div class="text-end pe-2 mb-2">
           <small>
             <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
@@ -19,7 +21,7 @@
               <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
             </small>
           </div>
-          <p><%= raw(message.content) %></p>
+          <div class="p-2"><%= raw(message.content) %></div>
 
         </div>
       </div>
