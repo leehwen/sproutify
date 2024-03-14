@@ -9,6 +9,15 @@
       <li>
         <%= link_to "Account Settings", "#", class: "dropdown-item" %>
       </li>
+      <% if current_user.buddies.blank? %>
+        <li>
+          <%= link_to "Add Buddy", buddies_path, class: "dropdown-item" %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "My Buddies", buddies_path, class: "dropdown-item" %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
       </li>
