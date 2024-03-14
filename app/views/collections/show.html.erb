@@ -1,7 +1,19 @@
 <div class="listings-container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-6 mt-2 mb-1">
-      <h1>My <%= @collection.name  %> Collection</h1>
+      <div class="d-flex justify-content-between">
+        
+        <div>
+          <h1>My <%= @collection.name  %> Collection</h1>
+        </div>
+
+        <div>
+          <%= link_to plants_path do %>
+            <i class="back-button-link fa-solid fa-angles-left"></i>
+          <% end %>
+        </div>
+
+      </div>
     </div>
   </div>
 
