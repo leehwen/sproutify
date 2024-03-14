@@ -1,35 +1,55 @@
 <div class="offers-container">
-  <h1>Offers</h1>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6">
+      <h1>
+        Offers
+      </h1>
+    </div>
+  </div>
 
-  <h1>My Offers Made</h1>
 
-  <% @offers_made = @offers.where(buyer: current_user) %>
-  <% @offers_received = @offers.where(lister: current_user) %>
 
-  <ul>
-    <% @offers_made.each do |offer| %>
-      <li>
-        <p>Lister Plant (Common Name): <%= offer.lister_plant.plant_info.common_names %></p>
-        <p>Lister: <%= offer.lister.first_name %></p>
-        <p>Status: <%= offer.accepted %></p>
-        <%= link_to "See details", offer_path(offer) %>
-        <%= link_to "Contact #{offer.lister.first_name}", chat_offer_path(offer) %>
-      </li>
+  <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
+
+    <% @offers.each do |offer| %>
+        <div class="row justify-content-center">
+          <div class="col-sm-12 col-lg-6">
+            <%= link_to chat_offer_path(offer), class: "text-decoration-none text-dark", :action => 'go' do %>
+              <div class="d-flex justify-content-between offer-card">
+                <div class="d-flex flex-column justify-content-between ps-3 py-3">
+                    <div class="mt-3">
+                      <p class="m-0">
+                        <%= offer.lister_plant.user.username %>
+                      </p>
+                      <h3 class="m-0">
+                        <%= offer.lister_plant.nickname %>
+                      </h3>
+                      <p>
+                        <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
+                      </p>
+                    </div>
+
+                    <div>
+                      <p class="m-0">
+                        <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                      </p>
+                    </div>
+                </div>
+
+                <div class="offer-badge <%= offer.accepted %>">
+                  <%= offer.accepted.upcase %>
+                </div>
+
+                <div class="d-flex flex-column justify-content-end mt-3 py-3 pe-3">
+                  <% if offer.lister_plant.image.key? %>
+                    <%= cl_image_tag offer.lister_plant.image.key, class: "offer-image" %>
+                  <% else %>
+                    <%= image_tag("plant_sample_10.jpg", class: "offer-image") %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
     <% end %>
-  </ul>
-
-
-  <h1>My Received Offers</h1>
-
-  <ul>
-    <% @offers_received.each do |offer| %>
-      <li>
-        <p>My Plant (Nickname): <%= offer.lister_plant.nickname %></p>
-        <p>Buyer: <%= offer.buyer.first_name %></p>
-        <p>Status: <%= offer.accepted %></p>
-        <%= link_to "See details", offer_path(offer) %>
-        <%= link_to "Contact #{offer.buyer.first_name}", chat_offer_path(offer) %>
-      </li>
-    <% end %>
-  </ul>
 </div>

@@ -1,0 +1,21 @@
+.offer-badge{
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white !important;
+  width: 100%;
+  font-size: 0.7rem;
+  padding: 0.1rem 1rem;
+
+  &.pending {
+    background-color: #007ACC;
+  }
+
+  &.accepted {
+    background-color: $dark-green;
+  }
+
+  &.rejected {
+    background-color: #E5893A;
+  }
+}
