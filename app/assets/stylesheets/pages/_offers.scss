@@ -1,0 +1,23 @@
+.offers-container {
+  margin-top: 1.5rem;
+  padding: 0 1.2rem;
+
+  a {
+    text-decoration: none;
+    color: $charcoal;
+   }
+}
+
+
+.offer-card {
+  background-color: $light-green;
+  border-radius: 10px;
+  margin: 10px auto;
+  position: relative;
+  font-size: 0.8rem;
+  overflow: hidden;
+
+  .offer-image {
+    width: 75px;
+  }
+}
