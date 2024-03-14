@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["form", "checkbox"]
 
   connect() {
-    console.log("hello plant-listing-controller");
+    // console.log("hello plant-listing-controller");
   }
 
   fire(event) {

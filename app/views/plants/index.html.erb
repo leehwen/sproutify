@@ -59,11 +59,9 @@
         <button class="sp-btn-green clickable" data-action="click->mygarden#addCollection">Click to add a collection</button>
       </div>
     </div>
-        <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addCollectionForm" } } do |f| %>
-      <%= f.input :name, label: 'Your collection title' %>
-      <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
-      <%= f.submit "Create a collection", class: 'sp-btn-green'%>
-    <% end %>
+    <div data-mygarden-target="addCollectionForm" class="d-none">
+       <%= render "collections/addcollectionfromscratch", collection: @collection%>
+    </div>
   <% else %>
     <% @collections.each do |collection| %>
       <div class="row gx-0">
@@ -86,12 +84,8 @@
       <div class="d-flex justify-content-center" data-mygarden-target="addAnotherCollectionHeader">
         <button class="sp-btn-green clickable mt-4" data-action="click->mygarden#addAnotherCollection">Click to add another collection</button>
       </div>
-      <div>
-        <%= simple_form_for (@collection), html: { class: "d-none", data: { mygarden_target: "addAnotherCollectionForm" } } do |f| %>
-          <%= f.input :name, label: 'Your collection title' %>
-          <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
-          <%= f.submit "Create a collection", class: 'sp-btn-green'%>
-        <% end %>
+      <div data-mygarden-target="addAnotherCollectionForm" class="d-none">
+        <%= render "collections/addcollection", collection: @collection%>
       </div>
   <% end %>
   </div>

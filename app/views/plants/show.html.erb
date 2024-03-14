@@ -11,19 +11,21 @@
   <div class="container-fluid">
     <div class="row">
       <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].nil? %>' data-header="info" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">
-        <i class="fa-solid fa-leaf"></i>
+        <i class="fa-solid fa-leaf" style="pointer-events: none"></i>
       </h2>
-      <h2 class='col-4 menu-header clickable' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">
-        <i class="fa-solid fa-notes-medical"></i>
+      <h2 class='col-4 menu-header clickable <%= "btn disabled" if @plant.illnesses.count == 0 %>' data-header="diagnose" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">
+        <% if @plant.illnesses.count == 0 %>
+        <i class="fa-solid fa-heart" style="pointer-events: none"></i>
+        <% else %>
+        <i class="fa-solid fa-heart-crack" style="pointer-events: none"></i>
+        <% end %>
       </h2>
       <h2 class='col-4 menu-header clickable <%= "active" if params[:start_date].present? %>' data-header="schedule" data-action="click->plant-show#displayContent" data-plant-show-target="menuHeader">
-        <i class="fa-solid fa-droplet"></i>
+        <i class="fa-solid fa-droplet" style="pointer-events: none"></i>
       </h2>
     </div>
   </div>
-
 <div data-content="info" class="diagnosis-results-container mt-0 <%= "d-none" if params[:start_date].present? %>" data-plant-show-target="content">
-
   <div class="container">
     <div class="form-check form-switch d-flex justify-content-end py-0"
       data-controller="plant-listing"
@@ -216,12 +218,8 @@
 
 <div data-controller="copy-to-clipboard">
 
-    <div class='my-3'>
-      <span class="sp-btn-green clickable" data-action="click->copy-to-clipboard#toggle">Share Watering Schedules</span>
-    </div>
-
-  <div class="input-group d-none mb-2" data-copy-to-clipboard-target="button">
-        <input class="form-control" type="text"
+  <div class="input-group my-2" data-copy-to-clipboard-target="button">
+        <input class="form-control" type="hidden"
         data-copy-to-clipboard-target="input"
         <% if Rails.env.development? %>
           value=<%="http://localhost:3000/schedule/#{current_user.token}" %> readonly
@@ -230,9 +228,9 @@
         <% end %>
         >
         <div class="input-group-append">
-          <button class="btn sp-btn-green-calendar-outline"
+          <button class="sp-btn-green-calendar"
           data-action="click->copy-to-clipboard#copy"
-          >Copy to Clipboard</button>
+          >Share Watering Schedules</button>
         </div>
       </div>
     </div>
