@@ -4,9 +4,9 @@
   <% end %>
 
   <% if @plant.image.attached? %>
-    <%= cl_image_tag @plant.image.key, class: "image-card" %>
+    <%= cl_image_tag @plant.image.key, class: "image-card-rounded" %>
   <% else %>
-    <%= image_tag @plant.plant_info.image_url, class: "image-card" %>
+    <%= image_tag @plant.plant_info.image_url, class: "image-card-rounded" %>
   <% end %>
 </div>
 

@@ -27,8 +27,8 @@
 
 <div data-content="info" class="diagnosis-results-container mt-0 <%= "d-none" if params[:start_date].present? %>" data-plant-show-target="content">
 
-  <div class="container">
-    <div class="form-check form-switch d-flex justify-content-end py-0"
+  <div class="container mt-4">
+    <div class="list-badge rounded-pill form-check form-switch"
       data-controller="plant-listing"
       data-plant-listing-target="form"
       data-plant-id="<%= @plant.id %>"
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mt-5 pt-5">
     <h1>
       <%= @plant.nickname %> <%= "(#{@plantinfo.name.titleize})" %>
     <h1>
