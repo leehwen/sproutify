@@ -22,7 +22,7 @@
             <% if plant.image.key? %>
               <%= cl_image_tag plant.image.key %>
             <% else %>
-              <%= image_tag("plant_sample_10.jpg", class: "plant-card-image") %>
+              <%= image_tag plant.plant_info.image_url, class: "plant-card-image" %>
             <% end %>
             <div class="plant-card-content">
               <h3><%= plant.nickname %></h3>

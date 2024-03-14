@@ -1,6 +1,8 @@
 <div>
   <% if @plant.image.attached? %>
     <%= cl_image_tag @plant.image.key, class: "image-card" %>
+  <% else %>
+    <%= image_tag @plant.plant_info.image_url, class: "image-card" %>
   <% end %>
 </div>
 
@@ -19,7 +21,6 @@
       </h2>
     </div>
   </div>
-
 
 <div data-content="info" class="diagnosis-results-container mt-0 <%= "d-none" if params[:start_date].present? %>" data-plant-show-target="content">
 
