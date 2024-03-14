@@ -130,6 +130,51 @@ plant_infos5 = PlantInfo.create!(
   image_url: "https://www.teojooguan.com/wp-content/uploads/2020/06/Bougainvillea-Red-Mixed-768x1024.jpg"
 )
 
+plant_infos6 = PlantInfo.create!(
+  name:"Asplenium nidus L. var. nidus",
+  common_names: "Bird's Nest Fern, Rumah Langsuyar",
+  description: "The bird's-nest fern (Asplenium nidus) is a large, leafy fern commonly found on wayside trees in Singapore, particularly the rain tree.",
+  watering: 2,
+  propagation: "[\"spores\"]",
+  image_url: "https://www.nparks.gov.sg/-/media/ffw/protected/flora/1/5/1541/asplenium-nidus_low-wei-teng.ashx"
+)
+
+plant_infos7 = PlantInfo.create!(
+  name:"Epipremnum aureum (Linden & André) G.S. Bunting",
+  common_names: "Golden Pothos, Money Plant, Devil's Ivy",
+  description: "It is a climber to creeper with stems that can grow up to 12 m long. The leaves usually have yellow-marble pattern. Young plants have waxy, heart-shaped green leaves, measuring up to 10 cm long and variegated with yellow to white.",
+  watering: 2,
+  propagation: "[\"stem cutting\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2023/7/26/money_plant_1690347279_f65dfbeb_progressive.jpg"
+)
+
+plant_infos8 = PlantInfo.create!(
+  name:"Papilionanthe Miss Joaquim",
+  common_names: "Vanda Miss Joaquim",
+  description: "This slow-growing hybrid grows best in an open, sunny location with humid, non-stagnant air. It requires heavy fertilisation for optimal flowering. The slender stems should be tied to posts for support.",
+  watering: 2,
+  propagation: "[\"stem cutting\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2022/4/20/vanda_miss_joaquim_atherton_or_1650443332_b7fe9d46_progressive.jpg"
+)
+
+plant_infos9 = PlantInfo.create!(
+  name:"Anthurium andraeanum Linden ex André",
+  common_names: "Anthurium, Flamingo Lily, Painter's Palette",
+  description: "It is an small, upright herbaceous plant that grows to 40 cm in height. Adventitious roots may occur in some plants. Its flowers are axillary, produced on a spadix inflorescence. The inflorescence comprise of a cream-yellow tail-like spadix and bright red spathe that is wide, flat and waxy. The long lasting flowers can bloom multiple times yearly when optimum conditions are met.",
+  watering: 1,
+  propagation: "[\"seeds\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2024/2/13/anthurium_red_potted_plant_1707802649_02ad88c2_progressive.jpg"
+)
+
+plant_infos10 = PlantInfo.create!(
+  name:"Impatiens balsamina L.",
+  common_names: "Garden Balsam, Rose Balsam",
+  description: "Garden Balsam is a annual herb that reaches to 1 m in height. Garden Balsam have elliptic to lance-shaped leaves with serrated margins and showy flowers that come in many colours; pink, red, purple. The genus, Impatiens is the latin word for impatient, referring to the explosive release of seeds from the fruit pod. They are easy to grow, tolerant of short periods of drought and with proper light, fertile well drained soil, the Garden Balsam thrives well in any gardens.",
+  watering: 1,
+  propagation: "[\"seeds\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2017/08/01/assorted_balsam_plant_seeds_1501567501_31e894a9.jpg"
+)
+
 # create plants for each user (user 3 and 4 mainly for marketplace)
 
 Plant.create!(
@@ -250,12 +295,25 @@ Plant.create!(
   start_date: Date.today
 )
 
-5.times do
+3.times do
   Plant.create!(
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
-    user: user3,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    user: user1,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
+    listing: true,
+    watering_frequency: 1,
+    start_date: Date.today
+  )
+end
+
+3.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user2,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
+    listing: true,
     watering_frequency: 1,
     start_date: Date.today
   )
@@ -266,7 +324,18 @@ end
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
     user: user3,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
+    watering_frequency: 1,
+    start_date: Date.today
+  )
+end
+
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user3,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     listing: true,
     watering_frequency: 2,
     start_date: Date.today
@@ -278,7 +347,7 @@ end
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
     user: user3,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     listing: true,
     watering_frequency: 2,
     start_date: Date.today
@@ -290,7 +359,7 @@ end
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
     user: user4,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     watering_frequency: 3,
     start_date: Date.today
   )
@@ -301,7 +370,7 @@ end
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
     user: user4,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     listing: true,
     watering_frequency: 4,
     start_date: Date.today
@@ -314,7 +383,7 @@ end
     nickname: Faker::Lorem.sentence(word_count: 3),
     remarks: Faker::Quote.famous_last_words,
     user: user4,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     listing: true,
     watering_frequency: 4,
     start_date: Date.today
