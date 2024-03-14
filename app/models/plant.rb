@@ -10,6 +10,8 @@ class Plant < ApplicationRecord
   has_many :offers
   has_many :offering_options
 
+  validates :nickname, uniqueness: { scope: :user_id, message: "is currently in use" }
+
   include PgSearch::Model
   pg_search_scope :global_search,
     associated_against: {

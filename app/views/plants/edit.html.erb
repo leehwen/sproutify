@@ -11,7 +11,7 @@
             </div>
           </div>
 
-          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show" } }) do |f| %>
+          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show", action: "submit->collection#fire" } }) do |f| %>
             <%= f.input :name, label: 'Your collection title' %>
             <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
             <%= f.submit "Create a collection", class: 'sp-btn-green' %>
@@ -25,7 +25,7 @@
             </div>
           </div>
 
-          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show" } }) do |f| %>
+          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show", action: "submit->collection#fire" } }) do |f| %>
             <%= f.input :name, label: 'Your collection title' %>
             <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
             <%= f.submit "Create a collection", class: 'sp-btn-green' %>
@@ -40,6 +40,8 @@
           <% end %>
         <% end %>
       </div>
+
+      <div data-collection-target="display">
     </div>
   </div>
 </div>
