@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require "open-uri"
+
 puts "resetting data base..."
 Buddy.destroy_all
 Message.destroy_all
@@ -35,6 +37,10 @@ user1 = User.create!(
   token: SecureRandom.alphanumeric(32)
 )
 
+file = URI.open("https://thispersondoesnotexist.com/")
+user1.image.attach(io: file, filename: "avatar1.jpeg", content_type: "image/jpeg")
+user1.save
+
 user2 = User.create!(
   username: "user2",
   email: "user2@email.com",
@@ -44,6 +50,10 @@ user2 = User.create!(
   last_name: "Yeo",
   token: SecureRandom.alphanumeric(32)
 )
+
+file = URI.open("https://thispersondoesnotexist.com/")
+user2.image.attach(io: file, filename: "avatar2.jpeg", content_type: "image/jpeg")
+user2.save
 
 user3 = User.create!(
   username: "user3",
@@ -55,6 +65,10 @@ user3 = User.create!(
   token: SecureRandom.alphanumeric(32)
 )
 
+file = URI.open("https://thispersondoesnotexist.com/")
+user3.image.attach(io: file, filename: "avatar3.jpeg", content_type: "image/jpeg")
+user3.save
+
 user4 = User.create!(
   username: "user4",
   email: "user4@email.com",
@@ -65,6 +79,10 @@ user4 = User.create!(
   token: SecureRandom.alphanumeric(32)
 )
 
+file = URI.open("https://thispersondoesnotexist.com/")
+user4.image.attach(io: file, filename: "avatar4.jpeg", content_type: "image/jpeg")
+user4.save
+
 # create plant information
 
 plant_infos1 = PlantInfo.create!(
@@ -72,7 +90,8 @@ plant_infos1 = PlantInfo.create!(
   common_names: "Lady's Fingers, Okra, Gumbo, Bendi",
   description: "The unripe fruit of Lady’s Finger is a popular vegetable in many cuisines which has a mucilaginous texture.",
   watering: 2,
-  propagation: "[\"seeds\"]"
+  propagation: "[\"seeds\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2024/2/3/okra_seeds_ladys_finger_star_o_1706930552_1f466e12_thumbnail.jpg"
 )
 
 plant_infos2 = PlantInfo.create!(
@@ -80,7 +99,8 @@ plant_infos2 = PlantInfo.create!(
   common_names: "Monstera",
   description: "Monstera is a genus of 59 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas. The genus is named from the Latin word for monstrous or abnormal, and refers to the unusual leaves with natural holes that members of the genus have.",
   watering: 2,
-  propagation: "[\"cuttings\", \"seeds\"]"
+  propagation: "[\"cuttings\", \"seeds\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2024/1/25/monstera_swiss_cheese_plant_1706155704_5b335d06_progressive.jpg"
 )
 
 plant_infos3 = PlantInfo.create!(
@@ -88,7 +108,8 @@ plant_infos3 = PlantInfo.create!(
   common_names: "Desert Rose, Sabi star, kudu, mock azalea, impala lily",
   description: "Adenium obesum, more commonly known as a desert rose, is a poisonous species of flowering plant belonging to the tribe Nerieae of the subfamily Apocynoideae of the dogbane family, Apocynaceae.[3] It is native to the Sahel regions south of the Sahara (from Mauritania and Senegal to Sudan), tropical and subtropical eastern and southern Africa and also the Arabian Peninsula.",
   watering: 1,
-  propagation: "[\"cuttings\"]"
+  propagation: "[\"cuttings\"]",
+  image_url: "https://media.karousell.com/media/photos/products/2018/07/29/adenium__desert_rose_plant_1532860670_66dda519.jpg"
 )
 
 plant_infos4 = PlantInfo.create!(
@@ -96,7 +117,8 @@ plant_infos4 = PlantInfo.create!(
   common_names: "Rosary pea, Precatory bean, Crab's eyes",
   description: "Abrus precatorius is a slender, perennial climber that twines around trees, shrubs and hedges. The plant is used in some traditional medicine to treat scratches and sores, and wounds. The leaves are used for their anti-suppurative.  In China, the seed were once used to treat fever, malaria, headache, worms and dropsy.",
   watering: 3,
-  propagation: "[\"cuttings\", \"seeds\"]"
+  propagation: "[\"cuttings\", \"seeds\"]",
+  image_url: "https://www.nparks.gov.sg/-/media/ffw/migrated/round2/flora/3480/13dcf402da8f44109adf2742f3d81a3c.ashx"
 )
 
 plant_infos5 = PlantInfo.create!(
@@ -104,7 +126,8 @@ plant_infos5 = PlantInfo.create!(
   common_names: "Bougainvillea",
   description: "Bougainvillea is a genus of thorny ornamental vines, bushes, and trees belonging to the four o' clock family, Nyctaginaceae. It is native to eastern South America, found from Brazil, west to Peru, and south to southern Argentina. Different authors accept from 4 to 22 species in the genus.[2] The inflorescence consists of large colourful sepal-like bracts which surround three simple waxy flowers, gaining popularity for the plant as an ornamental.",
   watering: 2,
-  propagation: "[\"seeds\"]"
+  propagation: "[\"seeds\"]",
+  image_url: "https://www.teojooguan.com/wp-content/uploads/2020/06/Bougainvillea-Red-Mixed-768x1024.jpg"
 )
 
 # create plants for each user (user 3 and 4 mainly for marketplace)
@@ -225,13 +248,12 @@ Plant.create!(
   plant_info: plant_infos4,
   watering_frequency: 3,
   start_date: Date.today
-
 )
 
 5.times do
   Plant.create!(
-    nickname: Faker::Lorem.word,
-    remarks: Faker::Lorem.sentence(word_count: 3),
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
     user: user3,
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
     watering_frequency: 1,
@@ -239,40 +261,65 @@ Plant.create!(
   )
 end
 
-# 10.times do
-#   Plant.create!(
-#     nickname: Faker::Lorem.word,
-#     remarks: Faker::Lorem.sentence(word_count: 3),
-#     user: user2,
-#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-#     listing: true,
-#     watering_frequency: 2,
-#     start_date: Date.today
-#   )
-# end
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user3,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true,
+    watering_frequency: 2,
+    start_date: Date.today
+  )
+end
 
-# 5.times do
-#   Plant.create!(
-#     nickname: Faker::Lorem.word,
-#     remarks: Faker::Lorem.sentence(word_count: 3),
-#     user: user3,
-#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-#     watering_frequency: 3,
-#     start_date: Date.today
-#   )
-# end
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user3,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true,
+    watering_frequency: 2,
+    start_date: Date.today
+  )
+end
 
-# 10.times do
-#   Plant.create!(
-#     nickname: Faker::Lorem.word,
-#     remarks: Faker::Lorem.sentence(word_count: 3),
-#     user: user4,
-#     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
-#     listing: true,
-#     watering_frequency: 4,
-#     start_date: Date.today
-#   )
-# end
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user4,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    watering_frequency: 3,
+    start_date: Date.today
+  )
+end
+
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user4,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true,
+    watering_frequency: 4,
+    start_date: Date.today
+  )
+end
+
+
+5.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user4,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5].sample,
+    listing: true,
+    watering_frequency: 4,
+    start_date: Date.today
+  )
+end
 
 # create illnesses
 
