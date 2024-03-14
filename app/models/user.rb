@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :buddies
   has_many :messages
 
-
+  has_one_attached :profile_picture
   has_one_attached :image
   has_many :plants, dependent: :destroy
   has_many :offers
