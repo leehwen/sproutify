@@ -1,39 +1,39 @@
 <%= render "shared/settings"%>
 
-<div class="container" data-controller="mygarden">
-  <div class="d-flex justify-content-center mt-4">
-  <div class="container">
-    <div class="row d-flex justify-content-center">
-      <div class="col-sm-12 col-lg-6 mb-4 ps-0">
-        <h1>
-          My Garden
-        </h1>
+<div class="listings-container" data-controller="mygarden">
+  <div class="d-flex justify-content-center">
+    <div class="w-100">
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-lg-6 mt-2">
+          <h1>
+            My Garden <i class="fa-solid fa-seedling nav-icon"></i>
+          </h1>
+        </div>
       </div>
-    </div>
 
-    <div class="row justify-content-center">
-      <div class="index_header col-sm-12 col-lg-4">
-        <div class="d-flex justify-content-center">
-          <div class="sp-btn-green-index disabled rounded-5 index_header_toggle mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
-          <div class="sp-btn-green-index rounded-5 clickable mx-2 " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+      <div class="row justify-content-center">
+        <div class="index_header col-sm-12 col-lg-6">
+          <div class="d-flex justify-content-center">
+            <div class="sp-btn-green-index disabled rounded-5 index_header_toggle mx-2" data-mygarden-target="plantsHeader" data-action="click->mygarden#togglePlant">Plants</div>
+            <div class="sp-btn-green-index rounded-5 clickable mx-2 " data-mygarden-target="collectionHeader" data-action="click->mygarden#toggleCollection">Collections</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="index_header col-sm-12 col-lg-12">
+          <div class="d-flex justify-content-center">
+            <%= link_to buddies_path, class:"scheduling" do %>
+                <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="row justify-content-center">
-      <div class="index_header col-sm-12 col-lg-4">
-        <div class="d-flex justify-content-center">
-          <%= link_to buddies_path, class:"scheduling" do %>
-              <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 
   <div class="row justify-content-center mt-3" data-mygarden-target="toHide">
-    <div class="col-sm-12 col-lg-4 d-flex">
+    <div class="col-sm-12 col-lg-6 d-flex">
       <div class="d-flex justify-content-left">
         <%= link_to new_plant_path, class:"scheduling" do %>
           <% if @plants.count ==0 %>
@@ -113,7 +113,9 @@
               <div class="plant-card-content d-flex flex-column justify-content-between">
                   <div>
                     <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+                    <% if plant.remarks.present? %>
                     <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
+                    <% end %>
                     <p><strong>Species: </strong><%= plantinfo.name  %></p>
                   </div>
 

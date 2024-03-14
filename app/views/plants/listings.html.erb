@@ -1,14 +1,12 @@
-<%= render "shared/settings"%>
+<%= render "shared/chat"%>
 
 <div class="listings-container">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6 mb-4">
+    <div class="col-sm-12 col-lg-6 mt-2 mb-1">
 
       <h1>
-        Marketplace
+        Marketplace <i class="fa-solid fa-store nav-icon"></i>
       </h1>
-
-      <%= link_to "Go to Offers tab", offers_path %>
 
     </div>
   </div>
@@ -66,11 +64,15 @@
                     <p>
                       <%= listing.plant_info.common_names.titleize.gsub(',', ', ') %>
                     </p>
-                    <div class="lister">
+                    <div class="lister d-flex">
+                      <div class="me-1">
+                        <% if current_user.profile_picture.attached? %>
+                          <%= cl_image_tag current_user.profile_picture.key, class: "avatar-small", alt: "user profile image"%>
+                        <% else %>
+                          <%= image_tag "User vector.png", class: "avatar-small", alt: "user profile image"%>
+                        <% end %>
+                      </div>
                       <p class="m-0">
-                        <strong>
-                          Listed by
-                        </strong>
                         <%= listing.user.first_name %>
                       </p>
                     </div>

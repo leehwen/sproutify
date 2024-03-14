@@ -2,23 +2,35 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="plant-listing"
 export default class extends Controller {
-  static targets = ["checkbox"]
+  static targets = ["form", "checkbox"]
 
   connect() {
     console.log("hello plant-listing-controller");
   }
 
-  fire() {
-  let status = this.checkboxTarget.checked;
+  fire(event) {
+    event.preventDefault();
+    const status = this.checkboxTarget.checked;
+    const plantId = this.formTarget.dataset.plantId;
+    const url = `/plants/${plantId}/update-listing?status=${status}`
 
-  fetch(`/plants/:id/update-listing?status=${status}`)
-  .then(response => response.json())
-  .then((data) => {
-    console.log(data);
-  });
+    fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "X-CSRF-Token": this.#getMetaValue("csrf-token")
+      }
+    })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+    });
 
-  // half done
+  }
 
+  #getMetaValue(name) {
+    const element = document.head.querySelector(`meta[name="${name}"]`)
+    return element.getAttribute("content")
   }
 
 }

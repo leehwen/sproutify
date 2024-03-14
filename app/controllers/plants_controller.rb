@@ -17,11 +17,18 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     @plant.user = current_user
-    if @plant.save
-      redirect_to plants_path
-    else
-      render :new, status: :unprocessable_entity
+    @plant.save! if @plant.valid?
+
+    respond_to do |format|
+      format.json
     end
+
+
+    # if @plant.save
+    #   redirect_to plants_path
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
 
     authorize @plant
   end
@@ -110,8 +117,18 @@ class PlantsController < ApplicationController
 
   def update_listing
     @plant = Plant.find(params[:id])
-    @plant.listing = true # needs to be updated based on checkbox status plant_listing_controller.js
+    @plant.listing = params[:status]
     authorize @plant
+    if @plant.save!
+      flash[:alert] = "Listing settings updated"
+    else
+      flash[:alert] = "Error with listing on Marketplace"
+    end
+
+    respond_to do |format|
+      format.json { render json: { header: 'ok' } }
+      format.html { redirect_to plant_path(@plant) }
+    end
   end
 
   def share

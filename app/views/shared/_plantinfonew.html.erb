@@ -40,6 +40,7 @@
   </div>
 
   <div class="mb-4">
+    <% if plant_info.propagation.present? %>
     <h2>
       Propagation Methods
     </h2>
@@ -48,6 +49,7 @@
           <li> <%= f.titleize %> </li>
       <% end %>
     </ul>
+    <% end %>
   </div>
 
   <div class="mb-4">

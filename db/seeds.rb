@@ -110,7 +110,7 @@ plant_infos5 = PlantInfo.create!(
 # create plants for each user (user 3 and 4 mainly for marketplace)
 
 Plant.create!(
-  nickname: "Lady's Finger",
+  nickname: "Lady's Finger New",
   remarks: "1 month old seedling",
   user: user1,
   plant_info: plant_infos1,
@@ -119,7 +119,7 @@ Plant.create!(
 )
 
 Plant.create!(
-  nickname: "Lady's Finger",
+  nickname: "Lady's Finger Old",
   remarks: "Flowering, ready to have fruits",
   user: user1,
   plant_info: plant_infos1,
@@ -209,7 +209,7 @@ Plant.create!(
 )
 
 Plant.create!(
-  nickname: "Bougainvillea",
+  nickname: "Pink Bougainvillea",
   remarks: "Take care, keeps dropping leaves",
   user: user2,
   plant_info: plant_infos5,
@@ -352,74 +352,74 @@ PlantIllness.create!(
 # pending offers: each offer 2 options
 # other offers: each offer 1 option
 
-user4_lister_plants = Plant.where(listing: true).sample(4)
-user3_buyer_plants = Plant.where(listing: true).sample(4)
+# user4_lister_plants = Plant.where(listing: true).sample(4)
+# user3_buyer_plants = Plant.where(listing: true).sample(4)
 
-offer_pending =
-  Offer.create!(
-    accepted: "pending",
-    lister_plant: user4_lister_plants[0],
-    buyer_plant: nil,
-    lister: user4,
-    buyer: user3
-  )
+# offer_pending =
+#   Offer.create!(
+#     accepted: "pending",
+#     lister_plant: user4_lister_plants[0],
+#     buyer_plant: nil,
+#     lister: user4,
+#     buyer: user3
+#   )
 
-OfferingOption.create!(
-  offer: offer_pending,
-  plant: user3_buyer_plants[0]
-)
+# OfferingOption.create!(
+#   offer: offer_pending,
+#   plant: user3_buyer_plants[0]
+# )
 
-OfferingOption.create!(
-  offer: offer_pending,
-  plant: user3_buyer_plants[1]
-)
+# OfferingOption.create!(
+#   offer: offer_pending,
+#   plant: user3_buyer_plants[1]
+# )
 
-offer_pending2 =
-  Offer.create!(
-    accepted: "pending",
-    lister_plant: user4_lister_plants[1],
-    buyer_plant: nil,
-    lister: user4,
-    buyer: user3
-  )
+# offer_pending2 =
+#   Offer.create!(
+#     accepted: "pending",
+#     lister_plant: user4_lister_plants[1],
+#     buyer_plant: nil,
+#     lister: user4,
+#     buyer: user3
+#   )
 
-OfferingOption.create!(
-  offer: offer_pending2,
-  plant: user3_buyer_plants[0]
-)
+# OfferingOption.create!(
+#   offer: offer_pending2,
+#   plant: user3_buyer_plants[0]
+# )
 
-OfferingOption.create!(
-  offer: offer_pending2,
-  plant: user3_buyer_plants[1]
-)
+# OfferingOption.create!(
+#   offer: offer_pending2,
+#   plant: user3_buyer_plants[1]
+# )
 
-offer_rejected =
-  Offer.create!(
-    accepted: "rejected",
-    lister_plant: user4_lister_plants[2],
-    buyer_plant: nil,
-    lister: user4,
-    buyer: user3
-  )
+# offer_rejected =
+#   Offer.create!(
+#     accepted: "rejected",
+#     lister_plant: user4_lister_plants[2],
+#     buyer_plant: nil,
+#     lister: user4,
+#     buyer: user3
+#   )
 
-OfferingOption.create!(
-  offer: offer_rejected,
-  plant: user3_buyer_plants[2]
-)
+# OfferingOption.create!(
+#   offer: offer_rejected,
+#   plant: user3_buyer_plants[2]
+# )
 
-offer_accepted =
-  Offer.create!(
-    accepted: "accepted",
-    lister_plant: user4_lister_plants[3],
-    buyer_plant: user3_buyer_plants[3],
-    lister: user4,
-    buyer: user3
-  )
+# offer_accepted =
+#   Offer.create!(
+#     accepted: "accepted",
+#     lister_plant: user4_lister_plants[3],
+#     buyer_plant: user3_buyer_plants[3],
+#     lister: user4,
+#     buyer: user3
+#   )
 
-OfferingOption.create!(
-  offer: offer_accepted,
-  plant: user3_buyer_plants[3]
-)
+# OfferingOption.create!(
+#   offer: offer_accepted,
+#   plant: user3_buyer_plants[3]
+# )
 
 buddy = Buddy.create!(
   name: "Zi Jie",
