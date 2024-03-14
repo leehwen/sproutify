@@ -20,16 +20,16 @@ class OffersController < ApplicationController
     @lister = @lister_plant.user
 
     existing_offer = existing_offer(@lister.id, @lister_plant.id)
+
     if existing_offer.empty?
       @offer = Offer.new(lister_plant_id: @lister_plant.id, lister_id: @lister.id, accepted: "pending", buyer_id: current_user.id)
       if @offer.save
         redirect_to offer_offering_options_new_path(@offer)
       else
-        flash[:alert] = @offer.errors.messages.values[0]
-        redirect_to listing_plant_path(@lister_plant)
+        redirect_to listing_plant_path(@lister_plant), alert: @offer.errors.messages.values[0]
       end
     else
-      flash[:alert] = "You already have a pending offer for this plant"
+      redirect_to listing_plant_path(@lister_plant), alert: "You already have a pending offer for this plant"
     end
   end
 
@@ -107,6 +107,7 @@ class OffersController < ApplicationController
   def existing_offer(lister_id, lister_plant_id)
     existing_offer = []
     db_offers = Offer.where(["lister_id = ? and lister_plant_id = ? and buyer_id = ?", lister_id, lister_plant_id, current_user.id])
+
     return existing_offer unless db_offers.length.positive?
 
     db_offers.each do |offer|
@@ -116,5 +117,6 @@ class OffersController < ApplicationController
         offer.destroy
       end
     end
+    existing_offer
   end
 end
