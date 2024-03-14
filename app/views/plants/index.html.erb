@@ -111,11 +111,12 @@
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
                 <div>
-                  <p class="m-0"><strong>Nickname: </strong><%= plant.nickname %></p>
+                  <p class="m-0" style="font-size:1.4rem"><strong><%= plant.nickname %></strong> <span style="font-size:1rem"> (<%= plantinfo.name  %>)</span></p>
                   <% if plant.remarks.present? %>
-                  <p class="m-0"><strong>Remarks: </strong><%= plant.remarks  %></p>
+                  <p class="m-0" style="font-size:0.8rem"><%= plant.remarks %></p>
                   <% end %>
-                  <p><strong>Species: </strong><%= plantinfo.name  %></p>
+                  <br>
+                  <p><strong>Common Name: </strong><%= plantinfo.common_names %></p>
                 </div>
 
                 <div class="d-flex w-100  justify-content-between plantlinks">

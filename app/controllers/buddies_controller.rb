@@ -15,7 +15,7 @@ class BuddiesController < ApplicationController
     if @buddy.save
       redirect_to buddies_path
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity, alert: "Please add buddy again"
     end
 
     authorize @buddy
@@ -28,6 +28,15 @@ class BuddiesController < ApplicationController
 
     redirect_to plants_path, success: "Schedule sent to #{@buddy.name}"
     
+    authorize @buddy
+  end
+
+  def destroy
+    @buddy = Buddy.find(params[:id])
+    @buddy.destroy
+
+    redirect_to buddies_path, alert: "Buddy successfully deleted"
+
     authorize @buddy
   end
 
