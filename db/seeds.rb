@@ -42,12 +42,12 @@ user1.image.attach(io: file, filename: "avatar1.jpeg", content_type: "image/jpeg
 user1.save
 
 user2 = User.create!(
-  username: "yytan",
+  username: "fengyong",
   email: "user2@email.com",
   password: "password",
   address: "333D Anchorvale Link, Singapore 544333",
-  first_name: "Yin Yun",
-  last_name: "T.",
+  first_name: "Yong",
+  last_name: "Feng",
   token: SecureRandom.alphanumeric(32)
 )
 
@@ -84,12 +84,12 @@ user4.image.attach(io: file, filename: "avatar4.jpeg", content_type: "image/jpeg
 user4.save
 
 user5 = User.create!(
-  username: "fengyong",
+  username: "yytan",
   email: "user5@email.com",
   password: "password",
   address: "718 Woodlands Ave 6, Singapore 730718",
-  first_name: "Yong",
-  last_name: "Feng",
+  first_name: "YY",
+  last_name: "Tan",
   token: SecureRandom.alphanumeric(32)
 )
 
@@ -197,7 +197,8 @@ Plant.create!(
   user: user1,
   plant_info: plant_infos1,
   watering_frequency: 1,
-  start_date: Date.today
+  start_date: Date.today,
+  listing: true
 )
 
 Plant.create!(
@@ -206,7 +207,8 @@ Plant.create!(
   user: user1,
   plant_info: plant_infos2,
   watering_frequency: 7,
-  start_date: Date.today + 1.days
+  start_date: Date.today + 1.days,
+  listing: true
 )
 
 Plant.create!(
@@ -225,8 +227,8 @@ Plant.create!(
   user: user2,
   plant_info: plant_infos3,
   watering_frequency: 3,
-  start_date: Date.today
-
+  start_date: Date.today,
+  listing: true
 )
 
 5.times do
