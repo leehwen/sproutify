@@ -1,0 +1,7 @@
+<div>
+  <% if plant.image.key? %>
+      <%= cl_image_tag plant.image.key, class: "swap-plant-image #{user}-plant-image" %>
+  <% else %>
+    <%= image_tag plant.plant_info.image_url, class: "swap-plant-image #{user}-plant-image" %>
+  <% end %>
+</div>
