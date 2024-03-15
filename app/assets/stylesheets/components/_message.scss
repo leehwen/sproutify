@@ -3,7 +3,8 @@
   max-width: 312px;
   border-radius: 12px;
   background-color: $light-green;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .message-receiver {
@@ -11,10 +12,6 @@
   max-width: 312px;
   border-radius: 12px;
   background-color: $gray;
-  margin-top: 1rem;
-}
-
-.chat {
-  height: 80vh;
-  overflow:scroll;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }

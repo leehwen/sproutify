@@ -51,24 +51,25 @@
                           <% end %>
                         </div>
 
-                        <div>
-                          <p class="m-0">
-                            <%= offer.lister_plant.user.username %>
-                          </p>
-                          <h3 class="m-0">
-                            <%= offer.lister_plant.nickname %>
-                          </h3>
-                          <p>
-                            <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
-                          </p>
-                          <div>
-                            <p class="m-0">
-                              <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
-                            </p>
-                          </div>
-                        </div>
+                    <div>
+                      <p class="m-0">
+                        <%= offer.lister_plant.user.first_name %>
+                        (<%= offer.lister_plant.user.username %>)
+                      </p>
+                      <h3 class="m-0">
+                        <%= offer.lister_plant.nickname %>
+                      </h3>
+                      <p>
+                        <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
+                      </p>
+                      <div>
+                        <p class="m-0">
+                          <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                        </p>
                       </div>
                     </div>
+                  </div>
+                </div>
 
                     <div class="offer-badge <%= offer.accepted %>">
                       <%= offer.accepted.upcase %>

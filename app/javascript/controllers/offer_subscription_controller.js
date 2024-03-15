@@ -7,7 +7,9 @@ export default class extends Controller {
   static targets = ["messages", "scroller"]
 
   connect() {
-    window.scrollTo(0, this.messagesTarget.scrollHeight)
+    const offsetHeight = document.querySelector(".nav").offsetHeight
+    this.element.style.height = `calc(100vh - ${offsetHeight}px)`
+    this.scrollerTarget.scrollTo(0, this.messagesTarget.scrollHeight)
 
     this.channel = createConsumer().subscriptions.create(
       { channel: "OfferChannel", id: this.offerIdValue },

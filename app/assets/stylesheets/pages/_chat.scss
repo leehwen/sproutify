@@ -1,0 +1,14 @@
+.chat-header{
+  margin-left: 50px;
+}
+
+.chat-header h1{
+  padding-top: 1rem;
+}
+
+.chat-content {
+  overflow: auto;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  scroll-behavior: smooth;
+}

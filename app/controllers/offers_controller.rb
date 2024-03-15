@@ -37,6 +37,7 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
     @messages = @offer.messages
     @message = Message.new
+    render layout: "chat_layout"
   end
 
   def accept
