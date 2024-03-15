@@ -2,8 +2,6 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[share]
 
   def index
-    @plants = Plant.all.where(user: current_user).order(created_at: :desc)
-    @collections=Collection.all.where(user: current_user)
     @collection = Collection.new
     @plants = policy_scope(Plant)
     @collections= policy_scope(Collection)
@@ -45,6 +43,7 @@ class PlantsController < ApplicationController
   def edit
     @plant = Plant.find(params[:id])
     @collection = Collection.new
+    @collections = current_user.collections
 
     authorize @plant
   end

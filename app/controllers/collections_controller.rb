@@ -25,7 +25,7 @@ class CollectionsController < ApplicationController
 
     @collection.destroy
 
-    redirect_to plants_path
+    redirect_to plants_path, alert: "Collection has been deleted"
 
     authorize @collection
   end

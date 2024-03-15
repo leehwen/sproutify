@@ -18,7 +18,7 @@ class CollectionPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.where(user: user).order("created_at DESC")
     end
   end
 end

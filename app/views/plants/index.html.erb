@@ -114,20 +114,21 @@
               <% end %>
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
-                <div class="m-0 p-0">
                   <div class="d-flex justify-content-between">
-                  <p class="mb-2 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong></p>
+                    <p class="mb-2 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong></p>
+                    <div>
+                      <% if plant.illnesses.exists? %>
+                        <p class="sick-badge px-2 rounded-pill"><strong>Sick</strong></p>
+                      <% else %>
+                      <% end %>
+                    </div>
+                  </div>
+
                   <div>
-                    <% if plant.illnesses.exists? %>
-                      <p class="sick-badge px-2 rounded-pill">sick</p>
-                    <% else %>
+                    <% if plant.remarks.present? %>
+                    <p class="m-0 p-0" style="font-size:0.8rem"><%= plant.remarks %></p>
                     <% end %>
                   </div>
-                  </div>
-                  <% if plant.remarks.present? %>
-                  <p class="m-0 p-0" style="font-size:0.8rem"><%= plant.remarks %></p>
-                  <% end %>
-                </div>
 
                 <div class="d-flex w-100  justify-content-between plantlinks">
                   <div>
