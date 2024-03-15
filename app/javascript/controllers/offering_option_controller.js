@@ -34,6 +34,7 @@ export default class extends Controller {
         })
         console.log('rejected');
       } else {
+        e.currentTarget.classList.add("plant-card-sm-active");
         this.offeringOptionIds.push(id);
         this.updateOfferingHTML(id);
       }
@@ -52,11 +53,11 @@ export default class extends Controller {
       .then(data => {
         console.log(data);
 
-        this.selectedOfferingTarget.insertAdjacentHTML(
-          "beforeend",
-            data
-          )
-          window.scrollTo(0, document.body.scrollHeight);
+        // this.selectedOfferingTarget.insertAdjacentHTML(
+        //   "beforeend",
+        //     data
+        //   )
+        //   window.scrollTo(0, document.body.scrollHeight);
       })
   }
 
