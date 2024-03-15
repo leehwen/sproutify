@@ -9,10 +9,10 @@
   <% end %>
   <%= link_to plants_path, class: "nav-link" do %>
     <i class="fa-solid fa-seedling nav-icon"></i>
-    <span class="text <%= "fw-bold" if request.original_url.include?("plants") && request.original_url.exclude?("listings") && request.original_url.exclude?("new") %>">My Garden</span>
+    <span class="text <%= "fw-bold" if request.original_url.include?("plants") && request.original_url.exclude?("listing") && request.original_url.exclude?("new") %>">My Garden</span>
   <% end %>
   <%= link_to listings_plants_path, class: "nav-link" do %>
     <i class="fa-solid fa-store nav-icon"></i>
-    <span class="text <%= "fw-bold" if request.original_url.include?("listings") || request.original_url.include?("offers")%> ">Marketplace</span>
+    <span class="text <%= "fw-bold" if request.original_url.include?("listing") || request.original_url.include?("offer")%> ">Marketplace</span>
   <% end %>
 </div>
