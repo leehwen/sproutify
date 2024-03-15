@@ -133,7 +133,7 @@
         Common Names:
       </h2>
       <p>
-        <%= JSON.parse(illness.common_names.titleize).join %>
+        <%= JSON.parse(illness.common_names.titleize).join(", ") %>
       </p>
     <% end %>
   </div>
@@ -191,10 +191,10 @@
       <% end %>
     </ul>
   </div>
-  <div class="mb-3">
+  <div class="mb-3" data-controller="delete-illness">
   <%= link_to "Recovered from #{illness.name}!",
       plant_remove_diagnosis_path(@plant, illness),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?", action:"click->delete-illness#click"},
       class: "sp-btn-green",
       style: "text-decoration:none"
   %>
