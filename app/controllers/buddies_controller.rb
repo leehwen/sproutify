@@ -12,11 +12,11 @@ class BuddiesController < ApplicationController
     @buddies = Buddy.all.where(user: current_user)
     @buddy = Buddy.new(buddy_params)
     @buddy.user = current_user
+    @buddy.save! if @buddy.valid?
 
-    if @buddy.save
-      redirect_to buddies_path
-    else
-      render :index, status: :unprocessable_entity, alert: "Please add buddy again"
+    respond_to do |format|
+      # format.html { redirect_to plants_path }
+      format.json
     end
 
     authorize @buddy
