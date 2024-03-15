@@ -26,35 +26,6 @@
   }
 }
 
-.plant-card-sm-active {
-  background-color: $dark-green;
-  border-radius: 10px;
-  margin: 10px auto;
-  position: relative;
-  font-size: 0.8rem;
-
-  .plant-card-image {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-  }
-
-  .plant-card-image-lg {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 225px;
-    object-fit: cover;
-  }
-
-  .plant-card-content {
-    padding: 15px;
-    color: $off-white;
-  }
-}
-
 .plant-card {
   background-color: $light-green;
   border-radius: 10px;
@@ -62,6 +33,7 @@
   position: relative;
   font-size: 0.8rem;
 
+  // for vertical cards
   .plant-card-image {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -70,11 +42,12 @@
     object-fit: cover;
   }
 
+  // for horizontal cards
   .plant-card-image-left {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    width: 100%;
-    height: 150px;
+    width: 150px;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -89,6 +62,63 @@
   .plant-card-content {
     padding: 15px;
     height: calc(100% - 150px);
+    position: relative;
+
+    .details-class{
+      position: absolute;
+      top: -16px;
+      right: 5%;
+      background-color: $medium-green;
+      border-radius: 50%;
+      padding: 8px 15px 8px 15px;
+      color: white;
+    }
+  }
+
+  .sick-class{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+.plant-card-active {
+  background-color: $dark-green;
+  border-radius: 10px;
+  margin: 10px auto;
+  position: relative;
+  font-size: 0.8rem;
+
+  // for vertical cards
+  .plant-card-image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  // for horizontal cards
+  .plant-card-image-left {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .plant-card-image-lg {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+  }
+
+  .plant-card-content {
+    padding: 15px;
+    height: calc(100% - 150px);
+    color: $off-white;
   }
 }
 
@@ -119,10 +149,4 @@
     font-weight: 500;
     transition: 0.2s ease;
   }
-}
-
-.deleteplant{
-  position: absolute;
-  top: 150px;
-  right: 5px;
 }

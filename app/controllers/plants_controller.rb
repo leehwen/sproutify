@@ -1,5 +1,6 @@
 class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[share]
+  skip_before_action :verify_authenticity_token, only: %i[remove_diagnosis]
 
   def index
     @collection = Collection.new
@@ -101,7 +102,8 @@ class PlantsController < ApplicationController
     pi = PlantIllness.find_by(plant: @plant, illness: @illness)
     authorize @plant
     pi.destroy
-    redirect_to plant_path(@plant)
+    # redirect_to plant_path(@plant)
+    head :ok
   end
 
   def listings
@@ -123,11 +125,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.listing = params[:status]
     authorize @plant
-    if @plant.save!
-      flash[:alert] = "Listing settings updated"
-    else
-      flash[:alert] = "Error with listing on Marketplace"
-    end
+    @plant.save
 
     respond_to do |format|
       format.json { render json: { header: 'ok' } }

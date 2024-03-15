@@ -16,8 +16,6 @@ export default class extends Controller {
     this.plantsHeaderTarget.classList.remove("index_header_toggle");
     this.collectionTarget.classList.remove("d-none")
     this.plantsTarget.classList.add("d-none");
-    this.toHideTarget.classList.add("d-none");
-
   }
 
   togglePlant() {
@@ -27,7 +25,6 @@ export default class extends Controller {
     this.plantsHeaderTarget.classList.add("index_header_toggle");
     this.collectionTarget.classList.add("d-none")
     this.plantsTarget.classList.remove("d-none");
-    this.toHideTarget.classList.remove("d-none");
   }
 
   addCollection(){

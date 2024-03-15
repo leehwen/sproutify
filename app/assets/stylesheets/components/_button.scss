@@ -89,6 +89,28 @@
   padding: 6px 20px;
 }
 
+.sp-btn-gray-delete {
+  background-color: $gray;
+  color: $charcoal;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8.5px 20px;
+  min-width: 150px;
+  border-radius: 25px;
+}
+
+.sp-btn-green-confirm {
+  background-color: $dark-green;
+  color: $off-white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8.5px 20px;
+  min-width: 150px;
+  border-radius: 25px;
+}
+
 .sp-btn-gray-sm {
   background-color: $gray;
   color: $charcoal;
