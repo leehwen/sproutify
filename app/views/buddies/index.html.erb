@@ -1,20 +1,22 @@
 <div class="listings-container" data-controller="buddy">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6 mt-2 mb-1">
-      <div class="d-flex justify-content-between">
-        
-        <div>
-          <h1>My Buddies</h1>
-        </div>
 
-        <div>
+    <div class="mt-2 mb-2 col-sm-12 col-lg-6">
+      <div class="d-flex mb-4">
+        <div class="d-flex align-items-center me-2">
           <%= link_to plants_path do %>
-            <i class="back-button-link fa-solid fa-angles-left"></i>
+            <i class="back-button fa-solid fa-angles-left"></i>
           <% end %>
         </div>
 
+        <div>
+          <h1 class="m-0">
+            My Buddies
+          </h1>
+        </div>
       </div>
     </div>
+
   </div>
 
   <div class="row justify-content-center">
@@ -42,7 +44,7 @@
 
   <% else %>
 
-      <p class="mt-5 mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
+      <p class="mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
       <% @buddies.each do |buddy| %>
         <div class="plant-card p-3 m-2">
           <div>

@@ -1,8 +1,12 @@
 <div>
+  <%= link_to listings_plants_path do %>
+    <i class="back-button-fixed fa-solid fa-angles-left"></i>
+  <% end %>
+
   <% if @plant.image.attached? %>
-    <%= cl_image_tag @plant.image.key, class: "image-card" %>
+    <%= cl_image_tag @plant.image.key, class: "image-card-rounded" %>
   <% else %>
-    <%= image_tag @plant.plant_info.image_url, class: "image-card" %>
+    <%= image_tag @plant.plant_info.image_url, class: "image-card-rounded" %>
   <% end %>
 </div>
 
@@ -64,15 +68,10 @@
     <h2>
       Propagation:
     </h2>
-    <ul class="list-unstyled">
+    <ul>
       <% JSON.parse(@plant.plant_info.propagation).each do |f| %>
           <li> <%= f.titleize %> </li>
       <% end %>
     </ul>
   </div>
-
-  <%= link_to listings_plants_path do %>
-    <i class="back-button fa-solid fa-angles-left"></i>
-  <% end %>
-
 </div>

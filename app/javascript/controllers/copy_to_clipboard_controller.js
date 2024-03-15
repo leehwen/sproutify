@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import Swal from 'sweetalert2'
 
 export default class extends Controller {
   static targets = ["input", "button"]
@@ -13,10 +14,15 @@ export default class extends Controller {
     navigator.clipboard.writeText(this.inputTarget.value);
     // this.buttonTarget.classList.add("disabled");
     // this.buttonTarget.innerText = this.feedbackTextValue;
+    Swal.fire({
+      title: "Link copied successfully!",
+      text: "Share the link with your buddy!",
+      icon: "success"
+    });
   }
 
   toggle() {
-    console.log(this.buttonTarget)
+    // console.log(this.buttonTarget)
     this.buttonTarget.classList.toggle("d-none");
   }
 }

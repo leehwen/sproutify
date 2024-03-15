@@ -1,66 +1,95 @@
 <div class="offers-container">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6">
-      <h1>
-        Offers
-      </h1>
+
+    <div class="d-flex mt-2 mb-4 col-sm-12 col-lg-6">
+      <div class="d-flex align-items-center me-2">
+        <%= link_to listings_plants_path do %>
+          <i class="back-button fa-solid fa-angles-left"></i>
+        <% end %>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <h1 class="m-0">
+          Offers
+        </h1>
+      </div>
+    </div>
+
+  </div>
+
+  <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
+  <div class="row justify-content-center">
+    <div class="mt-2 col-sm-12 col-lg-6">
+      <% if @offers.blank? %>
+        <div class="mb-4">
+          <p class="text-center">
+            You currently have no pending offers.
+          </p>
+        </div>
+
+        <div class="mt-5 mb-3">
+          <%= image_tag "Cheeky plant vector.png", width: 350, alt: "Cheeky plant vector" %>
+        </div>
+
+        <p class="text-center">
+          Be sure to list your plants and check out our marketplace for other plants to swap with.
+        </p>
+
+      <% else %>
+        <% @offers.each do |offer| %>
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-lg-6">
+                <%= link_to chat_offer_path(offer), class: "text-decoration-none text-dark", :action => 'go' do %>
+                  <div class="d-flex justify-content-between offer-card">
+                    <div class="d-flex flex-column justify-content-between ps-3 py-3">
+                      <div class="d-flex mt-3">
+                        <div class="me-3">
+                          <% if offer.lister_plant.user.image.attached? %>
+                            <%= cl_image_tag current_user.image.key, class: "avatar", alt: "user profile image"%>
+                          <% else %>
+                            <%= image_tag user.image_url, class: "avatar", alt: "user profile image"%>
+                          <% end %>
+                        </div>
+
+                        <div>
+                          <p class="m-0">
+                            <%= offer.lister_plant.user.username %>
+                          </p>
+                          <h3 class="m-0">
+                            <%= offer.lister_plant.nickname %>
+                          </h3>
+                          <p>
+                            <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
+                          </p>
+                          <div>
+                            <p class="m-0">
+                              <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="offer-badge <%= offer.accepted %>">
+                      <%= offer.accepted.upcase %>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-end mt-3 py-3 pe-3">
+                      <% if offer.lister_plant.image.key? %>
+                        <%= cl_image_tag offer.lister_plant.image.key, class: "offer-image" %>
+                      <% else %>
+                        <%= image_tag offer.lister_plant.plant_info.image_url, class: "offer-image" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
-  <%= link_to listings_plants_path do %>
-    <i class="back-button-right fa-solid fa-angles-left"></i>
-  <% end %>
 
-  <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
 
-    <% @offers.each do |offer| %>
-        <div class="row justify-content-center">
-          <div class="col-sm-12 col-lg-6">
-            <%= link_to chat_offer_path(offer), class: "text-decoration-none text-dark", :action => 'go' do %>
-              <div class="d-flex justify-content-between offer-card">
-                <div class="d-flex flex-column justify-content-between ps-3 py-3">
-                  <div class="d-flex mt-3">
-                    <div class="me-3">
-                      <% if offer.lister_plant.user.image.attached? %>
-                        <%= cl_image_tag current_user.image.key, class: "avatar", alt: "user profile image"%>
-                      <% else %>
-                        <%= image_tag user.image_url, class: "avatar", alt: "user profile image"%>
-                      <% end %>
-                    </div>
-
-                    <div>
-                      <p class="m-0">
-                        <%= offer.lister_plant.user.username %>
-                      </p>
-                      <h3 class="m-0">
-                        <%= offer.lister_plant.nickname %>
-                      </h3>
-                      <p>
-                        <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
-                      </p>
-                      <div>
-                        <p class="m-0">
-                          <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="offer-badge <%= offer.accepted %>">
-                  <%= offer.accepted.upcase %>
-                </div>
-
-                <div class="d-flex flex-column justify-content-end mt-3 py-3 pe-3">
-                  <% if offer.lister_plant.image.key? %>
-                    <%= cl_image_tag offer.lister_plant.image.key, class: "offer-image" %>
-                  <% else %>
-                    <%= image_tag offer.lister_plant.plant_info.image_url, class: "offer-image" %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-    <% end %>
 </div>

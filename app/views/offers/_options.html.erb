@@ -1,152 +1,155 @@
 <% @offering_options = @offer.offering_options %>
 
-<%= link_to offers_path do %>
-  <i class="back-button fa-solid fa-angles-left"></i>
-<% end %>
-
-<div class="row justify-content-center">
-  <div class="col-sm-12 col-lg-6">
-    <div class="mt-4 mb-4">
-      <h1>
+<div class="row flex-column justify-content-center">
+  <div class="d-flex mt-2 mb-4 col-sm-12 col-lg-6">
+    <div class="d-flex align-items-center me-2">
+      <%= link_to offers_path do %>
+        <i class="back-button fa-solid fa-angles-left"></i>
+      <% end %>
+    </div>
+    <div class="d-flex align-items-center">
+      <h1 class="m-0">
         Offer Details
       </h1>
-      <p>
-        <strong>Status:</strong> <%= @offer.accepted %>
-      </p>
     </div>
-
-    <div class="d-flex plant-card mb-4">
-      <div>
-        <% if @offer.lister_plant.image.key? %>
-          <%= cl_image_tag @offer.lister_plant.image.key %>
-        <% else %>
-          <%= image_tag @offer.lister_plant.plant_info.image_url, class: "plant-card-image" %>
-        <% end %>
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-        <div class="px-3">
-          <% if @offer.lister == current_user %>
-            <h2>Plant requested by others</h2>
-          <% else %>
-            <h2>Plant that you want</h2>
-          <% end %>
-          <p class="m-0"><strong><%= @offer.lister_plant.nickname %></strong></p>
-          <p class="m-0"><%= @offer.lister_plant.plant_info.name %></p>
-          <p class="m-0">Common name: <%= @offer.lister_plant.plant_info.common_names %></p>
-        </div>
-      </div>
-    </div>
-
-    <% if @offer.accepted == "pending" %>
-    <div class="mb-4">
-      <% if @offer.lister == current_user %>
-        <h2>Plants offered by others</h2>
-      <% else %>
-        <h2>Plants you have offered</h2>
-      <% end %>
-      <div class="grid-container">
-        <% @offering_options.each do |option|%>
-          <div
-            data-plant-id="<%= option.plant.id %>"
-            data-offer-id="<%= option.offer.id %>"
-            data-action="click->offer-select#select"
-            data-offer-select-target="option"
-            class="grid-item plant-card-sm"
-          >
-            <% if option.plant.image.key? %>
-              <%= cl_image_tag option.plant.image.key %>
-            <% else %>
-              <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image" %>
-            <% end %>
-            <div class="plant-card-content">
-              <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
-              <p><%= option.plant.plant_info.name %></p>
-              <p class="m-0"><strong>Common name:</strong></p>
-              <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="mt-5">
-        <%= link_to "Accept Offer", "#", class: "sp-btn-green-sm", data: {action: "click->offer-select#accept", turbo_method: :patch} if policy(@offer).accept? %>
-        <%= link_to "Reject Offer", reject_offer_path(@offer), class: "sp-btn-gray-sm" ,data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} if policy(@offer).reject? %>
-      </div>
-    </div>
-
-    <% elsif @offer.accepted == "rejected" %>
-    <div class="mb-4">
-      <% if @offer.lister == current_user %>
-        <h2>Plants offered by others</h2>
-      <% else %>
-        <h2>Plants you have offered</h2>
-      <% end %>
-      <div class="grid-container">
-        <% @offering_options.each do |option|%>
-          <div class="grid-item plant-card-sm">
-            <% if option.plant.image.key? %>
-              <%= cl_image_tag option.plant.image.key %>
-            <% else %>
-              <%= image_tag option.plant_info.image_url, class: "plant-card-image" %>
-            <% end %>
-            <div class="plant-card-content">
-              <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
-              <p><%= option.plant.plant_info.name %></p>
-              <p class="m-0"><strong>Common name:</strong></p>
-              <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <% else %>
-    <div class="mb-4">
-      <% if @offer.lister == current_user %>
-        <h2>Plants offered by others</h2>
-      <% else %>
-        <h2>Plants you have offered</h2>
-      <% end %>
-      <div class="grid-container">
-        <% @offering_options.each do |option|%>
-          <div class="grid-item plant-card-sm">
-            <% if option.plant.image.key? %>
-              <%= cl_image_tag option.plant.image.key %>
-            <% else %>
-              <%= image_tag option.plant_info.image_url, class: "plant-card-image" %>
-            <% end %>
-            <div class="plant-card-content">
-              <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
-              <p><%= option.plant.plant_info.name %></p>
-              <p class="m-0"><strong>Common name:</strong></p>
-              <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div>
-      <% if @offer.lister == current_user %>
-        <h2>Plant you have selected</h2>
-      <% else %>
-        <h2>Plant selected by other party</h2>
-      <% end %>
-      <div class="grid-container">
-        <div class="grid-item plant-card-sm">
-          <% if @offer.buyer_plant.image.key? %>
-            <%= cl_image_tag @offer.buyer_plant.image.key %>
-          <% else %>
-            <%= image_tag @offer.buyer_plant.plant_info.image_url, class: "plant-card-image" %>
-          <% end %>
-          <div class="plant-card-content">
-            <p class="m-0"><strong><%= @offer.buyer_plant.nickname %></strong></p>
-            <p><%= @offer.buyer_plant.plant_info.name %></p>
-            <p class="m-0"><strong>Common name:</strong></p>
-            <p class="m-0"><%= @offer.buyer_plant.plant_info.common_names %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-
+  </div>
+  <div>
+    <p class="m-0">
+      <strong>Status:</strong> <%= @offer.accepted %>
+    </p>
   </div>
 </div>
+
+
+<div class="d-flex plant-card mb-4">
+  <div>
+    <% if @offer.lister_plant.image.key? %>
+      <%= cl_image_tag @offer.lister_plant.image.key %>
+    <% else %>
+      <%= image_tag @offer.lister_plant.plant_info.image_url, class: "plant-card-image-left" %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column justify-content-center">
+    <div class="px-3">
+      <% if @offer.lister == current_user %>
+        <h2>Plant requested by others</h2>
+      <% else %>
+        <h2>Plant that you want</h2>
+      <% end %>
+      <p class="m-0"><strong><%= @offer.lister_plant.nickname %></strong></p>
+      <p class="m-0"><%= @offer.lister_plant.plant_info.name %></p>
+      <p class="m-0">Common name: <%= @offer.lister_plant.plant_info.common_names %></p>
+    </div>
+  </div>
+</div>
+
+<% if @offer.accepted == "pending" %>
+  <div class="mb-4">
+    <% if @offer.lister == current_user %>
+      <h2 class="m-0">Plants offered by others</h2>
+    <% else %>
+      <h2 class="m-0">Plants you have offered</h2>
+    <% end %>
+    <div class="grid-container">
+      <% @offering_options.each do |option|%>
+        <div
+          data-plant-id="<%= option.plant.id %>"
+          data-offer-id="<%= option.offer.id %>"
+          data-action="click->offer-select#select"
+          data-offer-select-target="option"
+          class="grid-item plant-card-sm"
+        >
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image" %>
+          <% end %>
+          <div class="plant-card-content">
+            <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
+            <p><%= option.plant.plant_info.name %></p>
+            <p class="m-0"><strong>Common name:</strong></p>
+            <p class="m-0"><%= option.plant.plant_info.common_names %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-5">
+      <%= link_to "Accept Offer", "#", class: "sp-btn-green-sm", data: {action: "click->offer-select#accept", turbo_method: :patch} if policy(@offer).accept? %>
+      <%= link_to "Reject Offer", reject_offer_path(@offer), class: "sp-btn-gray-sm" ,data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} if policy(@offer).reject? %>
+    </div>
+  </div>
+
+  <% elsif @offer.accepted == "rejected" %>
+  <div class="mb-4">
+    <% if @offer.lister == current_user %>
+      <h2 class="m-0">Plants offered by others</h2>
+    <% else %>
+      <h2 class="m-0">Plants you have offered</h2>
+    <% end %>
+    <div class="grid-container">
+      <% @offering_options.each do |option|%>
+        <div class="grid-item plant-card-sm">
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag option.plant_info.image_url, class: "plant-card-image" %>
+          <% end %>
+          <div class="plant-card-content">
+            <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
+            <p><%= option.plant.plant_info.name %></p>
+            <p class="m-0"><strong>Common name:</strong></p>
+            <p class="m-0"><%= option.plant.plant_info.common_names %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% else %>
+  <div class="mb-4">
+    <% if @offer.lister == current_user %>
+      <h2 class="m-0">Plants offered by others</h2>
+    <% else %>
+      <h2 class="m-0">Plants you have offered</h2>
+    <% end %>
+    <div class="grid-container">
+      <% @offering_options.each do |option|%>
+        <div class="grid-item plant-card-sm">
+          <% if option.plant.image.key? %>
+            <%= cl_image_tag option.plant.image.key %>
+          <% else %>
+            <%= image_tag option.plant_info.image_url, class: "plant-card-image" %>
+          <% end %>
+          <div class="plant-card-content">
+            <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
+            <p><%= option.plant.plant_info.name %></p>
+            <p class="m-0"><strong>Common name:</strong></p>
+            <p class="m-0"><%= option.plant.plant_info.common_names %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <% if @offer.lister == current_user %>
+      <h2 class="m-0">Plant you have selected</h2>
+    <% else %>
+      <h2 class="m-0">Plant selected by other party</h2>
+    <% end %>
+    <div class="grid-container">
+      <div class="grid-item plant-card-sm">
+        <% if @offer.buyer_plant.image.key? %>
+          <%= cl_image_tag @offer.buyer_plant.image.key %>
+        <% else %>
+          <%= image_tag @offer.buyer_plant.plant_info.image_url, class: "plant-card-image" %>
+        <% end %>
+        <div class="plant-card-content">
+          <p class="m-0"><strong><%= @offer.buyer_plant.nickname %></strong></p>
+          <p><%= @offer.buyer_plant.plant_info.name %></p>
+          <p class="m-0"><strong>Common name:</strong></p>
+          <p class="m-0"><%= @offer.buyer_plant.plant_info.common_names %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

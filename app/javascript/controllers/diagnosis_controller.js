@@ -20,6 +20,7 @@ export default class extends Controller {
 
     reader.onload = (e) => {
       const base64String = e.target.result;
+      document.querySelector("#loader").classList.remove("d-none")
       // console.log({ base64String });
       this.#diagnose( base64String );
     };
@@ -74,6 +75,7 @@ export default class extends Controller {
           console.log(HTMLstring);
           this.resultsTarget.innerHTML = HTMLstring
           this.diagnoseTarget.classList.toggle("d-none")
+          document.querySelector("#loader").classList.add("d-none")
         })
       });
 

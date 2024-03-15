@@ -243,7 +243,6 @@ Plant.create!(
   listing: true,
   watering_frequency: 5,
   start_date: Date.today + 3.days
-
 )
 
 Plant.create!(
