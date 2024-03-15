@@ -69,8 +69,8 @@
           <div>
             <span class="collection-card-label"><%= collection.name %></span>
           </div>
-          <div>
-            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection"}, class:"text-decoration-none"%>
+          <div data-controller="delete-illness">
+            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection", action:"click->delete-illness#click"}, class:"text-decoration-none"%>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
                     <i class="fa-solid fa-info"></i>
                   <% end %>
                 </div>
-                
+
                 <div>
                   <%= link_to "+Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
                 </div>
