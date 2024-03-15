@@ -1,28 +1,15 @@
-  <% if message.user == current_user %>
-    <div class="d-flex justify-content-end">
-      <div id="message-<%= message.id %>" class="message-sender">
-        <div class="p-2">
-          <%= raw(message.content) %>
-        </div>
-        <div class="text-end pe-2 mb-2">
-          <small>
-            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-          </small>
-        </div>
-
+<div class="message <%= message.user == current_user ? "message-sender" : "message-receiver" %>">
+  <div class="content">
+    <div id="message-<%= message.id %>">
+      <div class="p-2">
+        <%= raw(message.content) %>
       </div>
+      <div class="text-end pe-2 mb-2">
+        <small>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+      </div>
+
     </div>
-  <% else %>
-    <div class="d-flex justify-content-begin">
-        <div id="message-<%= message.id %>" class="message-receiver">
-          <div class="text-start pe-1 mb-2">
-            <small>
-              <strong><%= message.user.first_name %></strong>
-              <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-            </small>
-          </div>
-          <div class="p-2"><%= raw(message.content) %></div>
-
-        </div>
-      </div>
-  <% end %>
+  </div>
+</div>
