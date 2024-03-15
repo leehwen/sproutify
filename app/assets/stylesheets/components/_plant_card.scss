@@ -91,11 +91,10 @@
   .plant-card-content {
     padding: 15px;
     height: calc(100% - 150px);
-    position: relative;
 
     .details-class{
       position: absolute;
-      top: -16px;
+      top: 132px;
       right: 5%;
       background-color: $medium-green;
       border-radius: 50%;
