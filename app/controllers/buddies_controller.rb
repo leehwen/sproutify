@@ -1,4 +1,5 @@
 class BuddiesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[destroy]
 
   def index
     @buddies = Buddy.all.where(user: current_user)
@@ -27,7 +28,7 @@ class BuddiesController < ApplicationController
     BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_later
 
     redirect_to plants_path, success: "Schedule sent to #{@buddy.name}"
-    
+
     authorize @buddy
   end
 
