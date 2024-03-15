@@ -208,7 +208,6 @@ Plant.create!(
   plant_info: plant_infos2,
   watering_frequency: 7,
   start_date: Date.today + 1.days,
-  listing: true
 )
 
 Plant.create!(
