@@ -11,7 +11,7 @@ I have left everything you need neatly arranged near the plants, including water
 
 Please refer to the link for the schedule.
 
-<% prod_link = "https://sproutify-staging-b96e84e48ea6.herokuapp.com/#{@user.token}"%>
+<% prod_link = "https://sproutify-c4e444894f0a.herokuapp.com/schedule/#{@user.token}"%>
 <% dev_link = "http://localhost:3000/schedule/#{@user.token}"%>
 
 <a href="<%= Rails.env.development? ? dev_link : prod_link %>">Link to Schedule</a>
