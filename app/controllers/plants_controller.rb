@@ -2,11 +2,10 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[share]
 
   def index
-    @plants = Plant.all.where(user: current_user)
-    @collections=Collection.all.where(user: current_user)
     @collection = Collection.new
     @plants = policy_scope(Plant)
     @collections= policy_scope(Collection)
+
   end
 
   def new
@@ -44,6 +43,7 @@ class PlantsController < ApplicationController
   def edit
     @plant = Plant.find(params[:id])
     @collection = Collection.new
+    @collections = current_user.collections
 
     authorize @plant
   end
@@ -79,7 +79,6 @@ class PlantsController < ApplicationController
 
     if @plant.save
       redirect_to plants_path, success: "Plant added to collection."
-
     else
       render :edit, notice: "Plant not able to be added. Try again"
     end

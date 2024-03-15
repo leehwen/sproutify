@@ -1,0 +1,5 @@
+<%= simple_form_for (collection), html: { data: { mygarden_target: "form", action: "submit->mygarden#validateCollectionFromScratch" } }  do |f| %>
+          <%= f.input :name, label: 'Your collection title' %>
+          <%= f.input :image, as: :file, label: 'Upload a a collection image (optional)' %>
+          <%= f.submit "Create a collection", class: 'sp-btn-green'%>
+        <% end %>

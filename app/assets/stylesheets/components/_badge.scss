@@ -19,3 +19,22 @@
     background-color: #E5893A;
   }
 }
+
+.sick-badge {
+  margin-top: 3px;
+  background-color: #E5893A;
+}
+
+.list-badge {
+  background-color: $dark-green;
+  color: $off-white;
+  width: 65%;
+  position: absolute;
+  right: -15px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+
+  fieldset {
+    margin: 0 !important;
+  }
+}

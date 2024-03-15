@@ -1,25 +1,27 @@
 <div class="listings-container" data-controller="buddy">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6 mt-2 mb-1">
-      <div class="d-flex justify-content-between">
-        
-        <div>
-          <h1>My Buddies</h1>
-        </div>
 
-        <div>
+    <div class="mt-2 mb-2 col-sm-12 col-lg-6">
+      <div class="d-flex mb-4">
+        <div class="d-flex align-items-center me-2">
           <%= link_to plants_path do %>
-            <i class="back-button-link fa-solid fa-angles-left"></i>
+            <i class="back-button fa-solid fa-angles-left"></i>
           <% end %>
         </div>
 
+        <div>
+          <h1 class="m-0">
+            My Buddies
+          </h1>
+        </div>
       </div>
     </div>
+
   </div>
 
   <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-6 mb-4">
-      <% if Buddy.count == 0 %>
+      <% if @buddies.count == 0 %>
   <div class="d-flex justify-content-center mt-5" data-buddy-target="addBuddyHeader">
     <div>
         <p><em>You do not have a buddy yet.</em></p>
@@ -42,7 +44,7 @@
 
   <% else %>
 
-      <p class="mt-5 mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
+      <p class="mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
       <% @buddies.each do |buddy| %>
         <div class="plant-card p-3 m-2">
           <div>
@@ -61,7 +63,7 @@
         </div>
     <% end %>
 
-  <div class="d-flex mt-3" data-buddy-target="addBuddyHeader">
+  <div class="d-flex mt-4 justify-content-center" data-buddy-target="addBuddyHeader">
     <div class="sp-btn-green clickable" data-action="click->buddy#show">
       <p class="m-0">Add another Buddy</p>
     </div>
