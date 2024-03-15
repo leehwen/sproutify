@@ -100,14 +100,14 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "sproutify-c4e444894f0a.herokuapp.com/",
+    domain: "sproutify-c4e444894f0a.herokuapp.com",
     user_name: "ngzijie89@gmail.com",
     password: ENV['MAIL_PW'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
 
-  host = "sproutify-c4e444894f0a.herokuapp.com/"
+  host = "sproutify-c4e444894f0a.herokuapp.com"
   config.action_mailer.default_url_options = { :host => host, protocol: 'https' }
 
 end
