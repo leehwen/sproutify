@@ -2,11 +2,12 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[share]
 
   def index
-    @plants = Plant.all.where(user: current_user)
+    @plants = Plant.all.where(user: current_user).order(created_at: :desc)
     @collections=Collection.all.where(user: current_user)
     @collection = Collection.new
     @plants = policy_scope(Plant)
     @collections= policy_scope(Collection)
+
   end
 
   def new

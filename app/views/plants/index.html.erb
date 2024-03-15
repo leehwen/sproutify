@@ -1,13 +1,23 @@
-<%= render "shared/settings"%>
-
 <div class="listings-container" data-controller="mygarden">
   <div class="d-flex justify-content-center">
     <div class="w-100">
-      <div class="row d-flex justify-content-center">
-        <div class="col-sm-12 col-lg-6 mt-2">
-          <h1>
-            My Garden <i class="fa-solid fa-seedling nav-icon"></i>
-          </h1>
+      <div class="row d-flex justify-content-center ps-1 pe-2">
+        <div class="d-flex justify-content-between col-sm-12 col-lg-6 mt-2 mb-4">
+          <div class="d-flex align-items-center">
+            <h1 class="m-0">
+              My Garden
+            </h1>
+          </div>
+          <div class="d-flex">
+            <div class="d-flex align-items-center me-2">
+              <%= link_to new_plant_path, class:"scheduling" do %>
+                <span><i class="fa-solid fa-plus"></i> Add plant</span>
+              <% end%>
+            </div>
+            <div>
+              <%= render "shared/settings"%>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -21,10 +31,10 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="index_header col-sm-12 col-lg-12">
+        <div class="index_header mb-4 col-sm-12 col-lg-12">
           <div class="d-flex justify-content-center">
             <%= link_to buddies_path, class:"scheduling" do %>
-                <span>Send watering schedule to a buddy <i class="fa-solid fa-user-group"></i></span>
+                <span>Share watering schedule with a buddy <i class="fa-solid fa-user-group"></i></span>
             <% end %>
           </div>
         </div>
@@ -32,25 +42,25 @@
     </div>
   </div>
 
-  <div class="row justify-content-center mt-3" data-mygarden-target="toHide">
+  <%# <div class="row justify-content-center mt-3" data-mygarden-target="toHide">
     <div class="col-sm-12 col-lg-6 d-flex">
       <div class="d-flex justify-content-left">
         <%= link_to new_plant_path, class:"scheduling" do %>
-          <% if @plants.count ==0 %>
-            <span>Identify and add a plant <i class="fa-solid fa-plus"></i></span>
-          <% else %>
-            <span>Identify and add another plant <i class="fa-solid fa-plus"></i></span>
-          <% end %>
-        <% end %>
-      </div>
+          <%# <% if @plants.count ==0 %>
+            <%# <span>Identify and add a plant <i class="fa-solid fa-plus"></i></span> %>
+          <%# <% else %>
+            <%# <span>Identify and add another plant <i class="fa-solid fa-plus"></i></span> %>
+          <%# <% end %>
+        <%# <% end %>
+      <%# </div>
     </div>
-  </div>
+  </div> %>
 
   <div class="collection d-none mt-3" data-mygarden-target="collection">
   <% if @collections.count == 0 %>
     <div class="d-flex flex-column align-items-center", data-mygarden-target="addCollectionHeader">
-      <div>
-        <%= image_tag "Sad plant vector.png", width: 100, alt: "Sad plant vector" %>
+      <div class="mt-4">
+        <%= image_tag "Sad plant vector.png", width: 350, alt: "Sad plant vector" %>
       </div>
       <div>
         <p> You do not have any collections yet </p>
@@ -105,15 +115,29 @@
 
               <div class="plant-card-content d-flex flex-column justify-content-between">
                 <div class="m-0 p-0">
-                  <p class="m-0 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong> </p>
+                  <div class="d-flex justify-content-between">
+                  <p class="mb-2 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong></p>
+                  <div>
+                    <% if plant.illnesses.exists? %>
+                      <p class="sick-badge px-2 rounded-pill">sick</p>
+                    <% else %>
+                    <% end %>
+                  </div>
+                  </div>
                   <% if plant.remarks.present? %>
                   <p class="m-0 p-0" style="font-size:0.8rem"><%= plant.remarks %></p>
                   <% end %>
                 </div>
 
                 <div class="d-flex w-100  justify-content-between plantlinks">
-                  <%= link_to "Details", plant_path(plant), class:"text-decoration-none fw-bold" %>
-                  <%= link_to "+ Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
+                  <div>
+                    <%= link_to plant_path(plant), class:"fw-bold" do %>
+                      <i class="fa-solid fa-file"></i>
+                    <% end %>
+                  </div>
+                  <div>
+                    <%= link_to "+Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
+                  </div>
                 </div>
               </div>
             </div>
