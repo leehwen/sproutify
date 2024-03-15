@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="offer-subscription"
 export default class extends Controller {
-  static values = { offerId: Number }
+  static values = { offerId: Number, userId: Number }
   static targets = ["messages", "scroller"]
 
   connect() {
@@ -17,8 +17,11 @@ export default class extends Controller {
     )
   }
 
-  #insertMessageAndScrollDown(data) {
-    this.messagesTarget.insertAdjacentHTML("beforeend", data)
+  #insertMessageAndScrollDown({sender, message}) {
+    if(sender != this.userIdValue) {
+      message = message.replace("message-sender", "message-receiver")
+    }
+    this.messagesTarget.insertAdjacentHTML("beforeend", message)
     this.scrollerTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
 
