@@ -16,7 +16,6 @@ export default class extends Controller {
     e.preventDefault();
 
     const url = `${this.showTarget.action}`;
-    console.log(this.showTarget);
 
     document.querySelector("#loader").classList.remove("d-none")
 
@@ -27,7 +26,6 @@ export default class extends Controller {
     .then(response => response.json())
     .then((data) => {
       // this.displayTarget.outerHTML = data
-      console.log(data)
       if (data.status === false) {
       this.showTarget.innerHTML = data.info
       document.querySelector("#loader").classList.add("d-none") }
