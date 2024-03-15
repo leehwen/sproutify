@@ -38,7 +38,12 @@
     >
       <%= simple_form_for (@plant) do |f| %>
         <%= f.input :listing,
-          label: "List in Marketplace" ,
+          label: @plant.listing ? "Already listed" : "List in Marketplace",
+          label_html: {
+            data: {
+              plant_listing_target: "status"
+            }
+          },
           as: :boolean,
           class: 'form-check-input',
           input_html: { class: "text-light",

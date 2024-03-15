@@ -169,3 +169,13 @@
   text-align: center;
   padding: 8.5px 20px;
 }
+
+
+.form-check-input:checked, .was-validated .form-check-input:valid:checked, .form-check-input.is-valid:checked {
+  border-color: $medium-green;
+  background-color: $medium-green;
+}
+
+.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
+  color: $off-white;
+}
