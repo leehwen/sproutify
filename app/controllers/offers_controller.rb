@@ -56,16 +56,13 @@ class OffersController < ApplicationController
 
       # respond back to update the page
       respond_to do |format|
-        format.text { render partial: "options",
-                      locals: { offer: @offer },
-                      formats: [:html]
-                    }
+        format.html { render "offer/options",locals: { offer: @offer }}
+        format.json
       end
     else
       flash[:alert] = "Error with accepting the offer"
       redirect_to offer_path(@offer)
     end
-
   end
 
   def reject

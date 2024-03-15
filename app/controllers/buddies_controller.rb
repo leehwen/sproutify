@@ -1,4 +1,5 @@
 class BuddiesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[destroy]
 
   def index
     @buddies = Buddy.all.where(user: current_user)
@@ -11,11 +12,11 @@ class BuddiesController < ApplicationController
     @buddies = Buddy.all.where(user: current_user)
     @buddy = Buddy.new(buddy_params)
     @buddy.user = current_user
+    @buddy.save! if @buddy.valid?
 
-    if @buddy.save
-      redirect_to buddies_path
-    else
-      render :index, status: :unprocessable_entity, alert: "Please add buddy again"
+    respond_to do |format|
+      # format.html { redirect_to plants_path }
+      format.json
     end
 
     authorize @buddy
@@ -27,7 +28,7 @@ class BuddiesController < ApplicationController
     BuddyScheduleMailer.with(buddy: @buddy, user: current_user).schedule_mail.deliver_later
 
     redirect_to plants_path, success: "Schedule sent to #{@buddy.name}"
-    
+
     authorize @buddy
   end
 

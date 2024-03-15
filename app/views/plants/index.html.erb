@@ -69,8 +69,8 @@
           <div>
             <span class="collection-card-label"><%= collection.name %></span>
           </div>
-          <div>
-            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection"}, class:"text-decoration-none"%>
+          <div data-controller="delete-illness">
+            <%= link_to "Delete collection", collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure? You will not delete the plants inside the collection", action:"click->delete-illness#click"}, class:"text-decoration-none"%>
           </div>
         </div>
       </div>
@@ -99,33 +99,31 @@
                 <%= image_tag plant.plant_info.image_url, class: "plant-card-image" %>
               <% end %>
 
+              <div class="sick-class">
+                <% if plant.illnesses.exists? %>
+                  <p class="sick-badge px-2 rounded-pill"><strong>Sick</strong></p>
+                <% else %>
+                <% end %>
+              </div>
+
               <div class="plant-card-content d-flex flex-column justify-content-between">
-                  <div class="d-flex justify-content-between">
-                    <p class="mb-2 p-0" style="font-size:0.9rem"><strong><%= plant.nickname %></strong></p>
-                    <div>
-                      <% if plant.illnesses.exists? %>
-                        <p class="sick-badge px-2 rounded-pill"><strong>Sick</strong></p>
-                      <% else %>
-                      <% end %>
-                    </div>
-                  </div>
-
-                  <div>
-                    <% if plant.remarks.present? %>
-                    <p class="m-0 p-0" style="font-size:0.8rem"><%= plant.remarks %></p>
-                    <% end %>
-                  </div>
-
-                <div class="d-flex w-100  justify-content-between plantlinks">
-                  <div>
-                    <%= link_to plant_path(plant), class:"fw-bold" do %>
-                      <i class="fa-solid fa-file"></i>
-                    <% end %>
-                  </div>
-                  <div>
-                    <%= link_to "+Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
-                  </div>
+                <div>
+                  <p style="font-size: 1rem"><strong><%= plant.nickname %></strong></p>
+                  <% if plant.remarks.present? %>
+                  <p style="font-size:0.8rem"><%= plant.remarks %></p>
+                  <% end %>
                 </div>
+
+                <div>
+                  <%= link_to plant_path(plant), class:"details-class" do %>
+                    <i class="fa-solid fa-info"></i>
+                  <% end %>
+                </div>
+
+                <div>
+                  <%= link_to "+Collection", edit_plant_path(plant), class:"text-decoration-none fw-bold" %>
+                </div>
+
               </div>
             </div>
             <% end %>

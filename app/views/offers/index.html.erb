@@ -45,9 +45,9 @@
                       <div class="d-flex mt-3">
                         <div class="me-3">
                           <% if offer.lister_plant.user.image.attached? %>
-                            <%= cl_image_tag current_user.image.key, class: "avatar", alt: "user profile image"%>
+                            <%= cl_image_tag offer.lister_plant.user.image.key, class: "avatar", alt: "user profile image"%>
                           <% else %>
-                            <%= image_tag user.image_url, class: "avatar", alt: "user profile image"%>
+                            <%= image_tag "https://thispersondoesnotexist.com", class: "avatar", alt: "user profile image"%>
                           <% end %>
                         </div>
 

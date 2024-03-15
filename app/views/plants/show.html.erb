@@ -46,7 +46,7 @@
           },
           as: :boolean,
           class: 'form-check-input',
-          input_html: {
+          input_html: { class: "text-light",
                         data: {
                             action: "change->plant-listing#fire",
                             'plant-listing-target': "checkbox"
@@ -138,7 +138,7 @@
         Common Names:
       </h2>
       <p>
-        <%= illness.common_names.titleize %>
+        <%= JSON.parse(illness.common_names.titleize).join(", ") %>
       </p>
     <% end %>
   </div>
@@ -196,10 +196,10 @@
       <% end %>
     </ul>
   </div>
-  <div class="mb-3">
+  <div class="mb-3" data-controller="delete-illness">
   <%= link_to "Recovered from #{illness.name}!",
       plant_remove_diagnosis_path(@plant, illness),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?", action:"click->delete-illness#click"},
       class: "sp-btn-green",
       style: "text-decoration:none"
   %>

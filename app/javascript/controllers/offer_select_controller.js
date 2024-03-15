@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="offer-select"
 export default class extends Controller {
 
-  static targets = ["content", "option"]
+  static targets = ["content", "option", "popup", "swapImage"]
 
   connect() {
     console.log("Hello offer-select controller")
@@ -11,11 +11,11 @@ export default class extends Controller {
 
   select(event) {
     this.optionTargets.forEach((option) => {
-      option.classList.remove("plant-card-sm-active")
-      option.classList.add("plant-card-sm")
+      option.classList.remove("plant-card-active")
+      option.classList.add("plant-card")
     })
-    event.currentTarget.classList.remove("plant-card-sm")
-    event.currentTarget.classList.add("plant-card-sm-active")
+    event.currentTarget.classList.remove("plant-card")
+    event.currentTarget.classList.add("plant-card-active")
 
     this.offerId = event.currentTarget.dataset.offerId
     this.selectedPlantId = event.currentTarget.dataset.plantId
@@ -28,13 +28,16 @@ export default class extends Controller {
     fetch(url, {
       method: "PATCH",
       headers: {
-        "Accept": "text/plain",
+        "Accept": "application/json",
         "X-CSRF-Token": this.#getMetaValue("csrf-token")
       }
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-      this.contentTarget.innerHTML = data;
+      console.log(data);
+      this.contentTarget.innerHTML = data.options;
+      this.swapImageTarget.setAttribute("src", data.swap_image)
+      this.popupTarget.classList.add("active");
     })
   }
 
