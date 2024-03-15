@@ -37,6 +37,57 @@
 
       <% else %>
         <% @offers.each do |offer| %>
+          <% if offer.lister == current_user %>
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-lg-6">
+                <%= link_to chat_offer_path(offer), class: "text-decoration-none text-dark", :action => 'go' do %>
+                  <div class="d-flex justify-content-between offer-card">
+                    <div class="d-flex flex-column justify-content-between ps-3 py-3">
+                      <div class="d-flex mt-3">
+                        <div class="me-3">
+                          <% if offer.buyer.image.attached? %>
+                            <%= cl_image_tag offer.buyer.image.key, class: "avatar", alt: "user profile image"%>
+                          <% else %>
+                            <%= image_tag "https://thispersondoesnotexist.com", class: "avatar", alt: "user profile image"%>
+                          <% end %>
+                        </div>
+
+                    <div>
+                      <p class="m-0">
+                        <%= offer.buyer.first_name %>
+                        (<%= offer.buyer.username %>)
+                      </p>
+                      <h3 class="m-0">
+                        <%= offer.lister_plant.nickname %>
+                      </h3>
+                      <p>
+                        <%= offer.messages.last.content.truncate(20) unless offer.messages.last.nil? %>
+                      </p>
+                      <div>
+                        <p class="m-0">
+                          <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                    <div class="offer-badge <%= offer.accepted %>">
+                      <%= offer.accepted.upcase %>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-end mt-3 py-3 pe-3">
+                      <% if offer.lister_plant.image.key? %>
+                        <%= cl_image_tag offer.lister_plant.image.key, class: "offer-image" %>
+                      <% else %>
+                        <%= image_tag offer.lister_plant.plant_info.image_url, class: "offer-image" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
             <div class="row justify-content-center">
               <div class="col-sm-12 col-lg-6">
                 <%= link_to chat_offer_path(offer), class: "text-decoration-none text-dark", :action => 'go' do %>
@@ -86,6 +137,8 @@
                 <% end %>
               </div>
             </div>
+          <% end %>
+
         <% end %>
       <% end %>
     </div>

@@ -15,13 +15,23 @@
 
   <div class="mb-4">
     <% if results[:common_names].nil? %>
+
     <% else %>
-      <h2>
-        Common names:
-      </h2>
-      <p>
-        <%= JSON.parse(results[:common_names]).join(", ") %>
-      </p>
+      <% if results[:common_names].class == String %>
+        <h2>
+          Common names:
+        </h2>
+        <p>
+          <%= JSON.parse(results[:common_names]).join(", ").titleize %>
+        </p>
+      <% else %>
+        <h2>
+          Common names:
+        </h2>
+        <p>
+          <%= results[:common_names].join(", ").titleize %>
+        </p>
+      <% end %>
     <% end %>
   </div>
 
@@ -51,14 +61,17 @@
       Treatment
     </h2>
 
-    <h3>
-      Chemical:
-    </h3>
-    <ul>
-      <% results[:treatment][:chemical].each do |result| %>
-        <li> <%= result %> </li>
-      <% end %>
-    </ul>
+    <% if results[:treatment][:chemical].nil? %>
+    <% else %>
+      <h3>
+        Chemical:
+      </h3>
+      <ul>
+        <% results[:treatment][:chemical].each do |result| %>
+          <li> <%= result %> </li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <h3>
       Biological:

@@ -56,12 +56,12 @@ user2.image.attach(io: file, filename: "avatar2.jpeg", content_type: "image/jpeg
 user2.save
 
 user3 = User.create!(
-  username: "zijie",
+  username: "fengyong",
   email: "user3@email.com",
   password: "password",
   address: "3 Nathan Rd, Singapore 248726",
-  first_name: "Zi Jie",
-  last_name: "Ng",
+  first_name: "Yong",
+  last_name: "Feng",
   token: SecureRandom.alphanumeric(32)
 )
 
