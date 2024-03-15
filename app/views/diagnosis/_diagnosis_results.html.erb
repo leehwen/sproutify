@@ -20,7 +20,7 @@
         Common names:
       </h2>
       <p>
-        <%= results[:common_names] %>
+        <%= JSON.parse(results[:common_names]).join(", ") %>
       </p>
     <% end %>
   </div>
