@@ -133,7 +133,7 @@
         Common Names:
       </h2>
       <p>
-        <%= illness.common_names.titleize %>
+        <%= JSON.parse(illness.common_names.titleize).join %>
       </p>
     <% end %>
   </div>
