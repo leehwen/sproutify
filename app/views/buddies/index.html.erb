@@ -20,9 +20,9 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6">
-      <% if Buddy.count == 0 %>
-  <div class="d-flex justify-content-center" data-buddy-target="addBuddyHeader">
+    <div class="col-sm-12 col-lg-6 mb-4">
+      <% if @buddies.count == 0 %>
+  <div class="d-flex justify-content-center mt-5" data-buddy-target="addBuddyHeader">
     <div>
         <p><em>You do not have a buddy yet.</em></p>
       <div class="sp-btn-green clickable" data-action="click->buddy#show">
