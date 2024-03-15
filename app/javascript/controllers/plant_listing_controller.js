@@ -4,10 +4,11 @@ import Swal from 'sweetalert2'
 
 // Connects to data-controller="plant-listing"
 export default class extends Controller {
-  static targets = ["form", "checkbox"]
+  static targets = ["form", "checkbox", "status"]
 
   connect() {
     // console.log("hello plant-listing-controller");
+    console.log(this.checkboxTarget);
   }
 
   fire(event) {
@@ -32,6 +33,7 @@ export default class extends Controller {
           icon: 'success',
           confirmButtonText: 'Cool'
         });
+        this.statusTarget.innerText = "Already listed"
         } else {
           Swal.fire({
             title: 'Noted',
@@ -39,6 +41,7 @@ export default class extends Controller {
             icon: 'info',
             confirmButtonText: 'Cool'
           });
+          this.statusTarget.innerText = "List in Marketplace"
         }
     });
 
