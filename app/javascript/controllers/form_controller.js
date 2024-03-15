@@ -7,7 +7,6 @@ export default class extends Controller {
   }
 
   handleSubmit() {
-    debugger
     document.querySelector("#loader").classList.remove("d-none")
   }
 }

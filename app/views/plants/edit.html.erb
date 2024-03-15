@@ -36,10 +36,10 @@
           <% end %>
 
         <% else %>
-          <h1 class="mt-3"> Pick a collection for your plant.</h1>
+          <h1 class="mt-3"> Pick a collection for your plant</h1>
 
           <%= simple_form_for (@plant) do |f| %>
-            <%= f.association :collection, collection: @collections %>
+            <%= f.association :collection, collection: @collections, label: false %>
             <%= f.button :submit, value: 'Add to Collection', class:"sp-btn-green" %>
           <% end %>
         <% end %>

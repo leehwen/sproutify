@@ -80,7 +80,6 @@ class PlantsController < ApplicationController
 
     if @plant.save
       redirect_to plants_path, success: "Plant added to collection."
-
     else
       render :edit, notice: "Plant not able to be added. Try again"
     end

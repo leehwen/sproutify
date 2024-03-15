@@ -2,8 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="collection"
 export default class extends Controller {
-  static targets = ["show", "hide", "header", "display"]
-  
+  static targets = ["show", "hide", "header", "display", "form"]
+
   connect() {
   }
 
@@ -14,9 +14,11 @@ export default class extends Controller {
 
   fire(e){
     e.preventDefault();
-    
+
     const url = `${this.showTarget.action}`;
-    console.log(url);
+    console.log(this.showTarget);
+
+    document.querySelector("#loader").classList.remove("d-none")
 
     fetch(url, {
       method: "POST",
@@ -25,9 +27,17 @@ export default class extends Controller {
     .then(response => response.json())
     .then((data) => {
       // this.displayTarget.outerHTML = data
-      window.location.reload();
+      console.log(data)
+      if (data.status === false) {
+      this.showTarget.innerHTML = data.info
+      document.querySelector("#loader").classList.add("d-none") }
+      else {
+        window.location.reload();
+      }
       // this.displayTarget.classList.add("d-none");
       // this.headerTarget.classList.add("d-none");
     })
   }
+
+
 }
