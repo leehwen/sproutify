@@ -71,7 +71,7 @@ class PlantInfosController < ApplicationController
     @name= @data[:name]
     @common_names = @data[:details][:common_names].first(3).join(",") unless @data[:details][:common_names].nil?
     @description = @data[:details][:description][:value]
-    @image_url = @data[:details][:image][:value] unless
+    @image_url = @data[:details][:image][:value] unless @data[:details][:image][:value].nil?
     @propagation = @data[:details][:propagation_methods] unless @data[:details][:propagation_methods].nil?
     if @data[:details][:watering].nil?
       @watering = 0
