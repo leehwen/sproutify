@@ -5,7 +5,7 @@
 
 .swap-container {
   z-index: 25;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -13,9 +13,11 @@
   height: 100vh;
   padding: 2rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
   transition: 500ms;
-
+  opacity: 0;
+  transform: scale(1.3);
+  pointer-events: none;
 
   .swap-container-content {
     background-color: $off-white;
@@ -24,6 +26,27 @@
     border: 1px solid rgba(135, 135, 135, 0.6);
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
   }
+
+  .lister-plant-image, .buyer-plant-image {
+    transition-delay: 500ms;
+    transition-duration: 500ms;
+  }
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+
+    .lister-plant-image {
+      transform: translateX(135%);
+    }
+
+    .buyer-plant-image {
+      transform: translateX(-135%);
+    }
+
+  }
+
 }
 
 .swap-plant-image {
