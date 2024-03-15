@@ -83,6 +83,20 @@ file = URI.open("https://thispersondoesnotexist.com/")
 user4.image.attach(io: file, filename: "avatar4.jpeg", content_type: "image/jpeg")
 user4.save
 
+user5 = User.create!(
+  username: "fengyong",
+  email: "user5@email.com",
+  password: "password",
+  address: "718 Woodlands Ave 6, Singapore 730718",
+  first_name: "Yong",
+  last_name: "Feng",
+  token: SecureRandom.alphanumeric(32)
+)
+
+file = URI.open("https://thispersondoesnotexist.com/")
+user5.image.attach(io: file, filename: "avatar5.jpeg", content_type: "image/jpeg")
+user5.save
+
 # create plant information
 
 plant_infos1 = PlantInfo.create!(
@@ -178,7 +192,7 @@ plant_infos10 = PlantInfo.create!(
 # create plants for each user (user 3 and 4 mainly for marketplace)
 
 Plant.create!(
-  nickname: "Lady's Finger New",
+  nickname: "Baby Lady's Finger",
   remarks: "1 month old seedling",
   user: user1,
   plant_info: plant_infos1,
@@ -187,17 +201,7 @@ Plant.create!(
 )
 
 Plant.create!(
-  nickname: "Lady's Finger Old",
-  remarks: "Flowering, ready to have fruits",
-  user: user1,
-  plant_info: plant_infos1,
-  listing: true,
-  watering_frequency: 2,
-  start_date: Date.today + 2.days
-)
-
-Plant.create!(
-  nickname: "Big monstera",
+  nickname: "Big Monstera",
   remarks: "Located in the balcony, need lots of water",
   user: user1,
   plant_info: plant_infos2,
@@ -206,57 +210,7 @@ Plant.create!(
 )
 
 Plant.create!(
-  nickname: "Small monstera",
-  remarks: "Just bought from nursery during Chinese New Year",
-  user: user1,
-  plant_info: plant_infos2,
-  watering_frequency: 1,
-  start_date: Date.today + 2.days
-
-)
-
-Plant.create!(
-  nickname: "Desert Rose",
-  remarks: "Hardy plant, need plenty of sunlight",
-  user: user1,
-  plant_info: plant_infos3,
-  watering_frequency: 6,
-  start_date: Date.today + 3.days
-
-)
-
-Plant.create!(
-  nickname: "Small Desert Rose 1",
-  remarks: "Propagated from Desert Rose",
-  user: user1,
-  plant_info: plant_infos3,
-  listing: true,
-  watering_frequency: 6,
-  start_date: Date.today + 4.days
-)
-
-Plant.create!(
-  nickname: "Small Desert Rose 2",
-  remarks: "Propagated from Desert Rose",
-  user: user1,
-  plant_info: plant_infos3,
-  listing: true,
-  watering_frequency: 5,
-  start_date: Date.today + 3.days
-)
-
-Plant.create!(
-  nickname: "Small Desert Rose 3",
-  remarks: "Propagated from Desert Rose",
-  user: user1,
-  plant_info: plant_infos3,
-  watering_frequency: 2,
-  start_date: Date.today + 3.days
-
-)
-
-Plant.create!(
-  nickname: "Monstera light green",
+  nickname: "Monstera Light Green",
   remarks: "Not too much sun",
   user: user2,
   plant_info: plant_infos2,
@@ -274,49 +228,6 @@ Plant.create!(
   start_date: Date.today
 
 )
-
-Plant.create!(
-  nickname: "Pink Bougainvillea",
-  remarks: "Take care, keeps dropping leaves",
-  user: user2,
-  plant_info: plant_infos5,
-  listing: true,
-  watering_frequency: 4,
-  start_date: Date.today
-)
-
-Plant.create!(
-  nickname: "Rosary pea",
-  remarks: "Climbing on the window frame of my balcony, careful not to close window too tight.",
-  user: user2,
-  plant_info: plant_infos4,
-  watering_frequency: 3,
-  start_date: Date.today
-)
-
-3.times do
-  Plant.create!(
-    nickname: Faker::Lorem.sentence(word_count: 3),
-    remarks: Faker::Quote.famous_last_words,
-    user: user1,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
-    listing: true,
-    watering_frequency: 1,
-    start_date: Date.today
-  )
-end
-
-3.times do
-  Plant.create!(
-    nickname: Faker::Lorem.sentence(word_count: 3),
-    remarks: Faker::Quote.famous_last_words,
-    user: user2,
-    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
-    listing: true,
-    watering_frequency: 1,
-    start_date: Date.today
-  )
-end
 
 5.times do
   Plant.create!(
@@ -376,7 +287,6 @@ end
   )
 end
 
-
 5.times do
   Plant.create!(
     nickname: Faker::Lorem.sentence(word_count: 3),
@@ -385,6 +295,30 @@ end
     plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
     listing: true,
     watering_frequency: 4,
+    start_date: Date.today
+  )
+end
+
+3.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user5,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
+    listing: true,
+    watering_frequency: 1,
+    start_date: Date.today
+  )
+end
+
+3.times do
+  Plant.create!(
+    nickname: Faker::Lorem.sentence(word_count: 3),
+    remarks: Faker::Quote.famous_last_words,
+    user: user5,
+    plant_info: [plant_infos1, plant_infos2, plant_infos3, plant_infos4, plant_infos5, plant_infos6, plant_infos7, plant_infos8, plant_infos9, plant_infos10].sample,
+    listing: true,
+    watering_frequency: 1,
     start_date: Date.today
   )
 end
@@ -439,9 +373,9 @@ illness_browning = Illness.create!(
   common_names: "Lack of water"
 )
 
-# randomly assign illness to 2 plants of user1 and user2
-user1_plants = Plant.where(user: user1).sample(2)
-user2_plants = Plant.where(user: user2).sample(2)
+# randomly assign illness to 1 plant of user1 and user2
+user1_plants = Plant.where(user: user1).sample(1)
+user2_plants = Plant.where(user: user2).sample(1)
 
 PlantIllness.create!(
   illness: illness_funghi,
@@ -450,17 +384,7 @@ PlantIllness.create!(
 
 PlantIllness.create!(
   illness: illness_browning,
-  plant: user1_plants[1]
-)
-
-PlantIllness.create!(
-  illness: illness_funghi,
   plant: user2_plants[0]
-)
-
-PlantIllness.create!(
-  illness: illness_browning,
-  plant: user2_plants[1]
 )
 
 # create marketplace offers, 1 for each status type.
@@ -536,6 +460,8 @@ PlantIllness.create!(
 #   plant: user3_buyer_plants[3]
 # )
 
+# create buddies
+
 buddy = Buddy.create!(
   name: "Zi Jie",
   email: "ng_zi_jie@hotmail.com",
@@ -544,16 +470,16 @@ buddy = Buddy.create!(
 )
 
 buddy = Buddy.create!(
-  name: "Ng Zi Jie",
-  email: "ng_zi_jie@hotmail.com",
-  hp: 94373184,
+  name: "Feng Yong",
+  email: "fengrenaaa@gmail.com",
+  hp: 91234567,
   user: user1,
 )
 
 buddy = Buddy.create!(
-  name: "Ng Zi Jie Clifton",
+  name: "Clifton Ng",
   email: "ng_zi_jie@hotmail.com",
-  hp: 94373184,
+  hp: 91122345,
   user: user2,
 )
 
