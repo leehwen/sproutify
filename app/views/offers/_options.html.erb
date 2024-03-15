@@ -81,7 +81,7 @@
         </div>
       <% end %>
     </div>
-    <div class="mt-5">
+    <div class="mt-5 d-flex justify-content-evenly">
       <%= link_to "Accept Offer", "#", class: "sp-btn-green-sm", data: {action: "click->offer-select#accept", turbo_method: :patch} if policy(@offer).accept? %>
       <%= link_to "Reject Offer", reject_offer_path(@offer), class: "sp-btn-gray-sm" ,data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} if policy(@offer).reject? %>
     </div>
