@@ -123,11 +123,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.listing = params[:status]
     authorize @plant
-    if @plant.save!
-      flash[:alert] = "Listing settings updated"
-    else
-      flash[:alert] = "Error with listing on Marketplace"
-    end
+    @plant.save
 
     respond_to do |format|
       format.json { render json: { header: 'ok' } }
