@@ -38,10 +38,10 @@
     >
       <%= simple_form_for (@plant) do |f| %>
         <%= f.input :listing,
-          label: "List in Marketplace",
+          label: "List in Marketplace" ,
           as: :boolean,
           class: 'form-check-input',
-          input_html: {
+          input_html: { class: "text-light",
                         data: {
                             action: "change->plant-listing#fire",
                             'plant-listing-target': "checkbox"

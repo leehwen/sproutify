@@ -1,45 +1,44 @@
+<div
+  data-controller="offer-subscription"
+  data-offer-subscription-offer-id-value="<%= @offer.id %>"
+  class="col-lg-6 d-flex flex-column justify-content-between">
 
-
-  <div
-    data-controller="offer-subscription"
-    data-offer-subscription-offer-id-value="<%= @offer.id %>"
-    class="col-lg-6 d-flex flex-column justify-content-between">
-
+  <div class="chat-header border-bottom">
     <div>
-      <div class="chat-header border-bottom">
-
       <%= link_to offers_path do %>
         <i class="back-button-fixed-black fa-solid fa-angles-left"></i>
       <% end %>
-
-        <h1><%= @offer.lister_plant.nickname.titleize %></h1>
-      </div>
+      <h1><%= @offer.lister_plant.nickname.titleize %></h1>
     </div>
-
-    <div class="chat-content flex-grow-1"
-      data-offer-subscription-target="scroller"
-    >
-      <div id="messages"
-        data-offer-subscription-target="messages"
-      >
-        <% @messages.each do |message| %>
-          <%= render "messages/message", message: message %>
-        <% end %>
-      </div>
-
-    </div>
-
-    <div class="w-100 pt-3 px-3">
-      <%= simple_form_for [@offer, @message],
-        html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" },
-        class: "d-flex" } do |f|
-      %>
-        <%= f.input :content,
-          label: false,
-          placeholder: "Type message here",
-          wrapper_html: {class: "flex-grow-1"}
-        %>
-        <%= f.submit "Send", class: "sp-btn-green-chat mb-3" %>
-      <% end %>
+    <div>
+      <%= link_to "View Offer Details", offer_path(@offer) %>
     </div>
   </div>
+
+  <div class="chat-content flex-grow-1"
+    data-offer-subscription-target="scroller"
+  >
+    <div id="messages"
+      data-offer-subscription-target="messages"
+    >
+      <% @messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="w-100 pt-3 px-3">
+    <%= simple_form_for [@offer, @message],
+      html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" },
+      class: "d-flex" } do |f|
+    %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Type message here",
+        wrapper_html: {class: "flex-grow-1"}
+      %>
+      <%= f.submit "Send", class: "sp-btn-green-chat mb-3" %>
+    <% end %>
+  </div>
+</div>

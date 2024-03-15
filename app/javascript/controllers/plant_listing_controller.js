@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
+import Swal from 'sweetalert2'
+
 
 // Connects to data-controller="plant-listing"
 export default class extends Controller {
@@ -13,7 +15,6 @@ export default class extends Controller {
     const status = this.checkboxTarget.checked;
     const plantId = this.formTarget.dataset.plantId;
     const url = `/plants/${plantId}/update-listing?status=${status}`
-
     fetch(url, {
       method: "PATCH",
       headers: {
@@ -23,7 +24,22 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(status);
+      if (status === true) {
+        Swal.fire({
+          title: 'Great',
+          text: 'It is listed to the marketplace',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
+        } else {
+          Swal.fire({
+            title: 'Noted',
+            text: 'Removed from the marketplace',
+            icon: 'info',
+            confirmButtonText: 'Cool'
+          });
+        }
     });
 
   }
