@@ -9,39 +9,49 @@
         <% @collections_filter = @collections.where.not(id: @plant.collection_id) %>
         <% if @collections.count == 0 %>
           <div data-collection-target="header">
+          <div class="d-flex flex-column align-items-center">
+            <%= image_tag "Sad plant vector.png", alt: "plant-Colletions", width: 300, class:"text-align-center" %>
             <p><em>You do not have any collection yet.</em></p>
             <div class="sp-btn-green clickable" data-action="click->collection#show">
               <p class="m-0" data-collection-target="hide">Add a Collection</p>
             </div>
           </div>
+          </div>
 
-          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show", action: "submit->collection#fire" } }) do |f| %>
+          <%= simple_form_for(@collection, html: { class:"d-none", data: { collection_target:"show", action: "submit->collection#fire" } }) do |f| %>
             <%= f.input :name, label: 'Your collection title' %>
             <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
             <%= f.submit "Create a collection", class: 'sp-btn-green' %>
           <% end %>
 
+
         <% elsif @collections_filter.count == 0 %>
           <div data-collection-target="header">
-            <p><em>You do not have any available collection to add.</em></p>
-            <div class="sp-btn-green clickable" data-action="click->collection#show">
+            <div class="d-flex flex-column align-items-center">
+              <%= image_tag "Sad plant vector.png", alt: "plant-Collections", width: 300 %>
+              <p><em>You do not have any available collection to add.</em></p>
+              <div class="sp-btn-green clickable" data-action="click->collection#show">
               <p class="m-0">Add a Collection</p>
+            </div>
             </div>
           </div>
 
-          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target: "show", action: "submit->collection#fire" } }) do |f| %>
+          <%= simple_form_for(@collection, html: { class: "d-none", data: { collection_target:"show", action: "submit->collection#fire" } }) do |f| %>
             <%= f.input :name, label: 'Your collection title' %>
             <%= f.input :image, as: :file, label: 'Upload a collection image (optional)' %>
             <%= f.submit "Create a collection", class: 'sp-btn-green' %>
           <% end %>
 
         <% else %>
-          <h1 class="mt-3"> Pick a collection for your plant</h1>
+          <div class="d-flex flex-column align-items-center">
+            <%= image_tag "Smiley plant vector.png", alt: "plant-Collections", width: 300 %>
+            <h1 class="mt-3"> Pick a collection for your plant</h1>
 
-          <%= simple_form_for (@plant) do |f| %>
-            <%= f.association :collection, collection: @collections_filter, label: false %>
-            <%= f.button :submit, value: 'Add to Collection', class:"sp-btn-green" %>
-          <% end %>
+            <%= simple_form_for (@plant) do |f| %>
+              <%= f.association :collection, collection: @collections_filter, label: false %>
+              <%= f.button :submit, value: 'Add to Collection', class:"sp-btn-green" %>
+            <% end %>
+         </div> 
         <% end %>
       </div>
   </div>
