@@ -55,12 +55,14 @@
     <% end %>
   </div>
 
+<% if plant_info.watering != "undefined" %>
   <div class="mb-4">
     <h2>
       Watering Methods
     </h2>
     <p>
-      <%= plant_info.watering.titleize %>
+      <%= plant_info.watering %>
     </p>
   </div>
+<% end %>
 </div>
