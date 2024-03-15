@@ -46,11 +46,11 @@
 
       <p class="mb-2"><strong>Select a Buddy to send your plant watering schedule</strong></p>
       <% @buddies.each do |buddy| %>
-        <div class="plant-card p-3 m-2">
+        <div class="plant-card p-3 m-2" data-controller="delete-illness">
           <div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between" >
               <p><strong>Buddy Name: </strong><%= buddy.name %></p>
-              <%= link_to buddy_path(buddy), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none" do%>
+              <%= link_to buddy_path(buddy), data: {turbo_method: :delete, turbo_confirm: "Are you sure?", action:"click->delete-illness#clickDelete"}, class:"text-decoration-none" do%>
               <p><strong>X</strong></p>
               <% end %>
             </div>
