@@ -130,50 +130,30 @@
     <% end %>
     <div>
       <% @offering_options.each do |option|%>
-        <% if option.plant == @offer.buyer_plant %>
-          <div class="d-flex plant-card-active">
-            <div>
-              <% if option.plant.image.key? %>
-                <%= cl_image_tag option.plant.image.key %>
-              <% else %>
-                <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image-left" %>
-              <% end %>
-            </div>
-            <div class="plant-card-content">
-              <p class="m-0"><strong>Accepted</strong></p>
-              <% if @offer.lister == current_user %>
-                <p><%= option.plant.plant_info.name %></p>
-                <p class="m-0"><strong>Common name:</strong></p>
-                <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-              <% else %>
-                <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
-                <p class="m-0"><strong>Common name:</strong></p>
-                <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-              <% end %>
-            </div>
+        <div class="d-flex plant-card<%= option.plant == @offer.buyer_plant ? " active" : " inactive" %>">
+          <div>
+            <% if option.plant.image.key? %>
+              <%= cl_image_tag option.plant.image.key %>
+            <% else %>
+              <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image-left" %>
+            <% end %>
           </div>
-        <% else %>
-          <div class="d-flex plant-card">
-            <div>
-              <% if option.plant.image.key? %>
-                <%= cl_image_tag option.plant.image.key %>
-              <% else %>
-                <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image-left" %>
-              <% end %>
-            </div>
-            <div class="plant-card-content">
-              <% if @offer.lister == current_user %>
-                <p><%= option.plant.plant_info.name %></p>
-                <p class="m-0"><strong>Common name:</strong></p>
-                <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-              <% else %>
-                <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
-                <p class="m-0"><strong>Common name:</strong></p>
-                <p class="m-0"><%= option.plant.plant_info.common_names %></p>
-              <% end %>
-            </div>
+          <div class="plant-card-content">
+          <% if option.plant == @offer.buyer_plant %>
+            <p class="m-0"><strong>Chosen plant</strong></p>
+          <% end %>
+            <% if @offer.lister == current_user %>
+              <p><%= option.plant.plant_info.name %></p>
+              <p class="m-0"><strong>Common name:</strong></p>
+              <p class="m-0"><%= option.plant.plant_info.common_names %></p>
+            <% else %>
+              <p class="m-0"><strong><%= option.plant.nickname %></strong></p>
+              <p class="m-0"><strong>Common name:</strong></p>
+              <p class="m-0"><%= option.plant.plant_info.common_names %></p>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+
       <% end %>
     </div>
   </div>
