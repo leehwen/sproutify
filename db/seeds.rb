@@ -28,12 +28,12 @@ puts "creating entries..."
 # create users
 
 user1 = User.create!(
-  username: "user1",
+  username: "leehwen",
   email: "user1@email.com",
   password: "password",
   address: "260B Punggol Way, Singapore 822260",
-  first_name: "Mary",
-  last_name: "Lim",
+  first_name: "Melvin",
+  last_name: "Lee",
   token: SecureRandom.alphanumeric(32)
 )
 
@@ -42,12 +42,12 @@ user1.image.attach(io: file, filename: "avatar1.jpeg", content_type: "image/jpeg
 user1.save
 
 user2 = User.create!(
-  username: "user2",
+  username: "yytan",
   email: "user2@email.com",
   password: "password",
   address: "333D Anchorvale Link, Singapore 544333",
-  first_name: "Ashley",
-  last_name: "Yeo",
+  first_name: "Yin Yun",
+  last_name: "T.",
   token: SecureRandom.alphanumeric(32)
 )
 
@@ -56,12 +56,12 @@ user2.image.attach(io: file, filename: "avatar2.jpeg", content_type: "image/jpeg
 user2.save
 
 user3 = User.create!(
-  username: "user3",
+  username: "zijie",
   email: "user3@email.com",
   password: "password",
   address: "3 Nathan Rd, Singapore 248726",
-  first_name: "Nathan",
-  last_name: "Yeo",
+  first_name: "Zi Jie",
+  last_name: "Ng",
   token: SecureRandom.alphanumeric(32)
 )
 
@@ -70,12 +70,12 @@ user3.image.attach(io: file, filename: "avatar3.jpeg", content_type: "image/jpeg
 user3.save
 
 user4 = User.create!(
-  username: "user4",
+  username: "mirana",
   email: "user4@email.com",
   password: "password",
   address: "35 St Thomas Walk, Singapore 238141",
-  first_name: "Thomas",
-  last_name: "Tan",
+  first_name: "Tuck Seng",
+  last_name: "Wong",
   token: SecureRandom.alphanumeric(32)
 )
 
