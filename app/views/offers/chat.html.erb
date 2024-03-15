@@ -1,19 +1,24 @@
-<div
-  data-controller="offer-subscription"
-  data-offer-subscription-offer-id-value="<%= @offer.id %>"
->
-  <%= link_to offers_path do %>
-    <i class="back-button fa-solid fa-angles-left"></i>
-  <% end %>
 
-  <div class="col-sm-12 col-lg-6 d-flex flex-column justify-content-between">
-    <div class="position-sticky">
-      <div class="chat-header border-bottom pt-2">
+
+  <div
+    data-controller="offer-subscription"
+    data-offer-subscription-offer-id-value="<%= @offer.id %>"
+    class="col-lg-6 d-flex flex-column justify-content-between">
+
+    <div>
+      <div class="chat-header border-bottom">
+
+      <%= link_to offers_path do %>
+        <i class="back-button fa-solid fa-angles-left"></i>
+      <% end %>
+
         <h1><%= @offer.lister_plant.nickname.titleize %></h1>
       </div>
     </div>
 
-    <div class="chat-content">
+    <div class="chat-content flex-grow-1"
+      data-offer-subscription-target="scroller"
+    >
       <div id="messages"
         data-offer-subscription-target="messages"
       >
@@ -24,7 +29,7 @@
 
     </div>
 
-    <div class="chat-reply container-fluid pt-3">
+    <div class="w-100 pt-3 px-3">
       <%= simple_form_for [@offer, @message],
         html: { data: { action: "turbo:submit-end->offer-subscription#resetForm" },
         class: "d-flex" } do |f|
@@ -38,5 +43,3 @@
       <% end %>
     </div>
   </div>
-
-</div>

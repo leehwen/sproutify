@@ -4,10 +4,12 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="offer-subscription"
 export default class extends Controller {
   static values = { offerId: Number }
-  static targets = ["messages"]
+  static targets = ["messages", "scroller"]
 
   connect() {
-    window.scrollTo(0, this.messagesTarget.scrollHeight)
+    const offsetHeight = document.querySelector(".nav").offsetHeight
+    this.element.style.height = `calc(100vh - ${offsetHeight}px)`
+    this.scrollerTarget.scrollTo(0, this.messagesTarget.scrollHeight)
 
     this.channel = createConsumer().subscriptions.create(
       { channel: "OfferChannel", id: this.offerIdValue },
@@ -17,7 +19,7 @@ export default class extends Controller {
 
   #insertMessageAndScrollDown(data) {
     this.messagesTarget.insertAdjacentHTML("beforeend", data)
-    window.scrollTo(0, this.messagesTarget.scrollHeight)
+    this.scrollerTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
 
   resetForm(event) {
