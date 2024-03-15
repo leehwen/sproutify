@@ -348,7 +348,7 @@ illness_funghi = Illness.create!(
         "Rotate crops. Avoid planting sensitive crops in infested soil.",
         "Disinfect tools, infected flower pots, and hands to avoid disease transmission."
     ]},
-  common_names: "butterfly bacteria"
+  common_names: "[\"butterfly bacteria\"]"
 )
 
 illness_browning = Illness.create!(
@@ -371,7 +371,7 @@ illness_browning = Illness.create!(
         "Rotate crops. Avoid planting sensitive crops in infested soil.",
         "Disinfect tools, infected flower pots, and hands to avoid disease transmission."
     ]},
-  common_names: "Lack of water"
+  common_names: "[\"Lack of water\"]"
 )
 
 # randomly assign illness to 1 plant of user1 and user2
