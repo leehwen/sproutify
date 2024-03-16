@@ -82,12 +82,15 @@
   </div>
 
   <div class="mb-4">
+    <% if @plantinfo.common_names.nil? %>
+    <% else %>
     <h2>
       Other Common Names:
     </h2>
     <p>
       <%= @plantinfo.common_names.titleize.gsub(',', ', ')  %>
     </p>
+    <% end %>
   </div>
 
   <% if @plantinfo.propagation.present? %>
