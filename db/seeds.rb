@@ -227,7 +227,6 @@ Plant.create!(
   plant_info: plant_infos3,
   watering_frequency: 3,
   start_date: Date.today,
-  listing: true
 )
 
 5.times do
