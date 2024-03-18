@@ -377,15 +377,15 @@ illness_browning = Illness.create!(
 user1_plants = Plant.where(user: user1).sample(1)
 user2_plants = Plant.where(user: user2).sample(1)
 
-PlantIllness.create!(
-  illness: illness_funghi,
-  plant: user1_plants[0]
-)
+# PlantIllness.create!(
+#   illness: illness_funghi,
+#   plant: user1_plants[0]
+# )
 
-PlantIllness.create!(
-  illness: illness_browning,
-  plant: user2_plants[0]
-)
+# PlantIllness.create!(
+#   illness: illness_browning,
+#   plant: user2_plants[0]
+# )
 
 # create marketplace offers, 1 for each status type.
 # pending offers: each offer 2 options
