@@ -1,0 +1,32 @@
+<%= link_to listing_plant_path(offer.lister_plant), class: "text-decoration-none" do %>
+  <% if offer.lister_plant.image.attached? %>
+    <%= cl_image_tag offer.lister_plant.image.key, class: "chat-image-card" %>
+  <% else %>
+    <%= image_tag offer.lister_plant.plant_info.image_url, class: "chat-image-card" %>
+  <% end %>
+<% end %>
+
+<div class="mb-3 mt-1 text-center">
+  <%= link_to offer.lister_plant.nickname.capitalize, listing_plant_path(offer.lister_plant), class: "text-decoration-none text-center" %>
+</div>
+
+<p>
+  I would like to make an offer for the plant above. These are plants I would like to swap:
+</p>
+
+<div class="row">
+  <% offering_options.each do |option| %>
+    <div class="col-6 text-center">
+      <% if option.plant.image.attached? %>
+        <%= cl_image_tag option.plant.image.key, class: "tiny-image-card-bg" %>
+      <% else %>
+        <%= image_tag option.plant.plant_info.image_url, class: "tiny-image-card-bg" %>
+      <% end %>
+      <p><%= option.plant.plant_info.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class='my-1 text-center'>
+  <%= link_to "View details", offer_path(@offer) %>
+</div>
