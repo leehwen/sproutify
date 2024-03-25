@@ -65,7 +65,7 @@
                       </p>
                       <div>
                         <p class="m-0">
-                          <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                          <%= offer.messages.last.created_at.strftime("%a %b %e %l:%M %p") unless offer.messages.last.nil? %>
                         </p>
                       </div>
                     </div>
@@ -115,7 +115,7 @@
                       </p>
                       <div>
                         <p class="m-0">
-                          <%= offer.messages.last.created_at unless offer.messages.last.nil? %>
+                          <%= offer.messages.last.created_at.strftime("%a %b %e %l:%M %p") unless offer.messages.last.nil? %>
                         </p>
                       </div>
                     </div>
