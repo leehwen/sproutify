@@ -1,11 +1,12 @@
 <div class="row">
   <% offering_options.each do |option| %>
-    <div class="border col-6 text-center">
+    <div class="col-6 text-center">
       <% if option.plant.image.attached? %>
-        <div class="border tiny-image-card-bg" style="background-image:url('<%= cl_image_path(option.plant.image.key) %>')"></div>
+        <%= cl_image_tag option.plant.image.key, class: "tiny-image-card-bg" %>
       <% else %>
-        <div class="border tiny-image-card-bg" style="background-image:url('<%= asset_path('plant_sample_10.jpg')%>')"></div>
+        <%= image_tag option.plant.plant_info.image_url, class: "tiny-image-card-bg" %>
       <% end %>
+
       <div>
         <%= option.plant.plant_info.name %>
       </div>
