@@ -78,7 +78,7 @@ class OffersController < ApplicationController
     authorize @offer
     if messages.length.positive?
       respond_to do |format|
-        format.json { render json: { header: 'no default msg' } }
+        format.json { render json: { header: 'no default msg' }, status: :ok }
       end
     else
       @offering_options = OfferingOption.where(offer: @offer)
@@ -91,7 +91,7 @@ class OffersController < ApplicationController
       @default_message.user = current_user
       if @default_message.save
         respond_to do |format|
-          format.json { render json: { header: 'default msg created' } }
+          format.json { render json: { header: 'default msg created' }, status: :ok }
         end
       else
         flash[:alert] = "Error generating default message"
