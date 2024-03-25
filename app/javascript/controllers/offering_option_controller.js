@@ -16,23 +16,19 @@ export default class extends Controller {
     const id = e.currentTarget.dataset.plantId;
 
     if (this.offeringOptionIds.includes(id)) {
-      // alert
-      Swal.fire({
-        title: 'Plant has been selected',
-        text: 'Please choose other plants',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
-      })
+      // deselect the plant by removing from array
+      const position = this.offeringOptionIds.findIndex((element) => element == id)
+      this.offeringOptionIds.splice(position, 1);
+      e.currentTarget.classList.remove("active");
     } else {
       if (this.offeringOptionIds.length >= 5 ) {
       // alert
         Swal.fire({
           title: 'Reached the maximum',
-          text: '5 plants maximum can be chosen',
+          text: 'You can choose at most 5 plants',
           icon: 'warning',
           confirmButtonText: 'Ok'
         })
-        console.log('rejected');
       } else {
         e.currentTarget.classList.add("active");
         this.offeringOptionIds.push(id);
