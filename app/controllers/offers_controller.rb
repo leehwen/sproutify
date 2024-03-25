@@ -77,7 +77,9 @@ class OffersController < ApplicationController
     messages = Message.where(offer: @offer)
     authorize @offer
     if messages.length.positive?
-      redirect_to chat_offer_path(@offer)
+      respond_to do |format|
+        format.json { render json: { header: 'no default msg' } }
+      end
     else
       @offering_options = OfferingOption.where(offer: @offer)
       listed_msg = render_to_string partial: "default_message_listed", locals: { offer: @offer }
@@ -89,9 +91,11 @@ class OffersController < ApplicationController
       @default_message.offer = @offer
       @default_message.user = current_user
       if @default_message.save
-        redirect_to chat_offer_path(@offer)
+        respond_to do |format|
+          format.json { render json: { header: 'default msg created' } }
+        end
       else
-        flash[:alert] = "Chat not initialized successfully"
+        flash[:alert] = "Error generating default message"
       end
     end
   end

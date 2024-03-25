@@ -36,7 +36,7 @@ export default class extends Controller {
       } else {
         e.currentTarget.classList.add("active");
         this.offeringOptionIds.push(id);
-        this.updateOfferingHTML(id);
+        // this.updateOfferingHTML(id); // remove calling this method
       }
     }
 
@@ -45,24 +45,25 @@ export default class extends Controller {
 
   }
 
-  updateOfferingHTML(id) {
-    const url = `/plants/${id}/offering_option`;
+  // updateOfferingHTML(id) {
+  //   const url = `/plants/${id}/offering_option`;
 
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        console.log(data);
+  //   fetch(url)
+  //     .then(res => res.text())
+  //     .then(data => {
+  //       console.log(data);
 
-        // this.selectedOfferingTarget.insertAdjacentHTML(
-        //   "beforeend",
-        //     data
-        //   )
-        //   window.scrollTo(0, document.body.scrollHeight);
-      })
-  }
+  //       this.selectedOfferingTarget.insertAdjacentHTML(
+  //         "beforeend",
+  //           data
+  //         )
+  //         window.scrollTo(0, document.body.scrollHeight);
+  //     })
+  // }
 
   create (e) {
-    const url = `/offers/${e.currentTarget.dataset.offerId}/offering_options`
+    this.offerId = e.currentTarget.dataset.offerId
+    const url = `/offers/${this.offerId}/offering_options`
     // console.log(this.#getMetaValue("csrf-token"));
     // console.log(JSON.stringify(this.offeringOptionIds));
     e.currentTarget.classList.add("d-none")
@@ -88,9 +89,27 @@ export default class extends Controller {
         icon: 'success',
         confirmButtonText: 'Cool'
       })
+      // create default message in chatroom
+      this.#createDefaultMessage()
     })
   }
 
+  #createDefaultMessage() {
+    const url = `/offers/${this.offerId}/default_message`
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Accepts": "application/json",
+        // "Content-Type": "application/json",
+        "X-CSRF-Token": this.#getMetaValue("csrf-token")
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
 
   #getMetaValue(name) {
     const element = document.head.querySelector(`meta[name="${name}"]`)
