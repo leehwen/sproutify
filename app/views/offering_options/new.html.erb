@@ -55,7 +55,7 @@
 
           <div id="selected-plants" class="d-flex justify-content-center mt-5">
             <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="sp-btn-green-sm" type="submit" value="Submit">
-            <%= link_to "Chat with owner", default_message_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
+            <%= link_to "Chat with owner", chat_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
           </div>
 
         </div>
