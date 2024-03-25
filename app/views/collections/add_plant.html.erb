@@ -1,0 +1,10 @@
+<div class="container pt-5">
+  <%= simple_form_for @collection, url: collection_path(@collection) do |f| %>
+    <%= f.label "Add plant to collection" %>
+    <%= f.association :plants, collection: @plants, label_method: :nickname, label: false,  input_html: { multiple: true }%>
+    <%= f.fields_for :plants do |plant_fields| %>
+    <%= plant_fields.hidden_field :id %>
+    <% end %>
+    <%= f.button :submit, value:"Update", class:"btn btn-primary" %>
+  <% end %>
+</div>

@@ -16,6 +16,14 @@ class CollectionPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def add_plant?
+    record.user == user
+  end
+
+  def update?
+    record.user == user
+  end
+
   class Scope < Scope
     def resolve
       scope.where(user: user).order("created_at DESC")

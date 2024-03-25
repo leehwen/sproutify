@@ -31,6 +31,28 @@ class CollectionsController < ApplicationController
     authorize @collection
   end
 
+  def add_plant
+    @collection = Collection.find(params[:id])
+    @plants = current_user.plants.where(collection_id: nil)
+
+    authorize @collection
+  end
+
+  def update
+    @collection = Collection.find(params[:id])
+    plant_ids = params[:collection][:plant_ids]
+    cleaned_plant_id = plant_ids.reject { |id| id.empty? }
+    cleaned_plant_id.each do |id|
+      plant_find = Plant.find(id)
+      plant_find.collection_id = @collection.id
+      plant_find.save
+    end
+
+    redirect_to collection_path(@collection)
+    
+    authorize @collection
+  end
+
   private
 
   def collection_params

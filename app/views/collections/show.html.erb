@@ -23,6 +23,11 @@
 
       <% if @plants.count == 0 %>
         <p><em>You do not have any plants in this collection currently </em></p>
+
+        <div>
+          <%= link_to "Add a plant to your collection", add_plant_collection_path(@collection) %>
+        </div>
+
       <% else %>
         <div class="grid-container">
         <% @plants.each do |plant| %>
@@ -49,6 +54,10 @@
             </div>
           </div>
           <% end %>
+
+          <div class="row">
+            <%= link_to "Add a plant to your collection", add_plant_collection_path(@collection) %>
+           </div>
         </div>
       </div>
       <% end %>
@@ -64,10 +73,10 @@
     </div>
   </div> %>
 
-  <%# <div class="d-none" data-mygarden-target="displayAddPlant">
+  <div class="d-none" data-mygarden-target="displayAddPlant">
     <%= simple_form_for @collection do |f| %>
-        <%# <%= f.label "Add plant to collection" %>
-        <%# <%= f.association :plants, collection: current_user.plants, label_method: :nickname, label: false,  input_html: { multiple: true }%>
-        <%# <%= f.button :submit %>
-    <%# <% end %>
-  <%# <div>   %>
+        <%= f.label "Add plant to collection" %>
+        <%= f.association :plants, collection: current_user.plants, label_method: :nickname, label: false,  input_html: { multiple: true }%>
+        <%= f.button :submit %>
+    <% end %>
+  </div>  
