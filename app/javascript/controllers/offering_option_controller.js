@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 // Connects to data-controller="offering-option"
 export default class extends Controller {
 
-  static targets = ["selectedOffering", "chatButton"]
+  static targets = ["offering", "selectedOffering", "chatButton"]
 
   connect() {
     console.log('connected')
@@ -87,6 +87,10 @@ export default class extends Controller {
       })
       // create default message in chatroom
       this.#createDefaultMessage()
+      // disable options
+      this.offeringTargets.forEach((offering) => {
+        offering.classList.add("disabled")
+      })
     })
   }
 

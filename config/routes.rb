@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
     get "/offering_options/new", to: "offering_options#new"
     post "/offering_options", to: "offering_options#create"
+    get "/offering_options/view", to: "offering_options#view"
 
     resources :messages, only: :create
   end

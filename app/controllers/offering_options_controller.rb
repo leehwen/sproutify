@@ -1,10 +1,10 @@
 class OfferingOptionsController < ApplicationController
   def new
     @offer = Offer.find(params[:offer_id])
+    redirect_to offer_offering_options_view_path(@offer) if @offer.offering_options.length.positive?
     @offering_option = OfferingOption.new
     @plants = current_user.plants.where(listing: true)
     @offering_option.offer_id = @offer.id
-
     authorize @plants
   end
 
@@ -25,5 +25,11 @@ class OfferingOptionsController < ApplicationController
       format.json { render json: { message: :ok }, status: :ok }
       # format.json { render json: {params:}}
     end
+  end
+
+  def view
+    @offer = Offer.find(params[:offer_id])
+    authorize @offer
+    @offering_option = @offer.offering_options
   end
 end
