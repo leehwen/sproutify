@@ -12,3 +12,17 @@
     font-weight: bold;
   }
 }
+
+.chat-tab {
+  font-weight: normal;
+  background-color: $light-green;
+  text-align: center;
+  transition: 300ms;
+  padding: 0.25rem 0;
+
+  &.active {
+    background-color: $dark-green;
+    color: white;
+    font-weight: bold;
+  }
+}
