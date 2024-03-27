@@ -23,6 +23,10 @@ class OfferPolicy < ApplicationPolicy
     record.buyer == user
   end
 
+  def view?
+    record.lister == user || record.buyer == user
+  end
+
   class Scope < Scope
 
     def resolve

@@ -4,7 +4,7 @@
       <div class="mt-2 mb-2 col-sm-12 col-lg-6">
         <div class="d-flex mb-4">
           <div class="d-flex align-items-center me-2">
-            <%= link_to listings_plants_path do %>
+            <%= link_to :back do %>
               <i class="back-button fa-solid fa-angles-left"></i>
             <% end %>
           </div>
@@ -18,7 +18,7 @@
 
         <div>
           <p class="m-0 mb-1">
-            Please choose up to 5 listed plants from your garden to swap:
+            These are the plants selected for the offer:
           </p>
         </div>
       </div>
@@ -29,20 +29,16 @@
     <div class="row justify-content-center">
       <div class="col-sm-12 col-lg-6 mb-1">
         <div class="grid-container">
-          <% @plants.each do |plant|%>
+          <% @offering_option.each do |option|%>
 
-          <div class="grid-item plant-card-sm"
-            data-plant-id="<%= plant.id %>"
-            data-action="click->offering-option#add"
-            data-offering-option-target="offering"
-          >
-            <% if plant.image.key? %>
-              <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
+          <div class="grid-item plant-card-sm active">
+            <% if option.plant.image.key? %>
+              <%= cl_image_tag option.plant.image.key, class: "plant-card-image" %>
             <% else %>
-              <%= image_tag plant.plant_info.image_url, class: "plant-card-image" %>
+              <%= image_tag option.plant.plant_info.image_url, class: "plant-card-image" %>
             <% end %>
             <div class="plant-card-content">
-              <h3><%= plant.nickname %></h3>
+              <h3><%= option.plant.nickname %></h3>
             </div>
           </div>
           <% end %>
@@ -53,15 +49,9 @@
     <div class="row justify-content-center">
       <div class="col-sm-12 col-lg-6">
         <div class="mt-5">
-          <%# <h2>Selected Plants</h2>
-          <div class="grid-container" data-offering-option-target="selectedOffering">
-          </div> %>
-
           <div id="selected-plants" class="d-flex justify-content-center mt-5">
-            <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="sp-btn-green-sm" type="submit" value="Submit">
             <%= link_to "Chat with owner", chat_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
           </div>
-
         </div>
       </div>
     </div>
