@@ -32,6 +32,16 @@
       color: $off-white;
     }
   }
+
+  &.inactive {
+    background-color: $gray;
+    pointer-events: none;
+
+    img {
+      filter: grayscale(1);
+    }
+  }
+
 }
 
 .plant-card {

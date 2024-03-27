@@ -127,6 +127,11 @@
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
     transition: 0.2s ease;
   }
+
+  &.disabled {
+    pointer-events: none;
+  }
+
 }
 
 .diagnose_image {
