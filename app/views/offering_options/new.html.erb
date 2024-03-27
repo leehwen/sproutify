@@ -18,7 +18,11 @@
 
         <div>
           <p class="m-0 mb-1">
-            Please choose up to 5 listed plants from your garden to swap:
+            <% if @offer.offering_options.length > 0 %>
+              You have already selected plants for this offer.
+            <% else %>
+              Please choose up to 5 listed plants from your garden to swap:
+            <% end %>
           </p>
         </div>
       </div>
@@ -31,7 +35,7 @@
         <div class="grid-container">
           <% @plants.each do |plant|%>
 
-          <div class="grid-item plant-card-sm" data-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
+          <div class="grid-item plant-card-sm<%= @offer.offering_options.length > 0 ? " inactive" : "" %>" data-plant-id="<%= plant.id %>" data-action="click->offering-option#add">
             <% if plant.image.key? %>
               <%= cl_image_tag plant.image.key, class: "plant-card-image" %>
             <% else %>
@@ -54,7 +58,7 @@
           </div> %>
 
           <div id="selected-plants" class="d-flex justify-content-center mt-5">
-            <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="sp-btn-green-sm" type="submit" value="Submit">
+            <input data-offer-id="<%= @offer.id %>" data-action="click->offering-option#create" class="<%= @offer.offering_options.length > 0 ? "sp-btn-gray-sm disabled" : "sp-btn-green-sm" %>" type="submit" value="Submit">
             <%= link_to "Chat with owner", chat_offer_path(@offer), class: "sp-btn-green-sm d-none", data: { "offering-option-target": "chatButton" } %>
           </div>
 
