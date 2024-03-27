@@ -17,6 +17,18 @@
 
   </div>
 
+  <div class="row m-0">
+    <div class="chat-tab active col-4">
+      All
+    </div>
+    <div class="chat-tab col-4">
+      By You
+    </div>
+    <div class="chat-tab col-4">
+      Fr Others
+    </div>
+  </div>
+
   <% @offers = @offers.where(lister: current_user).or(@offers.where(buyer: current_user)) %>
   <div class="row justify-content-center">
     <div class="mt-2 col-sm-12 col-lg-6">
