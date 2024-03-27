@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       )
       head :ok
     else
-      render chat_offer_path(@offer), status: :unprocessable_entity
+      redirect_to chat_offer_path(@offer), alert: @message.errors.messages.values[0][0]
     end
   end
 
