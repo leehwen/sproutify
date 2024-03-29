@@ -3,7 +3,7 @@ class OfferingOptionsController < ApplicationController
     @offer = Offer.find(params[:offer_id])
     redirect_to offer_offering_options_view_path(@offer) if @offer.offering_options.length.positive?
     @offering_option = OfferingOption.new
-    @plants = current_user.plants.where(listing: true)
+    @plants = current_user.plants.where(listing: true).includes(%i[image_attachment plant_info])
     @offering_option.offer_id = @offer.id
     authorize @plants
   end

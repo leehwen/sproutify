@@ -1,6 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = false
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -40,7 +49,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
-  
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -86,7 +95,7 @@ Rails.application.configure do
   authentication: 'plain',
   enable_starttls_auto: true
   }
-  
+
   host = 'localhost:3000'
   config.action_mailer.default_url_options = { :host => host, protocol: 'https' }
 

@@ -4,9 +4,8 @@ class PlantsController < ApplicationController
 
   def index
     @collection = Collection.new
-    @plants = policy_scope(Plant)
-    @collections= policy_scope(Collection)
-
+    @plants = policy_scope(Plant).includes(%i[image_attachment plant_info])
+    @collections = policy_scope(Collection).includes([:image_attachment])
   end
 
   def new
@@ -107,7 +106,7 @@ class PlantsController < ApplicationController
   end
 
   def listings
-    @listings = Plant.where.not(user: current_user).where(listing: true)
+    @listings = Plant.includes([:image_attachment, :plant_info, :user, { user: { image_attachment: :blob } }]).where.not(user: current_user).where(listing: true)
 
     if params[:query].present?
       @listings = @listings.global_search(params[:query])

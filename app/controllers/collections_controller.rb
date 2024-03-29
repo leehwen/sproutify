@@ -16,7 +16,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
-    @plants = @collection.plants
+    @plants = @collection.plants.includes(%i[image_attachment plant_info])
 
     authorize @collection
   end
