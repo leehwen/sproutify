@@ -41,7 +41,7 @@ class OffersController < ApplicationController
 
   def chat
     @offer = Offer.find(params[:id])
-    @messages = @offer.messages
+    @messages = @offer.messages.includes([:user])
     @message = Message.new
     render layout: "chat_layout"
   end

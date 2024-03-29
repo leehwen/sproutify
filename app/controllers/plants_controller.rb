@@ -4,9 +4,8 @@ class PlantsController < ApplicationController
 
   def index
     @collection = Collection.new
-    @plants = policy_scope(Plant)
-    @collections= policy_scope(Collection)
-
+    @plants = policy_scope(Plant).includes(%i[image_attachment plant_info])
+    @collections = policy_scope(Collection).includes([:image_attachment])
   end
 
   def new
