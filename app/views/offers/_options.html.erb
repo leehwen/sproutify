@@ -1,4 +1,4 @@
-<% @offering_options = @offer.offering_options %>
+<% @offering_options = @offer.offering_options.includes([:plant]) %>
 
 <div class="row flex-column justify-content-center">
   <div class="d-flex mt-2 mb-4 col-sm-12 col-lg-6">
