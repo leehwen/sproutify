@@ -3,6 +3,8 @@
 ## Introduction
 This is a plant management app that has plant identification, diagnosis, watering schedule management and marketplace features.
 
+![screenshots of sproutify app](/public/sproutify-ss.png)
+
 This app is targeted at new house plant owners, who wish to learn how to take better care of their plants and who need a tool to help them manage the plants in their home.
 
 ## Technologies Used
